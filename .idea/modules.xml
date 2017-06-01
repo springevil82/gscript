@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gscript.iml" filepath="$PROJECT_DIR$/.idea/modules/gscript.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gscript/.idea/modules/gscript_main.iml" filepath="$PROJECT_DIR$/../gscript/.idea/modules/gscript_main.iml" group="gscript" />
+      <module fileurl="file://$PROJECT_DIR$/../gscript/.idea/modules/gscript_test.iml" filepath="$PROJECT_DIR$/../gscript/.idea/modules/gscript_test.iml" group="gscript" />
+    </modules>
+  </component>
+</project>
