@@ -10,8 +10,81 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="gscript_main" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../lib/CacheDB.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../lib/erp_jasper_extension.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../lib/jasperreports-4.7.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: commons-io:commons-io:2.4" level="project" />
+    <orderEntry type="library" name="Gradle: commons-digester:commons-digester:2.1" level="project" />
+    <orderEntry type="library" name="Gradle: commons-net:commons-net:1.4.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-collections4:4.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.5" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-csv:1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi:3.8" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi-ooxml:3.8" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi-ooxml-schemas:3.8" level="project" />
+    <orderEntry type="library" name="Gradle: joda-time:joda-time:2.7" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.junrar:junrar:0.7" level="project" />
+    <orderEntry type="library" name="Gradle: net.sf.sevenzipjbinding:sevenzipjbinding:9.20-2.00beta" level="project" />
+    <orderEntry type="library" name="Gradle: net.sf.sevenzipjbinding:sevenzipjbinding-all-platforms:9.20-2.00beta" level="project" />
+    <orderEntry type="library" name="Gradle: org.codehaus.groovy:groovy:2.4.6" level="project" />
+    <orderEntry type="library" name="Gradle: dom4j:dom4j:1.6.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.3.1" level="project" />
+    <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:5.1.36" level="project" />
+    <orderEntry type="library" name="Gradle: javax.mail:javax.mail-api:1.5.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.sun.mail:javax.mail:1.5.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.4.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.0" level="project" />
+    <orderEntry type="library" name="Gradle: stax:stax:1.2.0_rc2-dev" level="project" />
+    <orderEntry type="library" name="Gradle: xerces:xercesImpl:2.8.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.hsqldb:hsqldb:2.3.1" level="project" />
+    <orderEntry type="library" name="Gradle: log4j:log4j:1.2.13" level="project" />
+    <orderEntry type="library" name="Gradle: com.miglayout:miglayout-swing:4.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.scireum:parsii:1.5" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.xmlbeans:xmlbeans:2.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.fifesoft:rsyntaxtextarea:2.5.8" level="project" />
+    <orderEntry type="library" name="Gradle: com.fifesoft:autocomplete:1.5.0" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Gradle: commons-beanutils:commons-beanutils:1.8.3" level="project" />
+    <orderEntry type="library" name="Gradle: oro:oro:2.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.5" level="project" />
+    <orderEntry type="library" name="Gradle: commons-logging:commons-logging-api:1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-vfs2:2.0" level="project" />
+    <orderEntry type="library" name="Gradle: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Gradle: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.miglayout:miglayout-core:4.2" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.maven.scm:maven-scm-api:1.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.maven.scm:maven-scm-provider-svnexe:1.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.codehaus.plexus:plexus-utils:1.5.6" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.maven.scm:maven-scm-provider-svn-commons:1.4" level="project" />
+    <orderEntry type="library" name="Gradle: regexp:regexp:1.3" level="project" />
+    <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: xml-apis:xml-apis:1.3.03" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="gscript_main" />
 </module>
