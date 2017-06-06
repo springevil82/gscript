@@ -290,25 +290,45 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         return lines.get(index);
     }
 
+    /**
+     * Get document line field value by name
+     *
+     * @param lineIndex number of document line
+     * @param fieldName name of line field
+     * @return line field value
+     */
     public Object getLineValue(int lineIndex, String fieldName) {
         return lines.get(lineIndex).get(fieldName);
     }
 
+    /**
+     * @return document lines
+     */
     public List<Line> getLines() {
         return lines;
     }
 
+    /**
+     * @return document lines count
+     */
     public int getLinesCount() {
         return lines.size();
     }
 
+    /**
+     * Create new line and add it to document
+     * @return created line
+     */
     public Line createLine() {
         final Line line = new Line();
         lines.add(line);
         return line;
     }
 
-
+    /**
+     * Export document to JSON object
+     * @return json
+     */
     public JsonObject toJSON() {
         final JsonObject jsonObject = new JsonObject();
 
@@ -352,68 +372,78 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         return jsonObject;
     }
 
+    /**
+     * Export document to json string
+     * @return json string
+     */
     public String toJSONString() {
         return new GsonBuilder().setPrettyPrinting().create().toJson(toJSON());
     }
 
+    /**
+     * Print document to stdout (JSON format)
+     */
     public void print() {
         System.out.println(toJSONString());
     }
 
     /**
-     * Сохранить документ в XML файл
+     * Export document to XML file
      *
-     * @param file файл или имя файла (если имя файла без пути - то выгрузиться в файл этим с именем рядом с файлом скрипта)
+     * @param file file or filename
      */
     public void saveToXML(Object file) {
         new GroovyMultilineDocumentXMLSerializer(factory).saveToFile(this, factory.file.getFile(file));
     }
 
     /**
-     * Загрузить документ из XML файла
+     * Import document from XML file
      *
-     * @param file file файл или имя файла
+     * @param file file or filename
      */
     public void loadFromXML(Object file) {
         new GroovyMultilineDocumentXMLSerializer(factory).loadFromFile(this, factory.file.getFile(file));
     }
 
     /**
-     * Сохранить документ в DBF файл
+     * Export document to DBF (DBase format) file
      *
-     * @param file файл или имя файла (если имя файла без пути - то выгрузиться в файл этим с именем рядом с файлом скрипта)
+     * @param file file or filename
      */
     public void saveToDBF(Object file, String encoding) {
         new GroovyMultilineDocumentDBFSerializer(factory).saveToFile(this, factory.file.getFile(file), encoding);
     }
 
     /**
-     * Загрузить документ из DBF файла
+     * Import document from DBF (DBase format) file
      *
-     * @param file file файл или имя файла
+     * @param file file or filename
      */
     public void loadFromDBF(Object file, String encoding) {
         new GroovyMultilineDocumentDBFSerializer(factory).loadFromFile(this, factory.file.getFile(file), encoding);
     }
 
     /**
-     * Сохранить документ в CSV файл
+     * Export document to CSV file
      *
-     * @param file файл или имя файла (если имя файла без пути - то выгрузиться в файл этим с именем рядом с файлом скрипта)
+     * @param file file or filename
      */
     public void saveToCSV(Object file, String encoding) {
         new GroovyMultilineDocumentCSVSerializer(factory).saveToFile(this, factory.file.getFile(file), encoding);
     }
 
     /**
-     * Загрузить документ из CSV файла
+     * Import document from CSV file
      *
-     * @param file file файл или имя файла
+     * @param file file or filename
      */
     public void loadFromCSV(Object file, String encoding) {
         new GroovyMultilineDocumentCSVSerializer(factory).loadFromFile(this, factory.file.getFile(file), encoding);
     }
 
+    /**
+     * Assert document equals
+     */
     public void assertEquals(GroovyMultilineDocument otherDocument) {
         final Set<String> thisDocHeadFields = keySet();
         final Set<String> otherDocHeadFields = otherDocument.keySet();
