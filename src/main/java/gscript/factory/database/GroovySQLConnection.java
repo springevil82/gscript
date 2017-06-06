@@ -22,21 +22,21 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Получить название и версию БД
+     * Get database version
      */
     public String getDatabaseVersion() throws SQLException {
         return getConnection().getMetaData().getDatabaseProductVersion();
     }
 
     /**
-     * Начать новую транзакцию
+     * Start new transaction
      */
     public void startTransaction() throws SQLException {
         getConnection().setAutoCommit(false);
     }
 
     /**
-     * Комит текущей транзакции
+     * Commit current transaction
      *
      * @throws SQLException
      */
@@ -46,7 +46,7 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Роллбэк текущей транзакции
+     * Rollback current transaction
      *
      * @throws SQLException
      */
@@ -56,14 +56,15 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Получение последней ошибки
+     * Get last error
      */
     public String getLastError() {
         return lastError;
     }
 
     /**
-     * Выполнить команду sql (DML) для обновления данных (не возвращающую ResultSet; типа INSERT, UPDATE или DELETE)
+     * Executes the SQL command, which must be an SQL Data Manipulation Language (DML) statement,
+     * such as INSERT, UPDATE or DELETE; or an SQL statement that returns nothing, such as a DDL statement.
      *
      * @param sql SQL
      * @return either (1) the row count for SQL Data Manipulation Language (DML) statements or (2) 0 for SQL statements that return nothing
@@ -76,12 +77,11 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Выполнить команду sql (DML) для обновления данных (не возвращающую ResultSet; типа INSERT, UPDATE или DELETE).
-     * Если команда не выполнена успешно - ошибки не будет (будет вернут код возврата -1). Ошибку можно забрать используя getLastError()
+     * Safely execute SQL (DML), no exception will be thrown.
+     * You can get error information by getLastError() method.
      *
      * @param sql SQL
      * @return either (1) the row count for SQL Data Manipulation Language (DML) statements or (2) 0 for SQL statements that return nothing
-     * @throws SQLException
      */
     public int executeSQLSafe(String sql) {
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(sql)) {
@@ -93,10 +93,11 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Удалить таблицу без выброса исключений
+     * Safely drop table.
+     * You can get error information by getLastError() method.
      *
-     * @param tableName имя таблицы
-     * @return true - удалено успешно, false - при удалении возникли ошибки (например ее нет или контстрейнты). Ошибку можно посмотреть getLastError
+     * @param tableName table name
+     * @return true - table successfully dropped, false - error occurred while dropping the table
      */
     public boolean dropTableSafe(String tableName) {
         try (PreparedStatement preparedStatement = getConnection().prepareStatement("drop table " + tableName)) {
@@ -108,9 +109,9 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Запросить ResultSet с одной ячейкой и вернуть ее значение
+     * Query single cell (row/column) result set and retrieve cell value
      *
-     * @return значение
+     * @return single cell value
      */
     public Object queryObject(String sql) throws SQLException {
         try (ResultSet resultSet = getConnection().prepareStatement(sql).executeQuery()) {
@@ -122,9 +123,9 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Запросить ResultSet с одной записью и вернуть массив значений
+     * Query single row result set and retrieve row cell values
      *
-     * @return массив значений
+     * @return row cell values
      */
     public Object[] queryRow(String sql) throws SQLException {
         Object[] objects = new Object[0];
@@ -141,7 +142,7 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Выполнить команду sql возвращающую ResultSet
+     * Query result set
      *
      * @param sql SQL
      * @return ResultSet
@@ -156,9 +157,9 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Распечатать полученный resultset в консоль
+     * Query result set and print it to stdout
      *
-     * @param sql запрос
+     * @param sql SQL
      * @throws Exception
      */
     public void printResultSet(String sql) throws Exception {
@@ -168,10 +169,10 @@ public abstract class GroovySQLConnection implements AutoCloseable {
     }
 
     /**
-     * Получить данные запроса и загрузить их в новый документ
+     * Query result set and load it to multiline document.
      *
-     * @param sql запрос
-     * @return документ
+     * @param sql SQL
+     * @return document
      * @throws Exception
      */
     public GroovyMultilineDocument resultSetToDocument(String sql) throws Exception {

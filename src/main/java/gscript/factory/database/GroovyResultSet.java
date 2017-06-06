@@ -79,9 +79,9 @@ public final class GroovyResultSet implements AutoCloseable {
     }
 
     /**
-     * Преобразовать ResultSet в SQL таблицу в памяти, с которой можно производить SQL операции
+     * Load result set in HSQLDB "in mem" table
      *
-     * @param tableName имя таблицы
+     * @param tableName table name
      */
     public GroovyHSQLDBTable toSQLTable(String tableName) throws Exception {
         final GroovyHSQLDBTableStruct table = new GroovyHSQLDBTableStruct();
@@ -116,7 +116,7 @@ public final class GroovyResultSet implements AutoCloseable {
     }
 
 
-    // ================================ java.sql.ResultSet wraped routines ================================
+    // ================================ java.sql.ResultSet wrapped routines ================================
     public boolean next() throws SQLException {
         return resultSet.next();
     }
