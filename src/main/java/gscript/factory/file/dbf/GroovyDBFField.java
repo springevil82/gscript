@@ -7,70 +7,52 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+public final class GroovyDBFField {
 
-// Referenced classes of package com.hexiong.jdbf:
-//            JDBFException
-@SuppressWarnings({"UnnecessaryBoxing", "BooleanConstructorCall", "UnnecessaryUnboxing", "StringBufferMayBeStringBuilder", "UnnecessaryReturnStatement", "HardCodedStringLiteral"})
-public class GroovyDBFField {
-    //~ Instance fields ----------------------------------------------------------
+    private static final SimpleDateFormat DATE_FORMAT_YYYYMMDD = new SimpleDateFormat("yyyyMMdd");
 
-    protected String name;
-    protected char type;
-    protected int length;
-    protected int decimalCount;
+    private String name;
+    private char type;
+    private int length;
+    private int decimalCount;
 
-    //~ Constructors -------------------------------------------------------------
-
+    /**
+     * Constructor
+     *
+     * @param name         name of field (max len 10)
+     * @param type         DBF type (available types are: 'C' - character, 'N' - number, 'L' - logical, 'D' - double, 'F' - float)
+     * @param length       length of data type
+     * @param decimalCount decimalCount
+     */
     public GroovyDBFField(String name, char type, int length, int decimalCount) throws GroovyDBFException {
         if (name.length() > 10)
-            throw new GroovyDBFException(
-                    "The field name is more than 10 characters long: " + name
-            );
+            throw new GroovyDBFException("The field name is more than 10 characters long: " + name);
 
-        if ((type != 'C') && (type != 'N') && (type != 'L') && (type != 'D') && (type != 'F') && (type != ' ')) {
+        if (type != 'C' && type != 'N' && type != 'L' && type != 'D' && type != 'F' && type != ' ')
             throw new GroovyDBFException("The field type is not a valid. Got: \"" + type + "\"");
-        }
 
         if (length < 1)
-            throw new GroovyDBFException(
-                    "The field length should be a positive integer. Got: " + length
-            );
+            throw new GroovyDBFException("The field length should be a positive integer. Got: " + length);
 
-        if ((type == 'L') && (length != 1))
-            throw new GroovyDBFException(
-                    "The field length should be 1 characater for logical fields. Got: " +
-                            length
-            );
+        if (type == 'L' && length != 1)
+            throw new GroovyDBFException("The field length should be 1 character for logical fields. Got: " + length);
 
-        if ((type == 'D') && (length != 8))
-            throw new GroovyDBFException(
-                    "The field length should be 8 characaters for date fields. Got: " + length
-            );
+        if (type == 'D' && length != 8)
+            throw new GroovyDBFException("The field length should be 8 characaters for date fields. Got: " + length);
 
         if (decimalCount < 0)
-            throw new GroovyDBFException(
-                    "The field decimal count should not be a negative integer. Got: " + decimalCount
-            );
+            throw new GroovyDBFException("The field decimal count should not be a negative integer. Got: " + decimalCount);
 
-        if (((type == 'C') || (type == 'L') || (type == 'D')) && (decimalCount != 0))
-            throw new GroovyDBFException(
-                    "The field decimal count should be 0 for character, logical, and date fields. Got: " +
-                            decimalCount
-            );
+        if ((type == 'C' || type == 'L' || type == 'D') && (decimalCount != 0))
+            throw new GroovyDBFException("The field decimal count should be 0 for character, logical, and date fields. Got: " + decimalCount);
 
-        if (decimalCount > (length - 1)) {
-            throw new GroovyDBFException(
-                    "The field decimal count should be less than the length - 1. Got: " +
-                            decimalCount
-            );
-        } else {
-            this.name = name;
-            this.type = type;
-            this.length = length;
-            this.decimalCount = decimalCount;
+        if (decimalCount > length - 1)
+            throw new GroovyDBFException("The field decimal count should be less than the length - 1. Got: " + decimalCount);
 
-            return;
-        }
+        this.name = name;
+        this.type = type;
+        this.length = length;
+        this.decimalCount = decimalCount;
     }
 
     public void setName(String name) {
@@ -89,11 +71,6 @@ public class GroovyDBFField {
         this.decimalCount = decimalCount;
     }
 
-    public GroovyDBFField() {
-    }
-
-    //~ Methods ------------------------------------------------------------------
-
     public String getName() {
         return name;
     }
@@ -111,48 +88,40 @@ public class GroovyDBFField {
     }
 
     public String format(Object obj) throws GroovyDBFException {
-        if ((type == 'N') || (type == 'F')) {
+        if (type == 'N' || type == 'F') {
 
             if (obj == null) {
-                StringBuffer stringbuffer = new StringBuffer(getLength());
-
+                final StringBuilder stringBuilder = new StringBuilder(getLength());
                 for (int i = 0; i < getLength(); i++)
-                    stringbuffer.append(" ");
+                    stringBuilder.append(" ");
 
-                return stringbuffer.toString();
+                return stringBuilder.toString();
             }
 
             if (obj instanceof Number) {
-                Number number = (Number) obj;
-                StringBuffer stringbuffer = new StringBuffer(getLength());
+                final Number number = (Number) obj;
+                final StringBuilder stringBuilder = new StringBuilder(getLength());
 
                 for (int i = 0; i < getLength(); i++)
-                    stringbuffer.append("#");
+                    stringBuilder.append("#");
 
                 if (getDecimalCount() > 0)
-                    stringbuffer.setCharAt(getLength() - getDecimalCount() - 1, '.');
+                    stringBuilder.setCharAt(getLength() - getDecimalCount() - 1, '.');
 
-                DecimalFormat decimalformat = new DecimalFormat(stringbuffer.toString());
+                final DecimalFormat decimalformat = new DecimalFormat(stringBuilder.toString());
                 String s1 = decimalformat.format(number).replace(',', '.');
                 int k = getLength() - s1.length();
 
                 if (k < 0)
-                    throw new GroovyDBFException(
-                            "Value " + number + " cannot fit in pattern: '" + stringbuffer +
-                                    "'."
-                    );
+                    throw new GroovyDBFException("Value " + number + " cannot fit in pattern: '" + stringBuilder + "'.");
 
-                StringBuffer stringbuffer2 = new StringBuffer(k);
-
+                final StringBuilder stringBuilder1 = new StringBuilder(k);
                 for (int l = 0; l < k; l++)
-                    stringbuffer2.append(" ");
+                    stringBuilder1.append(" ");
 
-                return stringbuffer2 + s1;
-            } else {
-                throw new GroovyDBFException(
-                        "Expected a Number, got " + obj.getClass() + "."
-                );
-            }
+                return stringBuilder1 + s1;
+            } else
+                throw new GroovyDBFException("Expected a Number, got " + obj.getClass() + ".");
         }
 
         if (type == 'C') {
@@ -163,48 +132,36 @@ public class GroovyDBFField {
                 String s = (String) obj;
 
                 if (s.length() > getLength())
-                    throw new GroovyDBFException(
-                            "'" + obj + "' is longer than " + getLength() + " characters."
-                    );
+                    throw new GroovyDBFException("'" + obj + "' is longer than " + getLength() + " characters.");
 
-                StringBuffer stringbuffer1 = new StringBuffer(getLength() - s.length());
-
+                StringBuilder stringBuilder = new StringBuilder(getLength() - s.length());
                 for (int j = 0; j < (getLength() - s.length()); j++)
-                    stringbuffer1.append(' ');
+                    stringBuilder.append(' ');
 
-                return s + stringbuffer1;
-            } else {
-                throw new GroovyDBFException(
-                        "Expected a String, got " + obj.getClass() + "."
-                );
-            }
+                return s + stringBuilder;
+            } else
+                throw new GroovyDBFException("Expected a String, got " + obj.getClass() + ".");
         }
 
         if (type == 'L') {
             if (obj == null)
-                obj = new Boolean(false);
+                obj = Boolean.FALSE;
 
             if (obj instanceof Boolean) {
-                Boolean boolean1 = (Boolean) obj;
+                Boolean b = (Boolean) obj;
 
-                return boolean1.booleanValue() ? "Y" : "N";
-            } else {
-                throw new GroovyDBFException(
-                        "Expected a Boolean, got " + obj.getClass() + "."
-                );
-            }
+                return b ? "Y" : "N";
+            } else
+                throw new GroovyDBFException("Expected a Boolean, got " + obj.getClass() + ".");
         }
 
         if (type == 'D') {
             if (obj == null)
                 return "        ";
 
-            //obj = new Date();
             if (obj instanceof Date) {
                 Date date = (Date) obj;
-                SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyyMMdd");
-
-                return simpledateformat.format(date);
+                return DATE_FORMAT_YYYYMMDD.format(date);
             } else {
                 throw new GroovyDBFException("Expected a Date, got " + obj.getClass() + ".");
             }
@@ -269,7 +226,7 @@ public class GroovyDBFField {
     public Object parse(String s) throws GroovyDBFException {
         s = s.trim();
 
-        if ((type == 'N') || (type == 'F')) {
+        if (type == 'N' || type == 'F') {
             if (s.equals(""))
                 s = "0";
 
@@ -277,8 +234,8 @@ public class GroovyDBFField {
                 if (getDecimalCount() == 0)
                     return new Long(s);
                 else
-
                     return new Double(s);
+
             } catch (NumberFormatException numberformatexception) {
                 throw new GroovyDBFException(numberformatexception);
             }
@@ -289,23 +246,20 @@ public class GroovyDBFField {
 
         if (type == 'L') {
             if (s.equals("N") || s.equals("n") || s.equals("F") || s.equals("f") || s.equals(""))
-                return new Boolean(false);
+                return Boolean.FALSE;
 
             if (s.equals("Y") || s.equals("y") || s.equals("T") || s.equals("t"))
-                return new Boolean(true);
+                return Boolean.TRUE;
 
             throw new GroovyDBFException("Unrecognized value for logical field: " + s);
         }
 
         if (type == 'D') {
-            SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyyMMdd");
-
             try {
                 if ("".equals(s))
                     return null;
                 else
-
-                    return simpledateformat.parse(s);
+                    return DATE_FORMAT_YYYYMMDD.parse(s);
             } catch (ParseException parseexception) {
                 throw new GroovyDBFException(parseexception);
             }

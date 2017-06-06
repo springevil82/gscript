@@ -60,7 +60,6 @@ public class GroovyCSVFileReader implements AutoCloseable {
                 for (int i = 0; i < record.size(); i++)
                     columns.add(new ColumnDefinition(record.get(i)));
 
-                // если хотябы в одном из заголовков есть пробелы или русские символы - подменяем имена колонок на COLUMN_i
                 for (ColumnDefinition column : columns) {
                     if (factory.string.containsRussianSymbolsOrSpaces(column.getName())) {
                         createDefaultColumnNames(columns);
@@ -80,20 +79,19 @@ public class GroovyCSVFileReader implements AutoCloseable {
     }
 
     /**
-     * <p>Задать имена и типы колонок для автоматического преобразования типов во время разбора
-     * <p/>
-     * <p>Доступные описания:
-     * <br>VARCHAR - строка безразмерная
-     * <br>VARCHAR(length) - строка размерная длинной length
-     * <br>INTEGER - целое длинны length
-     * <br>DECIMAL(length,scale) - дробное длинны length c scale символов после запятой
-     * <br>DATE(format) - дата с указанием формата даты (например dd.MM.yyyy)
+     * <p>Set column name and type
+     * <p>Available descriptions are:
+     * <br>VARCHAR - string unlimited
+     * <br>VARCHAR(length) - string limited
+     * <br>INTEGER - integer with length
+     * <br>DECIMAL(length,scale) - decimal with length and scale
+     * <br>DATE(format) - date with dateFormat
      * <br>BOOLEAN - boolean
      *
-     * @param columnIndex для колонки с индексом
-     * @param columnName  задать имя колонки (англ. без пробелов)
-     * @param columnLabel задать title колонки (бещ ограничений)
-     * @param definition  задать описание колонки
+     * @param columnIndex column index
+     * @param columnName  column name
+     * @param columnLabel column title
+     * @param definition  column description
      */
     public void setColumnDefinition(int columnIndex, String columnName, String columnLabel, String definition) {
         final ColumnDefinition columnDefinition = columns.get(columnIndex);
@@ -212,7 +210,7 @@ public class GroovyCSVFileReader implements AutoCloseable {
 
     private void assertCurrentRow() {
         if (currentRecord == null)
-            throw new GroovyException("Next row was not read. Use next() for read next row.");
+            throw new GroovyException("Next row was not read. Use next() to read next row.");
     }
 
     public String getCurrentRecord() {
@@ -312,9 +310,9 @@ public class GroovyCSVFileReader implements AutoCloseable {
     }
 
     /**
-     * Считать весь файл в SQL таблицу в памяти, с которой можно производить SQL операции
+     * Create new "im mem" HSQLDB table with name (tableName) and load all CSV data into it
      *
-     * @param tableName имя таблицы
+     * @param tableName name of new table
      */
     public GroovyHSQLDBTable toSQLTable(String tableName) throws Exception {
         final GroovyHSQLDBTableStruct table = new GroovyHSQLDBTableStruct();
@@ -345,7 +343,7 @@ public class GroovyCSVFileReader implements AutoCloseable {
     }
 
     /**
-     * Считать весь файл в SQL таблицу в памяти, с которой можно производить SQL операции
+     * Create new "im mem" HSQLDB table with name (filename without ext) and load all CSV data into it
      */
     public GroovyHSQLDBTable toSQLTable() throws Exception {
         return toSQLTable(factory.file.splitFileNameExt(file.getName())[0]);

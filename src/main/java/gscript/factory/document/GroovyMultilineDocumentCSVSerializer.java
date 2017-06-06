@@ -78,7 +78,7 @@ public final class GroovyMultilineDocumentCSVSerializer {
         } else if (value instanceof Number) {
             String valueAsString = value.toString();
 
-            // плавающая точка всегда точка
+            // floating point is always dot
             if (valueAsString.contains(","))
                 valueAsString = valueAsString.replace(",", ".");
 
@@ -122,7 +122,7 @@ public final class GroovyMultilineDocumentCSVSerializer {
             }
 
         } catch (Exception e) {
-            throw new GroovyException("CSV seralization error: " + e.getMessage(), e);
+            throw new GroovyException("CSV serialization error: " + e.getMessage(), e);
         }
     }
 
@@ -132,7 +132,6 @@ public final class GroovyMultilineDocumentCSVSerializer {
             while ((line = bufferedReader.readLine()) != null) {
 
                 if ("".equals(line.trim())) {
-                    // начало строк
                     final CSVParser csvParser = new CSVParser(bufferedReader, getCSVFormat());
 
                     List<String> columns = null;

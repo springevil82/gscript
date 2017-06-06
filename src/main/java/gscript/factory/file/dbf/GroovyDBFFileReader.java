@@ -8,7 +8,7 @@ import gscript.factory.database.hsqldb.GroovyHSQLDBTableStruct;
 import java.io.File;
 import java.io.FileInputStream;
 
-public class GroovyDBFFileReader implements AutoCloseable {
+public final class GroovyDBFFileReader implements AutoCloseable {
 
     private final FileInputStream fileInputStream;
     private final GroovyDBFReader dbfReader;
@@ -58,7 +58,7 @@ public class GroovyDBFFileReader implements AutoCloseable {
 
     private void assertCurrentRow() {
         if (currentRecord == null)
-            throw new GroovyException("Next row was not read. Use next() for read next row.");
+            throw new GroovyException("Next row was not read. Use next() to read next row.");
     }
 
     public Object getObject(int column) {
@@ -102,9 +102,9 @@ public class GroovyDBFFileReader implements AutoCloseable {
     }
 
     /**
-     * Считать весь файл в SQL таблицу в памяти, с которой можно производить SQL операции
+     * Create new "im mem" HSQLDB table with name (tableName) and load all DBF data into it
      *
-     * @param tableName имя таблицы
+     * @param tableName table name
      */
     public GroovyHSQLDBTable toSQLTable(String tableName) throws Exception {
         final GroovyHSQLDBTableStruct table = new GroovyHSQLDBTableStruct();
@@ -132,7 +132,7 @@ public class GroovyDBFFileReader implements AutoCloseable {
     }
 
     /**
-     * Считать весь файл в SQL таблицу в памяти, с которой можно производить SQL операции
+     * Create new "im mem" HSQLDB table with name (filename without ext) and load all CSV data into it
      */
     public GroovyHSQLDBTable toSQLTable() throws Exception {
         return toSQLTable(factory.file.splitFileNameExt(file.getName())[0]);
