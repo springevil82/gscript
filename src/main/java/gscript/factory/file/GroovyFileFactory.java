@@ -216,6 +216,7 @@ public final class GroovyFileFactory {
 
     /**
      * Get current script file
+     *
      * @return current script file
      */
     public File getCurrentScriptFile() {
@@ -230,6 +231,7 @@ public final class GroovyFileFactory {
 
     /**
      * Get current script dir
+     *
      * @return current script dir
      */
     public File getCurrentScriptDir() {
@@ -241,7 +243,7 @@ public final class GroovyFileFactory {
      *
      * @param fileName file name
      * @return file
-     * @exception GroovyException file not found exception
+     * @throws GroovyException file not found exception
      */
     public File getFileNearCurrentScript(String fileName) {
         final File scriptParentDir = getCurrentScriptFile().getAbsoluteFile().getParentFile();
@@ -271,12 +273,11 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Открыть на чтение текстовый файл для построчного чтения
+     * Create text file reader (line-by-line)
      *
-     * @param file     файл или имя файла
-     * @param encoding кодировка
-     * @return читатель файла
-     * @throws Exception
+     * @param file     file or path to file
+     * @param encoding file encoding
+     * @return file reader
      */
     public GroovyTextFileReader createTextFileReader(Object file, String encoding) throws Exception {
         File f;
@@ -289,12 +290,11 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Открыть на чтение DBF файл для построчного чтения
+     * Create DBF file reader (DBASE format)
      *
-     * @param file     файл или имя файла
-     * @param encoding кодировка
-     * @return читатель файла
-     * @throws Exception
+     * @param file     file or path to file
+     * @param encoding file encoding
+     * @return file reader
      */
     public GroovyDBFFileReader createDBFFileReader(Object file, String encoding) throws Exception {
         File f;
@@ -307,15 +307,14 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Открыть на чтение CSV файл для построчного чтения
+     * Create CSV file reader
      *
-     * @param file           файл или имя файла
-     * @param encoding       кодировка
-     * @param separator      разделитель
-     * @param readFromLine   данные начинаются со строки
-     * @param containsHeader первая строка данных - это названия колонок
-     * @return читатель файла
-     * @throws Exception
+     * @param file           file or path to file
+     * @param encoding       file encoding
+     * @param separator      values delimiter
+     * @param readFromLine   read file from line (skip first lines)
+     * @param containsHeader indicates that first line is header with column names
+     * @return file reader
      */
     public GroovyCSVFileReader createCSVFileReader(Object file, String encoding, String separator, int readFromLine, boolean containsHeader) throws Exception {
         File f;
@@ -333,14 +332,13 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Создать временный файл, который удалиться после отработки скрипта
+     * Create new file that will be deleted after script execution
      *
-     * @param name имя файла на котором будет базироваться имя временного файла
-     * @return временный файл
+     * @param name base name for file (if null - name will be set as current script file name with .tmp ехt)
+     * @return temporary file
      */
     public File createTempFile(String name) throws IOException {
         if (name == null) {
-
             name = "gscript";
             if (factory.getThisScript() != null)
                 name = new File(factory.getThisScript().getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
@@ -350,7 +348,9 @@ public final class GroovyFileFactory {
             final File tempFile = File.createTempFile(splitFileNameExt(name)[0], ".tmp");
             tempFile.deleteOnExit();
             return tempFile;
-        } else if (isRelativeFile(name)) {
+        }
+
+        if (isRelativeFile(name)) {
             final File tempFile = File.createTempFile(splitFileNameExt(name)[0], "".equals(splitFileNameExt(name)[1]) ? ".tmp" : splitFileNameExt(name)[1]);
             tempFile.deleteOnExit();
             return tempFile;
@@ -364,19 +364,19 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Создать временный файл, который удалиться после отработки скрипта
+     * Create new file that will be deleted after script execution.
      *
-     * @return временный файл
+     * @return temporary file
      */
     public File createTempFile() throws IOException {
         return createTempFile(null);
     }
 
     /**
-     * Распечатать текстовый файл в консоль
+     * Print file contents in stdout
      *
-     * @param file     файл или имя файла
-     * @param encoding кодировка файла
+     * @param file     file or path to file
+     * @param encoding file encoding
      */
     public void printTextFile(Object file, String encoding) throws Exception {
         try (GroovyTextFileReader reader = factory.file.createTextFileReader(file, encoding)) {
@@ -386,9 +386,9 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Распечатать текстовый файл в консоль. Кодировка по умолчанию UTF-8.
+     * Print file contents in stdout (default encoding is UTF-8)
      *
-     * @param file файл или имя файла
+     * @param file file or path to file
      */
     public void printTextFile(Object file) throws Exception {
         try (GroovyTextFileReader reader = factory.file.createTextFileReader(file, "UTF-8")) {
@@ -398,21 +398,21 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Распечатать DBF файл в консоль
+     * Print DBF file data to stdout
      *
-     * @param file     файл или имя файла
-     * @param encoding кодировка файла
+     * @param file     file or path to file
+     * @param encoding file encoding
      */
     public void printDBFFile(Object file, String encoding) throws Exception {
         printDBFFile(file, encoding, -1);
     }
 
     /**
-     * Распечатать DBF файл в консоль
+     * Print DBF file data to stdout
      *
-     * @param file      файл или имя файла
-     * @param limitRows вывести первых limitRows записей
-     * @param encoding  кодировка файла
+     * @param file      file or path to file
+     * @param limitRows print only first limitRows
+     * @param encoding  file encoding
      */
     public void printDBFFile(Object file, String encoding, int limitRows) throws Exception {
         final File f;
@@ -466,6 +466,13 @@ public final class GroovyFileFactory {
         }
     }
 
+    /**
+     * Parse XML file and return DOM
+     *
+     * @param file     file
+     * @param encoding file encoding
+     * @return Document
+     */
     public Document parseXML(File file, String encoding) throws Exception {
         try (final InputStreamReader reader = new InputStreamReader(new FileInputStream(file), encoding)) {
             return new SAXReader().read(reader);
@@ -473,11 +480,11 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Проверить соотсветствует ли файл маске
+     * Check if file name match by mask
      *
-     * @param file файл или имя файла
-     * @param mask маска файла
-     * @return соответствует/нет
+     * @param file file or path to file
+     * @param mask mask (WildcardFileFilter)
+     * @return match or not
      */
     public boolean acceptMask(Object file, String mask) {
         final File f = file instanceof File ? (File) file : new File(file.toString());
