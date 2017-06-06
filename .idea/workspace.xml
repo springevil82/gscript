@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d0fd85c-e95b-46c3-a235-dbb6452c1c43" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovyResultSet.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovyResultSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovySQLConnection.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovySQLConnection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/date/GroovyDateFactory.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/date/GroovyDateFactory.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../gscript/out/" />
     <ignored path="$PROJECT_DIR$/../gscript/.gradle/" />
@@ -44,16 +42,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GroovyHSQLDBTable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/hsqldb/GroovyHSQLDBTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-165">
-              <caret line="50" column="25" lean-forward="false" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GroovyHSQLDBTableStruct.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/hsqldb/GroovyHSQLDBTableStruct.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,11 +122,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroovySQLConnection.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GroovySQLConnection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovySQLConnection.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="258">
               <caret line="174" column="23" lean-forward="false" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroovyDateFactory.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/date/GroovyDateFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="581">
+              <caret line="155" column="29" lean-forward="false" selection-start-line="155" selection-start-column="29" selection-end-line="155" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -520,7 +518,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovyQueryBuilder.java" />
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/date/GroovyDateFactory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/GroovyDocumentFactory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/GroovyMultilineDocument.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/GroovyMultilineDocumentCSVSerializer.java" />
@@ -570,6 +567,7 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovyDatabaseFactory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovyResultSet.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/database/GroovySQLConnection.java" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/date/GroovyDateFactory.java" />
       </list>
     </option>
   </component>
@@ -725,6 +723,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="date" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1139,7 +1171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496745405509</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="dev">
+      <created>1496746392128</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1496746392128</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1196,14 +1235,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyProgressLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyStdoutProgressLog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1612,6 +1643,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="174" column="23" lean-forward="false" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/date/GroovyDateFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="155" column="29" lean-forward="false" selection-start-line="155" selection-start-column="29" selection-end-line="155" selection-end-column="29" />
           <folding />
         </state>
       </provider>

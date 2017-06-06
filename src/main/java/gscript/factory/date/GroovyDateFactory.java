@@ -11,6 +11,14 @@ public final class GroovyDateFactory {
 
     private final Factory factory;
 
+    /**
+     * Create date
+     *
+     * @param year        year (int or string)
+     * @param monthOfYear month of year (int or string)
+     * @param dayOfMonth  day of month (int or string)
+     * @return date
+     */
     public Date createDate(Object year, Object monthOfYear, Object dayOfMonth) {
         return new LocalDate(
                 Integer.parseInt(year.toString()),
@@ -19,6 +27,16 @@ public final class GroovyDateFactory {
         ).toDate();
     }
 
+    /**
+     * Create date
+     *
+     * @param year year (int or string)
+     * @param monthOfYear month of year (int or string)
+     * @param dayOfMonth day of month (int or string)
+     * @param hourOfDay hour of day (int or string)
+     * @param minuteOfHour minute of hour (int or string)
+     * @return date
+     */
     public Date createDate(Object year, Object monthOfYear, Object dayOfMonth, Object hourOfDay, Object minuteOfHour) {
         return new DateTime(
                 Integer.parseInt(year.toString()),
@@ -29,6 +47,17 @@ public final class GroovyDateFactory {
         ).toDate();
     }
 
+    /**
+     * Create date
+     *
+     * @param year year (int or string)
+     * @param monthOfYear month of year (int or string)
+     * @param dayOfMonth day of month (int or string)
+     * @param hourOfDay hour of day (int or string)
+     * @param minuteOfHour minute of hour (int or string)
+     * @param secondOfMinute second of minute (int or string)
+     * @return date
+     */
     public Date createDate(Object year, Object monthOfYear, Object dayOfMonth, Object hourOfDay, Object minuteOfHour, Object secondOfMinute) {
         return new DateTime(
                 Integer.parseInt(year.toString()),
@@ -45,68 +74,75 @@ public final class GroovyDateFactory {
     }
 
     /**
-     * Получить текущую дату (без времени)
+     * Get current date (without time)
      */
     public Date getCurrentDate() {
         return new LocalDate().toDate();
     }
 
     /**
-     * Получить текущую дату с прибавленными днями
+     * Returns a current date (without time) plus the specified number of days.
      *
-     * @param days прибавить к текущей дате столько дней (-days - отнять дни)
+     * @param days the amount of days to add, may be negative
      */
     public Date getCurrentDatePlus(int days) {
         return new LocalDate().plusDays(days).toDate();
     }
 
     /**
-     * Получить текущую дату и время
+     * Get current date (with time)
      */
     public Date getCurrentDateTime() {
         return new DateTime().toDate();
     }
 
     /**
-     * Прибавить/отнять к дате кол-во дней
+     * Add amount of days to specified date (with time)
      *
-     * @param date дата
-     * @param days кол-во дней (если с минусом - отнимет)
-     * @return
+     * @param date date
+     * @param days the amount of days to add, may be negative
+     * @return new date
      */
     public Date plusDays(Date date, int days) {
         return new DateTime(date).plusDays(days).toDate();
     }
 
     /**
-     * Прибавить/отнять к дате кол-во месяцев
+     * Add amount of months to specified date (with time)
      *
-     * @param date   дата
-     * @param months кол-во месяцев (если с минусом - отнимет)
-     * @return
+     * @param date   date
+     * @param months the amount of months to add, may be negative
+     * @return new date
      */
     public Date plusMonths(Date date, int months) {
         return new DateTime(date).plusMonths(months).toDate();
     }
 
     /**
-     * Удалить милисекунды из даты
+     * Remove millis from date
      *
-     * @param date дата
+     * @param date date
      */
     public Date withoutMillis(Date date) {
         return new DateTime(date).withMillisOfSecond(0).toDate();
     }
 
     /**
-     * Удалить время из даты
+     * Remove time from datetime
      *
-     * @param date
+     * @param date datetime
      */
     public Date withoutTime(Date date) {
         return new LocalDate(date).toDate();
     }
 
+    /**
+     * Parse given date (as string) using dateFormat
+     * @param str date as string
+     * @param dateFormat date format
+     * @return date
+     * @throws Exception
+     */
     public Date parseDate(String str, String dateFormat) throws Exception {
         if ("".equals(str.trim()))
             return null;
@@ -114,6 +150,11 @@ public final class GroovyDateFactory {
         return new SimpleDateFormat(dateFormat).parse(str);
     }
 
+    /**
+     * Convert given date to string using date format dd.MM.yyyy by default
+     * @param date date
+     * @return date as string
+     */
     public String getDateAsString(Date date) {
         final DateTime dateTime = new DateTime(date);
         if (dateTime.getHourOfDay() == 0 && dateTime.getMinuteOfHour() == 0 && dateTime.getSecondOfMinute() == 0)
