@@ -9,6 +9,12 @@ import org.joda.time.DateTime;
 
 import java.util.*;
 
+/**
+ * Represent of multiline (multi-dimensional) document.
+ * <p>
+ * Contains header (Map<String, Object>) and collection of lines (Map<String, Object>).
+ * Also it can contains columns mapping, for easily exporting to DBF/CSV files.
+ */
 public final class GroovyMultilineDocument extends LinkedHashMap<String, Object> {
 
     private final Factory factory;
@@ -19,6 +25,9 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
 
     private final LinkedHashMap<String, Column> columns = new LinkedHashMap<>();
 
+    /**
+     * Column definition
+     */
     public final class Column {
         private String name;
         private String title;
@@ -75,6 +84,9 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
 
     private final List<Line> lines = new ArrayList<>();
 
+    /**
+     * Document line. Provides auto creation column definitions.
+     */
     public final class Line extends LinkedHashMap<String, Object> {
 
         @Override
@@ -82,7 +94,6 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
 
             Column column = columns.get(key);
             if (column == null) {
-                // такой колонки еще нет, создадим новую колонку
                 column = new Column();
                 column.setName(key);
                 column.setTitle(key);
@@ -92,13 +103,11 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
 
                 columns.put(key, column);
             } else {
-                // такая колонка есть, но класс ее не определен и сейчас можно определить
                 if (column.getJavaClass() == null && value != null) {
                     column.setJavaClass(value.getClass());
                 } else if (column.getJavaClass() != null && !column.getJavaClass().equals(Object.class) &&
                         value != null && column.getJavaClass() != value.getClass()) {
 
-                    // класс текущего значения ячейки не соответсвует классу колонки - расширяем класс колонки
                     final Class extendedClass = GroovyUtil.getExtendedClass(column.getJavaClass(), value.getClass());
 
                     final Class oldColumnClass = column.getJavaClass();
@@ -107,10 +116,8 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
                     if (!extendedClass.equals(Object.class)) {
                         try {
                             if (oldColumnClass == extendedClass) {
-                                // класс колонки остался тот же - закастим текущее значение к классу колонки сразу (перед сетом)
                                 value = GroovyUtil.cast(value, extendedClass);
                             } else {
-                                // класс колонки поменялся - перекастуем значения всех строк в новому типу
                                 recastColumnValues(key, extendedClass);
                             }
                         } catch (Throwable e) {
@@ -124,6 +131,9 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         }
     }
 
+    /**
+     * @return document column definitions
+     */
     public LinkedHashMap<String, Column> getColumns() {
         return columns;
     }
@@ -136,6 +146,9 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         }
     }
 
+    /**
+     * @return number of head values
+     */
     public int getHeadFieldsCount() {
         return size();
     }
@@ -151,26 +164,58 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         columns.put(columnName, column);
     }
 
+    /**
+     * Define the column
+     *
+     * @param columnName  column name
+     * @param columnTitle column title (use for printing, etc)
+     * @param columnClass column java class
+     * @param columnSize  column size
+     */
     public void createColumn(String columnName, String columnTitle, Class columnClass, Integer columnSize) {
         createColumn(columnName, columnTitle, columnClass, columnSize, null);
     }
 
+    /**
+     * Define the column
+     *
+     * @param columnName  column name
+     * @param columnTitle column title (use for printing, etc)
+     * @param columnClass column java class
+     */
     public void createColumn(String columnName, String columnTitle, Class columnClass) {
         createColumn(columnName, columnTitle, columnClass, null, null);
     }
 
+    /**
+     * @return number of defined columns
+     */
     public int getColumnCount() {
         return columns.size();
     }
 
+    /**
+     * @return set of defined column names
+     */
     public Set<String> getColumnNames() {
         return columns.keySet();
     }
 
+    /**
+     * Define column index
+     *
+     * @param columnName
+     * @param index
+     */
     public void setColumnIndex(String columnName, int index) {
         throw new GroovyException("todo it");
     }
 
+    /**
+     * Get column title
+     * @param columnName defined column name
+     * @return title
+     */
     public String getColumnTitle(String columnName) {
         final Column column = columns.get(columnName);
 
@@ -180,6 +225,11 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         throw new GroovyException("Column with name \"" + columnName + "\" not found");
     }
 
+    /**
+     * Set column title
+     * @param columnName defined column name
+     * @param title new title
+     */
     public void setColumnTitle(String columnName, String title) {
         final Column column = columns.get(columnName);
         if (column != null)
@@ -188,6 +238,11 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         throw new GroovyException("Column with name \"" + columnName + "\" not found");
     }
 
+    /**
+     * Get column java class
+     * @param columnName defined column name
+     * @return class of column
+     */
     public Class getColumnClass(String columnName) {
         final Column column = columns.get(columnName);
 
@@ -197,7 +252,13 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         throw new GroovyException("Column with name \"" + columnName + "\" not found");
     }
 
-    public Class setColumnClass(String columnName, Class columnClass) {
+    /**
+     * Set column class
+     *
+     * @param columnName  defined column name
+     * @param columnClass new column class
+     */
+    public void setColumnClass(String columnName, Class columnClass) {
         final Column column = columns.get(columnName);
 
         if (column != null)
@@ -206,6 +267,11 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         throw new GroovyException("Column with name \"" + columnName + "\" not found");
     }
 
+    /**
+     * Set column size
+     * @param columnName defined column name
+     * @param size new column size
+     */
     public void setColumnSize(String columnName, Integer size) {
         final Column column = columns.get(columnName);
 
@@ -215,6 +281,11 @@ public final class GroovyMultilineDocument extends LinkedHashMap<String, Object>
         throw new GroovyException("Column with name \"" + columnName + "\" not found");
     }
 
+    /**
+     * Get document line by index
+     * @param index index of line
+     * @return line
+     */
     public Line getLine(int index) {
         return lines.get(index);
     }
