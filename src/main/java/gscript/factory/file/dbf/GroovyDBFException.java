@@ -16,7 +16,7 @@ public class GroovyDBFException extends Exception {
         this(throwable.getMessage(), throwable);
     }
 
-    private GroovyDBFException(String s, Throwable throwable) {
+    public GroovyDBFException(String s, Throwable throwable) {
         super(s);
         detail = throwable;
     }

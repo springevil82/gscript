@@ -3,95 +3,91 @@ package gscript.factory.file.dbf;
 import java.io.*;
 import java.util.Calendar;
 
+public final class GroovyDBFWriter {
 
-// Referenced classes of package com.hexiong.jdbf:
-//            JDBFException, JDBField
-@SuppressWarnings({"ManualArrayCopy", "ForLoopReplaceableByForEach", "UnusedDeclaration", "MagicConstant"})
-public class GroovyDBFWriter {
-
-    private BufferedOutputStream stream;
-    private int recCount;
+    private BufferedOutputStream outputStream;
+    private int recordCount;
     private GroovyDBFField[] fields;
     private String fileName;
     private final String dbfEncoding;
 
     public GroovyDBFWriter(String fileName, GroovyDBFField[] fields) throws GroovyDBFException {
-        stream = null;
-        recCount = 0;
+        outputStream = null;
+        recordCount = 0;
         this.fields = null;
         dbfEncoding = null;
         this.fileName = fileName;
 
         try {
             init(new FileOutputStream(fileName), fields);
-        } catch (FileNotFoundException filenotfoundexception) {
-            throw new GroovyDBFException(filenotfoundexception);
+        } catch (FileNotFoundException e) {
+            throw new GroovyDBFException(e);
         }
     }
 
-    public GroovyDBFWriter(OutputStream outputstream, GroovyDBFField[] fields, String encoding) throws GroovyDBFException {
-        stream = null;
-        recCount = 0;
+    public GroovyDBFWriter(OutputStream outputStream, GroovyDBFField[] fields, String encoding) throws GroovyDBFException {
+        this.outputStream = null;
+        recordCount = 0;
         this.fields = null;
         fileName = null;
         dbfEncoding = encoding;
-        init(outputstream, fields);
+        init(outputStream, fields);
     }
 
-    public GroovyDBFWriter(OutputStream outputstream, GroovyDBFField[] fields, String encoding, int rowsCount) throws GroovyDBFException {
-        stream = null;
-        recCount = 0;
+    public GroovyDBFWriter(OutputStream outputStream, GroovyDBFField[] fields, String encoding, int rowsCount) throws GroovyDBFException {
+        this.outputStream = null;
+        recordCount = 0;
         this.fields = null;
         fileName = null;
         dbfEncoding = encoding;
-        init(outputstream, fields, rowsCount);
+        init(outputStream, fields, rowsCount);
     }
 
     public GroovyDBFWriter(String fileName, GroovyDBFField[] fields, String encoding) throws GroovyDBFException {
-        stream = null;
-        recCount = 0;
+        outputStream = null;
+        recordCount = 0;
         this.fields = null;
         this.fileName = fileName;
         dbfEncoding = encoding;
 
         try {
             init(new FileOutputStream(fileName), fields);
-        } catch (FileNotFoundException filenotfoundexception) {
-            throw new GroovyDBFException(filenotfoundexception);
+        } catch (FileNotFoundException e) {
+            throw new GroovyDBFException(e);
         }
     }
 
-    private void init(OutputStream outputstream, GroovyDBFField[] fields) throws GroovyDBFException {
+    private void init(OutputStream outputStream, GroovyDBFField[] fields) throws GroovyDBFException {
         this.fields = fields;
 
         try {
-            stream = new BufferedOutputStream(outputstream);
+            this.outputStream = new BufferedOutputStream(outputStream);
             writeHeader();
 
             for (int i = 0; i < fields.length; i++)
                 writeFieldHeader(fields[i]);
 
-            stream.write(13);
-            stream.flush();
-        } catch (Exception exception) {
-            throw new GroovyDBFException(exception);
+            this.outputStream.write(13);
+            this.outputStream.flush();
+        } catch (Exception e) {
+            throw new GroovyDBFException(e);
         }
     }
 
-    private void init(OutputStream outputstream, GroovyDBFField[] fields, int rowCount) throws GroovyDBFException {
+    private void init(OutputStream outputStream, GroovyDBFField[] fields, int rowCount) throws GroovyDBFException {
         this.fields = fields;
 
         try {
-            stream = new BufferedOutputStream(outputstream);
+            this.outputStream = new BufferedOutputStream(outputStream);
             writeHeader(rowCount);
 
             for (int i = 0; i < fields.length; i++)
                 writeFieldHeader(fields[i]);
 
-            stream.write(13);
-            stream.flush();
-        } catch (Exception exception) {
-            throw new GroovyDBFException(exception);
+            this.outputStream.write(13);
+            this.outputStream.flush();
+        } catch (Exception e) {
+            throw new GroovyDBFException(e);
         }
     }
 
@@ -99,15 +95,9 @@ public class GroovyDBFWriter {
         byte[] abyte0 = new byte[16];
         abyte0[0] = 3;
 
-        Calendar calendar = Calendar.getInstance();
-/*
-
-        так было до 09.01.14
-        abyte0[1] = (byte) (calendar.get(1) - 1900);
-        abyte0[2] = (byte) calendar.get(2);
-*/
-        abyte0[1] = (byte) (calendar.get(1) % 100);     // так выгружает МАП
-        abyte0[2] = (byte) (calendar.get(2) + 1);       // месяц начинается с 0, МАП выгружает с 1
+        final Calendar calendar = Calendar.getInstance();
+        abyte0[1] = (byte) (calendar.get(1) % 100);
+        abyte0[2] = (byte) (calendar.get(2) + 1);
         abyte0[3] = (byte) calendar.get(5);
         abyte0[4] = 0;
         abyte0[5] = 0;
@@ -129,32 +119,26 @@ public class GroovyDBFWriter {
         abyte0[13] = 0;
         abyte0[14] = 0;
         abyte0[15] = 0;
-        stream.write(abyte0, 0, abyte0.length);
+        outputStream.write(abyte0, 0, abyte0.length);
 
         for (int l = 0; l < 16; l++)
             abyte0[l] = 0;
 
-        stream.write(abyte0, 0, abyte0.length);
+        outputStream.write(abyte0, 0, abyte0.length);
     }
 
-    private void writeHeader(int rCount) throws IOException {
+    private void writeHeader(int recordCount) throws IOException {
         byte[] abyte0 = new byte[16];
         abyte0[0] = 3;
 
-        Calendar calendar = Calendar.getInstance();
-/*
-
-        так было до 09.01.14
-        abyte0[1] = (byte) (calendar.get(1) - 1900);
-        abyte0[2] = (byte) calendar.get(2);
-*/
-        abyte0[1] = (byte) (calendar.get(1) % 100);     // так выгружает МАП
-        abyte0[2] = (byte) (calendar.get(2) + 1);       // месяц начинается с 0, МАП выгружает с 1
+        final Calendar calendar = Calendar.getInstance();
+        abyte0[1] = (byte) (calendar.get(1) % 100);
+        abyte0[2] = (byte) (calendar.get(2) + 1);
         abyte0[3] = (byte) calendar.get(5);
-        abyte0[4] = (byte) (rCount % 256);
-        abyte0[5] = (byte) ((rCount / 256) % 256);
-        abyte0[6] = (byte) ((rCount / 0x10000) % 256);
-        abyte0[7] = (byte) ((rCount / 0x1000000) % 256);
+        abyte0[4] = (byte) (recordCount % 256);
+        abyte0[5] = (byte) ((recordCount / 256) % 256);
+        abyte0[6] = (byte) ((recordCount / 0x10000) % 256);
+        abyte0[7] = (byte) ((recordCount / 0x1000000) % 256);
 
         int i = ((fields.length + 1) * 32) + 1;
         abyte0[8] = (byte) (i % 256);
@@ -171,12 +155,12 @@ public class GroovyDBFWriter {
         abyte0[13] = 0;
         abyte0[14] = 0;
         abyte0[15] = 0;
-        stream.write(abyte0, 0, abyte0.length);
+        outputStream.write(abyte0, 0, abyte0.length);
 
         for (int l = 0; l < 16; l++)
             abyte0[l] = 0;
 
-        stream.write(abyte0, 0, abyte0.length);
+        outputStream.write(abyte0, 0, abyte0.length);
     }
 
     private void writeFieldHeader(GroovyDBFField field) throws IOException {
@@ -198,22 +182,19 @@ public class GroovyDBFWriter {
         abyte0[13] = 0;
         abyte0[14] = 0;
         abyte0[15] = 0;
-        stream.write(abyte0, 0, abyte0.length);
+        outputStream.write(abyte0, 0, abyte0.length);
 
         for (int l = 0; l < 16; l++)
             abyte0[l] = 0;
 
         abyte0[0] = (byte) field.getLength();
         abyte0[1] = (byte) field.getDecimalCount();
-        stream.write(abyte0, 0, abyte0.length);
+        outputStream.write(abyte0, 0, abyte0.length);
     }
 
     public void addRecord(Object[] values) throws GroovyDBFException {
         if (values.length != fields.length)
-            throw new GroovyDBFException(
-                    "Error adding record: Wrong number of values. Expected " +
-                            fields.length + ", got " + values.length + "."
-            );
+            throw new GroovyDBFException("Error adding record: Wrong number of values. Expected " + fields.length + ", got " + values.length + ".");
 
         int i = 0;
 
@@ -244,36 +225,36 @@ public class GroovyDBFWriter {
         }
 
         try {
-            stream.write(32);
-            stream.write(abyte0, 0, abyte0.length);
-            stream.flush();
-        } catch (IOException ioexception) {
-            throw new GroovyDBFException(ioexception);
+            outputStream.write(32);
+            outputStream.write(abyte0, 0, abyte0.length);
+            outputStream.flush();
+        } catch (IOException e) {
+            throw new GroovyDBFException(e);
         }
 
-        recCount++;
+        recordCount++;
     }
 
     public void close() throws GroovyDBFException {
         try {
-            stream.write(26);
-            stream.close();
+            outputStream.write(26);
+            outputStream.close();
 
             if (fileName != null) {
                 RandomAccessFile randomaccessfile =
-                        new RandomAccessFile(fileName, "rw"); //NON-NLS
+                        new RandomAccessFile(fileName, "rw");
                 randomaccessfile.seek(4L);
 
                 byte[] abyte0 = new byte[4];
-                abyte0[0] = (byte) (recCount % 256);
-                abyte0[1] = (byte) ((recCount / 256) % 256);
-                abyte0[2] = (byte) ((recCount / 0x10000) % 256);
-                abyte0[3] = (byte) ((recCount / 0x1000000) % 256);
+                abyte0[0] = (byte) (recordCount % 256);
+                abyte0[1] = (byte) ((recordCount / 256) % 256);
+                abyte0[2] = (byte) ((recordCount / 0x10000) % 256);
+                abyte0[3] = (byte) ((recordCount / 0x1000000) % 256);
                 randomaccessfile.write(abyte0, 0, abyte0.length);
                 randomaccessfile.close();
             }
-        } catch (IOException ioexception) {
-            throw new GroovyDBFException(ioexception);
+        } catch (IOException e) {
+            throw new GroovyDBFException(e);
         }
     }
 }

@@ -7,21 +7,20 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 
+public final class GroovyDBFReader {
 
-@SuppressWarnings({"StringBufferMayBeStringBuilder", "UnusedDeclaration"})
-public class GroovyDBFReader {
     private String encoding;
     private DataInputStream stream;
     private GroovyDBFField[] fields;
     private byte[] nextRecord;
     private int recordCount;
 
-    public GroovyDBFReader(InputStream inputstream, String encoding) throws GroovyDBFException {
+    public GroovyDBFReader(InputStream inputStream, String encoding) throws GroovyDBFException {
         stream = null;
         fields = null;
         nextRecord = null;
         this.encoding = encoding;
-        init(inputstream);
+        init(inputStream);
     }
 
     private void init(InputStream inputstream) throws GroovyDBFException {
@@ -54,17 +53,16 @@ public class GroovyDBFReader {
                 nextRecord = null;
                 stream.close();
             }
-        } catch (IOException ioexception) {
-            throw new GroovyDBFException(ioexception);
+        } catch (IOException e) {
+            throw new GroovyDBFException(e);
         }
     }
 
     public static int readLittleEndianInt(byte[] bytes) throws IOException {
         int bigEndian = 0;
         int current = 0;
-        for (int shiftBy = 0; shiftBy < 32; shiftBy += 8) {
+        for (int shiftBy = 0; shiftBy < 32; shiftBy += 8)
             bigEndian |= (bytes[current++] & 0xff) << shiftBy;
-        }
 
         return bigEndian;
     }
@@ -91,8 +89,8 @@ public class GroovyDBFReader {
 
         try {
             stream.readFully(abyte0);
-        } catch (EOFException eofexception1) {
-            throw new GroovyDBFException("Unexpected end of file reached.");
+        } catch (EOFException e) {
+            throw new GroovyDBFException("Unexpected end of file reached.", e);
         }
 
         return i;
@@ -107,21 +105,20 @@ public class GroovyDBFReader {
             throw new GroovyDBFException("Unexpected end of file reached.");
         }
 
-        StringBuffer stringbuffer = new StringBuffer(10);
-
+        final StringBuilder stringBuilder = new StringBuilder(10);
         for (int i = 0; i < 10; i++) {
             if (abyte0[i] == 0)
                 break;
 
-            stringbuffer.append((char) abyte0[i]);
+            stringBuilder.append((char) abyte0[i]);
         }
 
         char c = (char) abyte0[11];
 
         try {
             stream.readFully(abyte0);
-        } catch (EOFException eofexception1) {
-            throw new GroovyDBFException("Unexpected end of file reached.");
+        } catch (EOFException e) {
+            throw new GroovyDBFException("Unexpected end of file reached.", e);
         }
 
         int j = abyte0[0];
@@ -133,7 +130,7 @@ public class GroovyDBFReader {
         if (k < 0)
             k += 256;
 
-        return new GroovyDBFField(stringbuffer.toString(), c, j, k);
+        return new GroovyDBFField(stringBuilder.toString(), c, j, k);
     }
 
     public int getFieldCount() {
@@ -156,24 +153,24 @@ public class GroovyDBFReader {
         if (!hasNextRecord())
             throw new GroovyDBFException("No more records available.");
 
-        Object[] aobj = new Object[fields.length];
+        Object[] obj = new Object[fields.length];
         int i = 1;
 
         try {
-            for (int j = 0; j < aobj.length; j++) {
+            for (int j = 0; j < obj.length; j++) {
                 int k = fields[j].getLength();
-                aobj[j] = fields[j].parse(new String(nextRecord, i, k, encoding));
+                obj[j] = fields[j].parse(new String(nextRecord, i, k, encoding));
                 i += fields[j].getLength();
             }
 
             stream.readFully(nextRecord);
-        } catch (EOFException eofexception) {
+        } catch (EOFException e) {
             nextRecord = null;
-        } catch (IOException ioexception) {
-            throw new GroovyDBFException(ioexception);
+        } catch (IOException e) {
+            throw new GroovyDBFException(e);
         }
 
-        return aobj;
+        return obj;
     }
 
     public int indexOfField(String fieldName) {

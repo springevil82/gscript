@@ -123,11 +123,11 @@ public final class ArchiveUtils {
     }
 
     public static boolean isArchive(String filename) {
-        if (filename.toLowerCase().endsWith(".zip")) //NON-NLS
+        if (filename.toLowerCase().endsWith(".zip"))
             return true;
-        else if (filename.toLowerCase().endsWith(".rar")) //NON-NLS
+        else if (filename.toLowerCase().endsWith(".rar"))
             return true;
-        else if (filename.toLowerCase().endsWith(".7z")) //NON-NLS
+        else if (filename.toLowerCase().endsWith(".7z"))
             return true;
 
         return false;
@@ -147,11 +147,11 @@ public final class ArchiveUtils {
             if (!toDir.mkdirs())
                 throw new RuntimeException("Can't create output dir: " + toDir.getAbsolutePath());
 
-        if (file.getName().toLowerCase().endsWith(".zip")) //NON-NLS
+        if (file.getName().toLowerCase().endsWith(".zip"))
             return unarchiveZipFile(file, toDir, flattenDirs, overwriteExisting, extractByMask);
-        else if (file.getName().toLowerCase().endsWith(".rar")) //NON-NLS
+        else if (file.getName().toLowerCase().endsWith(".rar"))
             return unarchiveRarFile(file, toDir, flattenDirs, overwriteExisting, extractByMask);
-        else if (file.getName().toLowerCase().endsWith(".7z")) //NON-NLS
+        else if (file.getName().toLowerCase().endsWith(".7z"))
             return unarchive7ZipFile(file, toDir, flattenDirs, overwriteExisting, extractByMask);
         else
             throw new RuntimeException("Unsupported archive format");

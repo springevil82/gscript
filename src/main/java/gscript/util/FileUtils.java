@@ -85,7 +85,7 @@ public final class FileUtils {
 
         final int exp = (int) (Math.log(bytes) / Math.log(unit));
         final String pre = ("kMGTPE").charAt(exp - 1) + ("");
-        return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre); //NON-NLS
+        return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
     }
 
     public interface ExistChecker {
