@@ -12,7 +12,7 @@ public final class GroovyProxyFactory {
     }
 
     /**
-     * Инициализировать прокси, для работы internet сервисов скрипта
+     * Initialize proxy for script internet services
      *
      * @param server server
      * @param port   port
@@ -22,7 +22,7 @@ public final class GroovyProxyFactory {
     }
 
     /**
-     * Инициализировать прокси, для работы internet сервисов скрипта
+     * Initialize proxy for script internet services
      *
      * @param server   server
      * @param port     port

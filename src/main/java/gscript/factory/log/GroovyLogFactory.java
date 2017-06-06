@@ -26,12 +26,11 @@ public final class GroovyLogFactory {
     }
 
     /**
-     * Создать логгер который будет логировать в текущий вывод в файл (который создаться рядом с файлом скрипта)
+     * Create logger that will log to file near current script file
      */
     public GroovyProgressLog createLog() {
         ensureCloseCurrentProgressLog();
 
-        // прогресс-лог передали извне - оттуда хотят чтобы выводилось все туда
         if (internalProgressLog != null)
             currentProgressLog = internalProgressLog;
         else
@@ -41,12 +40,11 @@ public final class GroovyLogFactory {
     }
 
     /**
-     * Создать логгер который будет логировать в текущий вывод в файл (который создаться рядом с файлом скрипта) и стандартный вывод
+     * Create logger that will log to stdout
      */
     public GroovyProgressLog createStdoutProgressLog() {
         ensureCloseCurrentProgressLog();
 
-        // прогресс-лог передали извне - оттуда хотят чтобы выводилось все туда
         if (internalProgressLog != null)
             currentProgressLog = internalProgressLog;
         else
@@ -56,8 +54,7 @@ public final class GroovyLogFactory {
     }
 
     /**
-     * Создать логгер который будет логировать в текущий вывод в файл (который создаться рядом с файлом скрипта),
-     * а также поднимет окно (frame) с прогресс баром и текстовым редактором в который будет также логироваться текущий логгер
+     * Create logger that will log to log frame (Swing UI)
      */
     public GroovyProgressLog createUIProgressLog() {
         ensureCloseCurrentProgressLog();
@@ -75,17 +72,14 @@ public final class GroovyLogFactory {
         this.factory = factory;
     }
 
-    /**
-     * Установить внешний progressLog
-     */
     public void presetInternalProgressLog(GroovyProgressLog progressLog) {
         this.internalProgressLog = progressLog;
     }
 
     /**
-     * Записать в текущий логгер текст (если логгера нет - он будет создан автоматически)
+     * Write info message to log
      *
-     * @param text
+     * @param text message
      */
     public void writeInfo(String text) {
         if (currentProgressLog == null)
@@ -95,9 +89,9 @@ public final class GroovyLogFactory {
     }
 
     /**
-     * Записать в текущий логгер текст (если логгера нет - он будет создан автоматически)
+     * Write warn message to log
      *
-     * @param text
+     * @param text message
      */
     public void writeWarn(String text) {
         if (currentProgressLog == null)
@@ -107,9 +101,9 @@ public final class GroovyLogFactory {
     }
 
     /**
-     * Записать в текущий логгер текст (если логгера нет - он будет создан автоматически)
+     * Write error message to log
      *
-     * @param text
+     * @param text message
      */
     public void writeError(String text) {
         if (currentProgressLog == null)

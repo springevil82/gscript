@@ -12,7 +12,7 @@ public class GroovyStdoutProgressLog extends GroovyFileProgressLog {
 
     @Override
     protected void writeToLog(String prefix, String message) {
-        // не флудим дублирующими строками в консоль
+        // do not write doubles to stdout
         if (prevMessage != null && prevMessage.equals(message))
             return;
 

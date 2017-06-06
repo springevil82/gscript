@@ -175,14 +175,13 @@ public final class GroovyDBTablePrinter {
                 String value;
                 int category = c.getTypeCategory();
 
-                if (category == CATEGORY_OTHER) {
+                if (category == CATEGORY_OTHER)
                     value = "(" + c.getTypeName() + ")";
-                } else {
+                else
                     value = dataSource.getString(i) == null ? "NULL" : dataSource.getString(i);
-                }
+
                 switch (category) {
                     case CATEGORY_DOUBLE:
-
                         if (!value.equals("NULL")) {
                             Double dValue = dataSource.getDouble(i);
                             value = String.format("%.3f", dValue);
@@ -191,12 +190,10 @@ public final class GroovyDBTablePrinter {
                         break;
 
                     case CATEGORY_STRING:
-
                         c.justifyLeft();
 
                         if (value.length() > maxStringColWidth)
                             value = value.substring(0, maxStringColWidth - 3) + "...";
-
 
                         break;
                 }
@@ -248,9 +245,8 @@ public final class GroovyDBTablePrinter {
         strToPrint.append(rowSeparator);
 
         GroovyStringJoiner sj = new GroovyStringJoiner(", ");
-        for (String name : tableNames) {
+        for (String name : tableNames)
             sj.add(name);
-        }
 
         String info = "Printing " + rowCount;
         info += rowCount > 1 ? " rows from " : " row from ";

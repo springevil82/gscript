@@ -2,6 +2,9 @@ package gscript.factory.format;
 
 import java.util.Objects;
 
+/**
+ * Copy of StringJoiner from 1.8
+ */
 public final class GroovyStringJoiner {
 
     private final String prefix;

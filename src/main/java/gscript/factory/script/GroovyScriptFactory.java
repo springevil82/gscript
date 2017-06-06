@@ -23,7 +23,7 @@ public final class GroovyScriptFactory {
     }
 
     /**
-     * @return PID текущей JVM
+     * @return current JVM PID
      */
     public String getCurrentProcessID() {
         String pid = "";

@@ -25,8 +25,6 @@ public class GroovyFileProgressLog implements GroovyProgressLog {
             //noinspection ResultOfMethodCallIgnored
             logFile.delete();
 
-        // fileManager.moveFile(logFile, fileManager.getNotExistsFile(logFile));
-
         internalWriteToLog("SYSTEM", "Log file created");
     }
 
@@ -54,7 +52,7 @@ public class GroovyFileProgressLog implements GroovyProgressLog {
         try (final FileWriter fileWriter = new FileWriter(logFile, true)) {
             fileWriter.write(DATE_FORMAT.format(new Date()) + ", " + prefix + ": " + message + "\n");
         } catch (IOException e) {
-            throw new GroovyException("Script log file write error: " + e.getMessage(), e);
+            throw new GroovyException("Log file write error: " + e.getMessage(), e);
         }
     }
 

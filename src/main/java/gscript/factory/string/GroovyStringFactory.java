@@ -19,10 +19,9 @@ public final class GroovyStringFactory {
     }
 
     /**
-     * Проверяет содержит ли строка русские символы
+     * Check if string contains russian symbols
      *
-     * @param s строка
-     * @return да/нет
+     * @param s check string
      */
     public boolean containsRussianSymbols(String s) {
         final Pattern compile = Pattern.compile(RUSSIAN_SYMBOLS);
@@ -31,10 +30,9 @@ public final class GroovyStringFactory {
     }
 
     /**
-     * Проверяет содержит ли строка русские символы или пробелы
+     * Check if string contains russian symbols or spaces
      *
-     * @param s строка
-     * @return да/нет
+     * @param s check string
      */
     public boolean containsRussianSymbolsOrSpaces(String s) {
         final Pattern compile = Pattern.compile(RUSSIAN_SYMBOLS, Pattern.DOTALL);
@@ -43,32 +41,31 @@ public final class GroovyStringFactory {
     }
 
     /**
-     * Проверить если строка содержит спец символы XML: <>&'"
+     * Check if string contains XML spec symbols, that needs to be wrapped to CDATA section
      *
-     * @param s строка
-     * @return {@code true} если содержит
+     * @param s check string
      */
     public boolean containsXMLSpecSymbols(String s) {
         return s != null && XML_SPEC_SYMBOLS.matcher(s).find();
     }
 
     /**
-     * Сравнить строки на предмет похожести
+     * Compare strings similarity (Q-gram algorithm)
      *
-     * @param s1 строка 1
-     * @param s2 строка 2
-     * @return процент похожести от 0 до 100
+     * @param s1 string 1
+     * @param s2 string 2
+     * @return percent of similarity
      */
     public int like(String s1, String s2) {
         return (int) (QGrammComparator.compare(new QGrammIndex(s1), new QGrammIndex(s2)) * 100);
     }
 
     /**
-     * Проверить содержит ли текст строки
+     * Check if string contains words
      *
-     * @param text  текст
-     * @param words искать слова в тексте
-     * @return в тексте найдены все слова
+     * @param text  check string
+     * @param words words that must be found in string (space separated; any order)
+     * @return true if string contains all words
      */
     public boolean containsWords(String text, String words) {
         if (words == null || text == null)
@@ -91,11 +88,11 @@ public final class GroovyStringFactory {
     }
 
     /**
-     * Проверить содержит ли текст фрагмент
+     * Check if string contains substring (ignore case)
      *
-     * @param text     тект
-     * @param fragment фрагмент
-     * @return фрагмент найден
+     * @param text     check string
+     * @param fragment substring
+     * @return true/false
      */
     public boolean contains(String text, String fragment) {
         //noinspection SimplifiableIfStatement
@@ -106,11 +103,11 @@ public final class GroovyStringFactory {
     }
 
     /**
-     * Проверить что текст начинается на фрагмент
+     * Check if string starts with substring (ignore case)
      *
-     * @param text     текст
-     * @param fragment фрагмент
-     * @return текст начинается на фрагмент
+     * @param text     check string
+     * @param fragment substring
+     * @return true/false
      */
     public boolean starts(String text, String fragment) {
         //noinspection SimplifiableIfStatement
@@ -121,11 +118,11 @@ public final class GroovyStringFactory {
     }
 
     /**
-     * Проверить что текст оканчивается на фрагмент
+     * Check if string ends with substring (ignore case)
      *
-     * @param text     текст
-     * @param fragment фрагмент
-     * @return текст начинается на фрагмент
+     * @param text     check string
+     * @param fragment substring
+     * @return true/false
      */
     public boolean searchEnd(String text, String fragment) {
         //noinspection SimplifiableIfStatement
@@ -136,10 +133,10 @@ public final class GroovyStringFactory {
     }
 
     /**
-     * Предствить милисекунды в читабельную строку
+     * Present time millis as human readable string
      *
-     * @param millis милисеки
-     * @return строка
+     * @param millis time milis
+     * @return string
      */
     public String millisToString(double millis) {
         long seconds = (long) millis / 1000;
@@ -148,18 +145,16 @@ public final class GroovyStringFactory {
         long days = hours / 24;
 
         if (days >= 1)
-            return days + " day "
-                    + (hours - 24 * days) + " hour "
-                    + (minutes - 60 * (hours - 24 * days)) + " min ";
+            return days + " day " + (hours - 24 * days) + " hour " + (minutes - 60 * (hours - 24 * days)) + " min ";
+
         if (hours >= 1)
-            return hours + " hour "
-                    + (minutes - 60 * hours) + " min ";
+            return hours + " hour " + (minutes - 60 * hours) + " min ";
+
         if (minutes >= 1)
-            return minutes + " min "
-                    + (seconds - 60 * minutes) + " sec ";
+            return minutes + " min " + (seconds - 60 * minutes) + " sec ";
+
         if (seconds >= 1)
-            return seconds + " sec "
-                    + (millis - 1000 * seconds) + " millis";
+            return seconds + " sec " + (millis - 1000 * seconds) + " millis";
 
         return millis + " millis";
     }

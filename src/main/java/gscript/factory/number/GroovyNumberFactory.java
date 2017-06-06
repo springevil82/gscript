@@ -20,5 +20,4 @@ public final class GroovyNumberFactory {
         return new BigDecimal(str).setScale(scale, BigDecimal.ROUND_HALF_UP);
     }
 
-
 }

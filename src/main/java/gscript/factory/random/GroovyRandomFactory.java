@@ -17,23 +17,28 @@ public final class GroovyRandomFactory {
     }
 
     /**
-     * Сгенерить случайное число в диапазоне min ... max
+     * Generate random int
+     *
+     * @param min min
+     * @param max max
      */
     public int randomInt(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
     /**
-     * Сгенерить случайное число с плавающей точкий в диапазоне min ... max
+     * Generate random double
+     * @param min min
+     * @param max max
      */
     public double randomDouble(int min, int max) {
         return min + Math.random() * (max - min);
     }
 
     /**
-     * Сгенерить слуйную строку длинны length
+     * Generate random string
      *
-     * @param length длина строки
+     * @param length string length
      */
     public String randomString(int length) {
         return new BigInteger(130, secureRandom).toString(length);
