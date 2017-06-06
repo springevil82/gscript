@@ -24,9 +24,9 @@ public final class GroovyFileFactory {
     private final Factory factory;
 
     /**
-     * Проверить имя файла с путем или без
+     * Check if filepath is relative
      *
-     * @param filepath имя файда
+     * @param filepath path to file
      * @return true/false
      */
     public boolean isRelativeFile(String filepath) {
@@ -34,10 +34,12 @@ public final class GroovyFileFactory {
     }
 
     /**
+     * Get file
+     * <p>
      * Получение файла. Если файл - то файл, если файл строка без пути - файл рядом со скриптом, иначе по файл по абсолютному пути
      *
-     * @param file
-     * @return
+     * @param file file or path
+     * @return if file - returns file, if relative path - returns file with name near current script file, if absolute path - file associated with absolute path
      */
     public File getFile(Object file) {
         if (file == null)
@@ -66,10 +68,10 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Скопировать файл из расположения from в расположение to (to перезаписывается)
+     * Copy a file to a target file (overwrite if exists)
      *
-     * @param from file или string (path_to_file)
-     * @param to   file или string (path_to_file)
+     * @param from source file (file or path)
+     * @param to   target file (file or path)
      */
     public void copyFile(Object from, Object to) {
         final File fromFile = from instanceof File ? (File) from : new File(from.toString());
@@ -83,10 +85,10 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Переместить файл из расположения from в расположение to (to перезаписывается, from удаляется)
+     * Move or rename a file to a target file (overwrite if exists)
      *
-     * @param from file или string (path_to_file)
-     * @param to   file или string (path_to_file)
+     * @param from source file (file or path)
+     * @param to   target file (file or path)
      */
     public void moveFile(Object from, Object to) {
         final File fromFile = from instanceof File ? (File) from : new File(from.toString());
@@ -104,10 +106,10 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Подобрать имя файла которое не существует путем прибавления индекса (1, 2, 3, ...) между именем и расширением
+     * Get not exist file or suggest new file name if file exist
      *
-     * @param file или string (path_to_file)
-     * @return новое имя файла которое не существует
+     * @param file file or path
+     * @return file or new file (if file exists)
      */
     public File getNotExistsFile(Object file) {
         final String fileName = file instanceof File ? ((File) file).getAbsolutePath() : file.toString();
@@ -126,10 +128,10 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Разбить файл на имя файла без расширения result[0] и расширение result[1]
+     * Split file name and extension
      *
-     * @param fileName имя файла
-     * @return 2 элемента всегда
+     * @param fileName file name
+     * @return two element array
      */
     public String[] splitFileNameExt(String fileName) {
         final int indexOf = fileName.lastIndexOf(".");
@@ -141,9 +143,10 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Удалить файл
+     * Delete file
      *
-     * @param file file или string (path_to_file)
+     * @param file file or path
+     * @return success or not
      */
     public boolean deleteFile(Object file) {
         final File f = file instanceof File ? (File) file : new File(file.toString());
@@ -151,25 +154,31 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Создать каталог в каталоге parentDir
+     * Create new dir in parent dir
      *
-     * @param parentDir  file или string (path_to_dir)
-     * @param newDirName имя нового каталога
+     * @param parentDir  file or path to parent dir
+     * @param newDirName name of new dir
      */
     public boolean createDir(Object parentDir, String newDirName) {
         final File dir = parentDir instanceof File ? (File) parentDir : new File(parentDir.toString());
         return new File(dir, newDirName).mkdirs();
     }
 
+    /**
+     * Create dir
+     *
+     * @param dir file or path to dir
+     * @return dir created
+     */
     public boolean createDir(Object dir) {
         final File d = dir instanceof File ? (File) dir : new File(dir.toString());
         return d.mkdirs();
     }
 
     /**
-     * Удалить каталог со всеми подкаталогами и файлами
+     * Delete dir recursive (with all sub dirs and files)
      *
-     * @param dir file или string (path_to_dir)
+     * @param dir file or path
      */
     public void deleteDir(Object dir) throws Exception {
         final File d = dir instanceof File ? (File) dir : new File(dir.toString());
@@ -177,10 +186,10 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Добавить файл file в архив archiveFile (archiveFile создается если его нет, если есть добавляется в него файл, если такой файл там есть - файл в нем перезаписывается)
+     * Create zip and add file to it. If zip archive exists - append file
      *
-     * @param file        file или string (path_to_file)
-     * @param archiveFile file или string (path_to_file)
+     * @param file        file or path to file to add to archive
+     * @param archiveFile file or path to archive file
      */
     public void archiveFile(Object file, Object archiveFile) throws Exception {
         final File f = file instanceof File ? (File) file : new File(file.toString());
@@ -190,13 +199,13 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Разархивировать архив в каталог
+     * Unarchive file to dir
      *
-     * @param file              архив
-     * @param toDir             каталог разархивации
-     * @param flattenDirs       распаковать все в папку toDir (подкаталоги сплющиваются: archive.zip\subdir1\subdir2\file.dbf -> toDir\subdir1.subdir2.file.dbf)
-     * @param overwriteExisting существующие файлы в каталоге toDir переписываются, иначе подбирается имя которое не существует
-     * @param extractByMask     извлечь только файлы удовлетворяющие маске, null - извлечь все файлы
+     * @param file              file or path to archive file
+     * @param toDir             file or path to dir to unarchive
+     * @param flattenDirs       flatten sub dirs (for example: archive.zip\subdir1\subdir2\file.dbf -> toDir\subdir1.subdir2.file.dbf)
+     * @param overwriteExisting true - overwrite existing files if tagret dir, false - match nonexistent file name
+     * @param extractByMask     extract files by mask (null - all files)
      */
     public List<File> unarchiveFile(Object file, Object toDir, boolean flattenDirs, boolean overwriteExisting, String extractByMask) throws Exception {
         final File f = file instanceof File ? (File) file : new File(file.toString());
@@ -206,7 +215,8 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * @return получить файл текущего скрипта
+     * Get current script file
+     * @return current script file
      */
     public File getCurrentScriptFile() {
         if (factory.getThisScript() != null)
@@ -219,17 +229,19 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * @return получить каталог текущего скрипта
+     * Get current script dir
+     * @return current script dir
      */
     public File getCurrentScriptDir() {
         return getCurrentScriptFile().getAbsoluteFile().getParentFile();
     }
 
     /**
-     * Получить файл с именем fileName находящийся рядом с файлом текущего скрипта
+     * Obtain file with name, located near current script file
      *
-     * @param fileName имя файла рядом со скриптом
-     * @return файл или исключение если файла нет
+     * @param fileName file name
+     * @return file
+     * @exception GroovyException file not found exception
      */
     public File getFileNearCurrentScript(String fileName) {
         final File scriptParentDir = getCurrentScriptFile().getAbsoluteFile().getParentFile();
@@ -241,11 +253,11 @@ public final class GroovyFileFactory {
     }
 
     /**
-     * Получить список файлов в каталоге dir
+     * Get list of files in dir
      *
-     * @param dirName каталог
-     * @param mask    маска файлов
-     * @return найденные файлы
+     * @param dirName dir name
+     * @param mask    files mask (WildcardFileFilter)
+     * @return list of found files
      */
     public File[] getFilesInDir(String dirName, String mask) {
         File[] files = new File[0];

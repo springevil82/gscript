@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class GroovyTextFileReader implements AutoCloseable {
+public final class GroovyTextFileReader implements AutoCloseable {
 
     private final File file;
     private final BufferedReader bufferedReader;
@@ -40,7 +40,7 @@ public class GroovyTextFileReader implements AutoCloseable {
 
     public boolean hasNextLine() {
         if (hasNextLineInvokeCounter > 10_000)
-            throw new GroovyException("Подозрение на бесконечный цикл. Убедитесь что Вы используете nextLine() в теле цикла.");
+            throw new GroovyException("Infinite loop detected. Be sure you invoke nextLine() in the body of loop.");
 
         hasNextLineInvokeCounter++;
 
@@ -132,7 +132,7 @@ public class GroovyTextFileReader implements AutoCloseable {
             try {
                 return new SimpleDateFormat(pattern).parse(asText());
             } catch (ParseException e) {
-                throw new GroovyException("Ошибка разбора даты: " + asText() + " (формат " + pattern + ")" + "\n" + e.getMessage(), e);
+                throw new GroovyException("Date parse exception: " + asText() + " (date format " + pattern + ")" + "\n" + e.getMessage(), e);
             }
         }
 
