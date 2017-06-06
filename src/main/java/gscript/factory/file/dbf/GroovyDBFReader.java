@@ -41,10 +41,8 @@ public class GroovyDBFReader {
             if (stream.read() < 1)
                 throw new GroovyDBFException("Unexpected end of file reached.");
 
-            // пропустим всякое гавно до признака начала сроки (ЛЮТЫЙ ИЗВРАТ)
-            // там может встечаться байт 1A обозначающий непонятно что (я не нашел в этих ваших интернетах)
             int b = stream.read();
-            while (b > 0 && (b != 32 && b != 42))  // 32 - начало не удаленной строки, 42 - начало удаленной строки
+            while (b > 0 && (b != 32 && b != 42))
                 b = stream.read();
 
             nextRecord = new byte[j - 1];

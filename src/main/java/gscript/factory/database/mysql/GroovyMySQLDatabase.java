@@ -46,10 +46,7 @@ public final class GroovyMySQLDatabase {
     }
 
     /**
-     * Соединиться с БД
-     *
-     * @return
-     * @throws Exception
+     * Create connection to database
      */
     public GroovyMySQLConnection createConnection() throws Exception {
         return factory.database.createMySQLConnection(host, port, database, username, password);

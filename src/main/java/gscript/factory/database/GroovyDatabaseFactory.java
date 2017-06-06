@@ -39,13 +39,12 @@ public final class GroovyDatabaseFactory {
     }
 
     /**
-     * Создать админ MySQL, который может создавать/удалять/бэкапить БД
+     * Create mysql database admin tool (allows you to create/drop/backup database schemas)
      *
      * @param host     host
      * @param port     port
      * @param username username
      * @param password password
-     * @return админ
      * @throws Exception
      */
     public GroovyMySQLAdmin createMySQLAdmin(String host, int port, String username, String password) throws Exception {
@@ -53,7 +52,7 @@ public final class GroovyDatabaseFactory {
     }
 
     /**
-     * Создать соединение к БД MySQL
+     * Create connection to mysql database
      *
      * @param host     host
      * @param port     port
@@ -68,7 +67,7 @@ public final class GroovyDatabaseFactory {
     }
 
     /**
-     * Создать соединение к HSQLDB базе данных в памяти
+     * Create connection to HSQLDB in mem database
      *
      * @return connection
      * @throws Exception

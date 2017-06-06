@@ -48,7 +48,7 @@ public final class GroovyHSQLDBTable {
     }
 
     /**
-     * Query number of records in table
+     * Query record count in table
      */
     public long selectRecordCount() throws SQLException {
         try (ResultSet resultSet = connection.getConnection().prepareStatement("select count(*) from " + table.getTableName()).executeQuery()) {

@@ -40,11 +40,11 @@ public final class GroovyMySQLConnection extends GroovySQLConnection {
     }
 
     /**
-     * Создать массового писателя в таблицу
+     * Create table writer
      *
-     * @param tableName             имя таблицы в которую будем писать
-     * @param commaSeparatedColumns имена колонок через зяпятую в которые будем писать
-     * @param returnGeneratedKeys   вернуть созданные ID-шники записей
+     * @param tableName             table name
+     * @param commaSeparatedColumns column names separated by comma
+     * @param returnGeneratedKeys   return generated ids
      */
     public GroovyMySQLTableWriter createTableWriter(String tableName, String commaSeparatedColumns, boolean returnGeneratedKeys) throws SQLException {
         return new GroovyMySQLTableWriter(getFactory(), connection, tableName, commaSeparatedColumns, returnGeneratedKeys);
