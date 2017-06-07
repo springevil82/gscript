@@ -20,10 +20,10 @@ import gscript.factory.ui.GroovyUIFactory;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public final class Factory {
+public class Factory {
 
-    private Script thisScript; // это для запуска из отладчика
-    private ScriptFile thisScriptFile; // это для запуска из плеера
+    private Script thisScript;
+    private ScriptFile thisScriptFile;
 
     final Set<AutoCloseable> autoCloseables = new LinkedHashSet<>();
 

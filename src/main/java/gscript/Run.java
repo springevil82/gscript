@@ -7,18 +7,13 @@ import java.io.File;
 public final class Run {
 
     private static void showUsage() {
-        System.out.println("Escape script runner");
+        System.out.println("Script runner");
         System.out.println();
         System.out.println("Console run: \n");
         System.out.println("java -jar gscript.jar \"<path_to_script>\" [-V<variable name>=\"<variable_value>\", ...]");
         System.out.println("Where: ");
         System.out.println("  <path_to_script> - first parameter; required; path to script file");
         System.out.println("  [-V<variable name>=\"<variable_value>\", ...] - next parameters; optional; variables for script");
-        System.out.println();
-        System.out.println("Examples: ");
-        System.out.println("java -jar gscript.jar \"C:\\Program Files\\Escape\\PriceList\\my_script.groovy\"");
-        System.out.println("java -jar gscript.jar \"C:\\Program Files\\Escape\\PriceList\\my_script.groovy\" -Vfile=\"C:\\Mail\\Prices\\my_price.txt\"");
-        System.out.println("java -jar gscript.jar \"C:\\Program Files\\Escape\\PriceList\\my_script.groovy\" -Vfile=\"C:\\Mail\\Prices\\my_price.txt\" -Vsomeflag=true");
         System.out.println();
         System.out.println("All passed variables are available in script");
     }
