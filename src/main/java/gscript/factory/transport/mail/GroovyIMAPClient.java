@@ -47,10 +47,10 @@ public final class GroovyIMAPClient {
     }
 
     /**
-     * Найти все письма в ящике IMAP по фильтру
+     * Find messages using filter
      *
-     * @param filter фильтр
-     * @return перечень найденных писем
+     * @param filter message filter
+     * @return list of mail messages
      */
     public List<GroovyIMAPMessage> getMessages(GroovyIMAPMessageFilter filter) throws Exception {
         final List<GroovyIMAPMessage> result = new ArrayList<>();
@@ -59,7 +59,6 @@ public final class GroovyIMAPClient {
         props.setProperty("mail.store.protocol", "imaps");
         props.setProperty("mail.imaps.starttls.enable", "true");
         props.setProperty("mail.imaps.port", "993");
-
 
         final Session session = Session.getDefaultInstance(props, null);
         final Store store = session.getStore("imaps");
@@ -131,6 +130,9 @@ public final class GroovyIMAPClient {
         return result;
     }
 
+    /**
+     * Logout mail server
+     */
     public void close() throws Exception {
         if (store != null)
             store.close();

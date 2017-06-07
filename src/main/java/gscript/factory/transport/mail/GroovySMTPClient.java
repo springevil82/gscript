@@ -14,49 +14,48 @@ public final class GroovySMTPClient {
 
     private final Factory factory;
 
-    private final String smtpServerAddress;
-    private final int smtpServerPort;
-    private Integer smtpServerTLSSSLPort;
-    private final String smtpServerUsername;
-    private final String smtpServerPassword;
+    private final String host;
+    private final int port;
+    private Integer tlsPort;
+    private final String user;
+    private final String password;
 
-    public GroovySMTPClient(Factory factory, String smtpServerAddress, int smtpServerPort, int smtpServerTLSSSLPort, String smtpServerUsername, String smtpServerPassword) {
+    public GroovySMTPClient(Factory factory, String host, int port, int tlsPort, String user, String password) {
         this.factory = factory;
-        this.smtpServerAddress = smtpServerAddress;
-        this.smtpServerPort = smtpServerPort;
-        this.smtpServerTLSSSLPort = smtpServerTLSSSLPort;
-        this.smtpServerUsername = smtpServerUsername;
-        this.smtpServerPassword = smtpServerPassword;
+        this.host = host;
+        this.port = port;
+        this.tlsPort = tlsPort;
+        this.user = user;
+        this.password = password;
     }
 
-    public GroovySMTPClient(Factory factory, String smtpServerAddress, int smtpServerPort, String smtpServerUsername, String smtpServerPassword) {
+    public GroovySMTPClient(Factory factory, String host, int port, String user, String password) {
         this.factory = factory;
-        this.smtpServerAddress = smtpServerAddress;
-        this.smtpServerPort = smtpServerPort;
-        this.smtpServerUsername = smtpServerUsername;
-        this.smtpServerPassword = smtpServerPassword;
+        this.host = host;
+        this.port = port;
+        this.user = user;
+        this.password = password;
     }
 
     /**
-     * Создать почтовое сообщение
+     * Create mail message
      *
-     * @param recipients email получателя, или получателей через запятую (например "ivanov@mail.ru" или "ivanov@mail.ru, petrov@mail.ru")
-     * @param subject    тема сообщения
-     * @param body       тело сообщения
+     * @param recipients recipient emails (separated by comma if several)
+     * @param subject    message subject
+     * @param body       message body
      */
     public GroovySMTPMessage createMailMessage(String recipients, String subject, String body) {
         return new GroovySMTPMessage(recipients, subject, body);
     }
 
     /**
-     * Отправить почтовое сообщение
+     * Send message
      *
-     * @param mailMessage
-     * @throws Exception
+     * @param mailMessage message
      */
     public void sendMail(GroovySMTPMessage mailMessage) throws Exception {
 
-        if (smtpServerTLSSSLPort != null)
+        if (tlsPort != null)
             Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 
         final Properties properties = new Properties();
@@ -72,25 +71,25 @@ public final class GroovySMTPClient {
                 properties.setProperty("java.net.socks.password", factory.proxy.getProxy().getPassword());
         }
 
-        properties.setProperty("mail.smtp.host", smtpServerAddress);
-        properties.setProperty("mail.smtp.port", String.valueOf(smtpServerPort));
+        properties.setProperty("mail.smtp.host", host);
+        properties.setProperty("mail.smtp.port", String.valueOf(port));
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.transport.protocol", "smtp");
 
-        if (smtpServerTLSSSLPort != null) {
+        if (tlsPort != null) {
             properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
             properties.setProperty("mail.smtp.socketFactory.fallback", "false");
-            properties.setProperty("mail.smtp.socketFactory.port", String.valueOf(smtpServerTLSSSLPort));
+            properties.setProperty("mail.smtp.socketFactory.port", String.valueOf(tlsPort));
         }
 
         final Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(smtpServerUsername, smtpServerPassword);
+                return new PasswordAuthentication(user, password);
             }
         });
 
         final Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(smtpServerUsername));
+        message.setFrom(new InternetAddress(user));
 
         final List<Address> recipientList = new ArrayList<>();
         for (String recipient : mailMessage.getRecipients())

@@ -10,55 +10,57 @@ public final class GroovyTransportFactory {
     private final Factory factory;
 
     /**
-     * Создать транспорт SMTP (TLS используется)
+     * Create SMTP client (use TLS)
      *
-     * @param smtpServerAddress    адрес сервера исходящей почты (например: smtp.mail.ru)
-     * @param smtpServerPort       порт сервера исходящей почты (для mail.ru это 465)
-     * @param smtpServerTLSSSLPort SSL/TLC порт (для mail.ru это тоже 465)
-     * @param smtpServerUsername   имя пользователя (например ivanov@mail.ru)
-     * @param smtpServerPassword   пароль (Ваш пароль от ящика ivanov@mail.ru)
-     * @return
+     * @param host     smtp server address
+     * @param port     smtp server port
+     * @param tlsPort  SSL/TLC port
+     * @param user     username
+     * @param password password
      */
-    public GroovySMTPClient createSMTPClient(String smtpServerAddress, int smtpServerPort, int smtpServerTLSSSLPort, String smtpServerUsername, String smtpServerPassword) {
-        return new GroovySMTPClient(factory, smtpServerAddress, smtpServerPort, smtpServerTLSSSLPort, smtpServerUsername, smtpServerPassword);
+    public GroovySMTPClient createSMTPClient(String host, int port, int tlsPort, String user, String password) {
+        return new GroovySMTPClient(factory, host, port, tlsPort, user, password);
     }
 
     /**
-     * Создать транспорт SMTP (TLS не используется)
+     * Create SMTP client
      *
-     * @param smtpServerAddress  адрес сервера исходящей почты (например: smtp.your_domain.ru)
-     * @param smtpServerPort     порт сервера исходящей почты (например 25)
-     * @param smtpServerUsername имя пользователя (например ivanov@mail.ru)
-     * @param smtpServerPassword пароль (Ваш пароль от ящика ivanov@mail.ru)
-     * @return
+     * @param host     smtp server address
+     * @param port     smtp server port
+     * @param user     username
+     * @param password password
      */
-    public GroovySMTPClient createSMTPClient(String smtpServerAddress, int smtpServerPort, String smtpServerUsername, String smtpServerPassword) {
-        return new GroovySMTPClient(factory, smtpServerAddress, smtpServerPort, smtpServerUsername, smtpServerPassword);
+    public GroovySMTPClient createSMTPClient(String host, int port, String user, String password) {
+        return new GroovySMTPClient(factory, host, port, user, password);
     }
 
     /**
-     * Создать транспорт IMAP
+     * Create IMAP client
      *
-     * @param host     хост (например: imap.googlemail.com)
-     * @param user     имя пользователя (например: myemailid@gmail.com)
-     * @param password пароль
-     * @return
+     * @param host     imap server address
+     * @param user     username
+     * @param password password
      */
     public GroovyIMAPClient createIMAPClient(String host, String user, String password) {
         return new GroovyIMAPClient(factory, host, user, password);
     }
 
     /**
-     * Создать клиента FTP
+     * Create FTP client
      *
-     * @param host     хост (например: ftp.esc.ru)
-     * @param user     имя пользователя
-     * @param password пароль
+     * @param host     ftp server address
+     * @param user     username
+     * @param password password
      */
     public GroovyFTPClient createFTPClient(String host, String user, String password) throws Exception {
         return new GroovyFTPClient(factory, host, user, password);
     }
 
+    /**
+     * Create HTTP client
+     *
+     * @param URL URL
+     */
     public GroovyHTTPClient createHTTPClient(String URL) {
         return new GroovyHTTPClient(factory, URL);
     }

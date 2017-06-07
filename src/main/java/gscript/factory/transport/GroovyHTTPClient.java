@@ -37,6 +37,9 @@ public final class GroovyHTTPClient {
     private String responseContentEncoding;
     private int responseContentLength;
 
+    /**
+     * Create HTTP client
+     */
     public GroovyHTTPClient(Factory factory, String URL) {
         this.factory = factory;
         this.URL = URL;
@@ -54,7 +57,7 @@ public final class GroovyHTTPClient {
         this.timeout = timeout;
     }
 
-    public void regirectOutputToFile(Object file) {
+    public void redirectOutputToFile(Object file) {
         this.redirectTo = RedirectTo.FILE;
         this.redirectFile = file instanceof File ? (File) file : new File(file.toString());
         final File dir = redirectFile.getAbsoluteFile().getParentFile();
@@ -63,20 +66,26 @@ public final class GroovyHTTPClient {
                 throw new GroovyException("Can't create dir: " + dir);
     }
 
-    public void regirectOutputToStdout() {
+    public void redirectOutputToStdout() {
         this.redirectTo = RedirectTo.STDOUT;
         this.redirectFile = null;
     }
 
-    public void regirectOutputToBuffer() {
+    public void redirectOutputToBuffer() {
         this.redirectTo = RedirectTo.BUFFER;
         this.redirectFile = null;
     }
 
+    /**
+     * Send GET request
+     */
     public void get() throws Exception {
         internalPerform("GET");
     }
 
+    /**
+     * Send POST request
+     */
     public void post() throws Exception {
         internalPerform("POST");
     }
@@ -105,7 +114,6 @@ public final class GroovyHTTPClient {
                 outputStream.write(buffer, 0, length);
         }
     }
-
 
     public int getResponseCode() {
         return responseCode;

@@ -12,11 +12,11 @@ public final class GroovySMTPMessage {
     private List<File> attachFiles = new ArrayList<>();
 
     /**
-     * Создать почтовое сообщение
+     * Create mail message
      *
-     * @param recipients email получателя (или получателей через запятую)
-     * @param subject    тема сообщения
-     * @param body       тело сообщения
+     * @param recipients recipient emails (separated by comma if several)
+     * @param subject    message subject
+     * @param body       message body
      */
     public GroovySMTPMessage(String recipients, String subject, String body) {
         if (recipients.contains(","))
@@ -30,9 +30,9 @@ public final class GroovySMTPMessage {
     }
 
     /**
-     * Прикрепить файл к письму
+     * Attach file to message
      *
-     * @param file файл
+     * @param file file
      */
     public void attachFile(File file) {
         this.attachFiles.add(file);
