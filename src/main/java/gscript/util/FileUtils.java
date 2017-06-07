@@ -9,6 +9,11 @@ import java.util.regex.Pattern;
 
 public final class FileUtils {
 
+    /**
+     * Delete dir recursive (with all sub dirs and files)
+     *
+     * @param path path
+     */
     public static boolean deleteRecursive(File path) throws FileNotFoundException {
         if (!path.exists())
             throw new FileNotFoundException(path.getAbsolutePath());
@@ -22,13 +27,13 @@ public final class FileUtils {
     }
 
     /**
-     * Подобрать имя файла которое не существует путем прибавления индекса (1, 2, 3, ...) между именем и расширением
+     * Find nonexistent file name
      *
-     * @param fileName     имя файла которое существует и для него нужно подобрать несуществующее имя
-     * @param existChecker проверяльщик существования файла
-     * @return новое имя файла которое не существует
+     * @param fileName     initial file name
+     * @param existChecker file name checker
+     * @return nonexistent file name
      */
-    public static String pickupFileName(String fileName, ExistChecker existChecker) {
+    public static String findFileName(String fileName, ExistChecker existChecker) {
         final String[] nameAndExt = FileUtils.splitFileName(fileName);
 
         String newFileName;
@@ -42,10 +47,10 @@ public final class FileUtils {
     }
 
     /**
-     * Разбить файл на имя файла без расширения result[0] и расширение result[1]
+     * Split file name and extension
      *
-     * @param fileName имя файла
-     * @return 2 элемента всегда
+     * @param fileName file name
+     * @return two element array
      */
     public static String[] splitFileName(String fileName) {
         final int indexOf = fileName.lastIndexOf(".");
@@ -57,11 +62,10 @@ public final class FileUtils {
     }
 
     /**
-     * Проверить соотвествует ли имя файла маске
+     * Match file name by mask (ignore case)
      *
-     * @param fileName имя файла
-     * @param mask     маска (разрешены символы * - сколько угодно символов, ? - один символ, ; - разделитель нескольких масок по ИЛИ)
-     * @return
+     * @param fileName file name
+     * @param mask     match mask (allowed multi mask, separated by semicolon)
      */
     public static boolean filenameMatch(String fileName, String mask) {
         if (mask.contains(";")) {
@@ -78,6 +82,9 @@ public final class FileUtils {
         return false;
     }
 
+    /**
+     * Present file size as human readable string
+     */
     public static String bytesize2String(long bytes) {
         final int unit = 1000;
         if (bytes < unit)

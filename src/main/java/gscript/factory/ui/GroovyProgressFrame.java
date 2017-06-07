@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
- * Окно прогресса
+ * Script execution progress window with two labels (current + summary), progress bar and cancellation button
  */
 public class GroovyProgressFrame {
 
@@ -30,7 +30,7 @@ public class GroovyProgressFrame {
         topLabel = new JLabel("<html>&nbsp;");
         progressBar = new JProgressBar();
         bottomLabel = new JLabel("<html>&nbsp;");
-        cancelButton = new JButton(new AbstractAction("Отмена") {
+        cancelButton = new JButton(new AbstractAction("Cancel") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cancelled = true;

@@ -1,8 +1,5 @@
 package gscript.util.qgramm;
 
-/**
- * Контейнер для хранения найденых строк и релевантности
- */
 public final class QGrammElement<T> {
 
     private final T element;

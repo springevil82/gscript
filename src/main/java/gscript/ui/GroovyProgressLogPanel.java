@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
- * Окно прогресса
+ * Script execution progress panel with two labels (progress + summary), progress bar, log text pane and cancellation button
  */
 public final class GroovyProgressLogPanel extends JPanel {
 
@@ -50,7 +50,7 @@ public final class GroovyProgressLogPanel extends JPanel {
         styleError = logEditor.addStyle("error", null);
         StyleConstants.setForeground(styleError, Color.red);
 
-        cancelButton = new JButton(new AbstractAction("Отмена") {
+        cancelButton = new JButton(new AbstractAction("Cancel") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cancelled = true;

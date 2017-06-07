@@ -17,9 +17,9 @@ import java.util.zip.ZipOutputStream;
 public final class ArchiveUtils {
 
     /**
-     * Заархивировать файл и переместить его в каталог archive (создастся автоматом если нет) рядом где был исходный файл
+     * Zip file and move it to "archive" dir (will be created in file parent dir if not exists)
      *
-     * @param file который нужно заархивировтаь
+     * @param file file to archive
      * @return архивный файл в который все ушло
      */
     public static File archiveFile(File file) throws IOException {
@@ -51,11 +51,10 @@ public final class ArchiveUtils {
     }
 
     /**
-     * Заархивировать файл
+     * Zip file
      *
-     * @param fromFile исходный файд
-     * @param toFile   архивный файл
-     * @throws IOException ошибка
+     * @param fromFile source file
+     * @param toFile   archive file
      */
     public static void archiveFile(File fromFile, File toFile) throws IOException {
         try (ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(toFile))) {
@@ -72,6 +71,12 @@ public final class ArchiveUtils {
         }
     }
 
+    /**
+     * Zip file or append file to existing archive
+     *
+     * @param file        source file
+     * @param archiveFile archive file
+     */
     public static void addFileToArchive(File file, File archiveFile) throws Exception {
         if (archiveFile.exists())
             addFilesToZip(file, new File[]{archiveFile});
@@ -122,6 +127,12 @@ public final class ArchiveUtils {
         tmpZip.delete();
     }
 
+    /**
+     * Check if file is archive (by ext)
+     *
+     * @param filename file name
+     * @return true if file name ends with .zip, .rar or .7z
+     */
     public static boolean isArchive(String filename) {
         if (filename.toLowerCase().endsWith(".zip"))
             return true;
@@ -134,13 +145,13 @@ public final class ArchiveUtils {
     }
 
     /**
-     * Разархивировать архив в каталог
+     * Unarchive file to dir (supported archives are: zip, rar, 7z)
      *
-     * @param file              архив
-     * @param toDir             каталог разархивации
-     * @param flattenDirs       распаковать все в папку toDir (подкаталоги сплющиваются: archive.zip\subdir1\subdir2\file.dbf -> toDir\subdir1.subdir2.file.dbf)
-     * @param overwriteExisting существующие файлы в каталоге toDir переписываются, иначе подбирается имя которое не существует
-     * @param extractByMask     извлечь только файлы удовлетворяющие маске, null - извлечь все файлы
+     * @param file              file or path to archive file
+     * @param toDir             file or path to dir to unarchive
+     * @param flattenDirs       flatten sub dirs (for example: archive.zip\subdir1\subdir2\file.dbf -> toDir\subdir1.subdir2.file.dbf)
+     * @param overwriteExisting true - overwrite existing files if tagret dir, false - match nonexistent file name
+     * @param extractByMask     extract files by mask (null - all files)
      */
     public static List<File> unarchiveFile(File file, File toDir, boolean flattenDirs, boolean overwriteExisting, String extractByMask) throws Exception {
         if (!toDir.isDirectory())
@@ -157,12 +168,6 @@ public final class ArchiveUtils {
             throw new RuntimeException("Unsupported archive format");
     }
 
-    /**
-     * Разархивировать zip архив в каталог
-     *
-     * @param file  архив
-     * @param toDir каталог разархивации
-     */
     private static List<File> unarchiveZipFile(File file, File toDir, boolean flattenDirs, boolean overwriteExisting, String extractByMask) throws Exception {
         final List<File> files = new ArrayList<>();
 
@@ -187,7 +192,7 @@ public final class ArchiveUtils {
                     }
 
                     if (!overwriteExisting && entryFile.exists())
-                        entryFile = new File(FileUtils.pickupFileName(entryFile.getAbsolutePath(), new FileUtils.ExistChecker() {
+                        entryFile = new File(FileUtils.findFileName(entryFile.getAbsolutePath(), new FileUtils.ExistChecker() {
                             @Override
                             public boolean existFile(String filename) {
                                 return new File(filename).exists();
@@ -215,30 +220,17 @@ public final class ArchiveUtils {
         return files;
     }
 
-    /**
-     * Разархивировать rar архив в каталог
-     *
-     * @param file  архив
-     * @param toDir каталог разархивации
-     */
     private static List<File> unarchiveRarFile(File file, File toDir, boolean flattenDirs, boolean overwriteExisting, String extractByMask) throws Exception {
         final List<File> files = new ArrayList<>();
         RarUnarchiver.extractArchive(file, toDir, files, flattenDirs, overwriteExisting, extractByMask);
         return files;
     }
 
-    /**
-     * Разархивировать 7zip архив в каталог
-     *
-     * @param file  архив
-     * @param toDir каталог разархивации
-     */
     private static List<File> unarchive7ZipFile(File file, File toDir, boolean flattenDirs, boolean overwriteExisting, String extractByMask) throws Exception {
         final List<File> files = new ArrayList<>();
         SevenZipUnarchiver.extractArchive(file, toDir, files, flattenDirs, overwriteExisting, extractByMask);
         return files;
     }
-
 
     public static final class RarUnarchiver {
 
@@ -247,7 +239,7 @@ public final class ArchiveUtils {
 
             if (archive != null) {
                 if (archive.isEncrypted())
-                    throw new RuntimeException("archive is encrypted cannot extreact");
+                    throw new RuntimeException("archive is encrypted cannot extract");
 
                 FileHeader fileHeader;
                 while (true) {
@@ -256,8 +248,7 @@ public final class ArchiveUtils {
                         break;
 
                     if (fileHeader.isEncrypted())
-                        throw new RuntimeException("file is encrypted cannot extract: "
-                                + fileHeader.getFileNameString());
+                        throw new RuntimeException("file is encrypted cannot extract: " + fileHeader.getFileNameString());
 
                     if (fileHeader.isDirectory()) {
                         if (!flattenDirs)
@@ -282,11 +273,10 @@ public final class ArchiveUtils {
         private static File createFile(FileHeader fileHeader, File destination, boolean flattenDirs, boolean overwriteExisting) {
             File file;
             String name;
-            if (fileHeader.isFileHeader() && fileHeader.isUnicode()) {
+            if (fileHeader.isFileHeader() && fileHeader.isUnicode())
                 name = fileHeader.getFileNameW();
-            } else {
+            else
                 name = fileHeader.getFileNameString();
-            }
 
             if (flattenDirs)
                 name = name.replaceAll("\\\\", ".");
@@ -294,7 +284,7 @@ public final class ArchiveUtils {
             file = new File(destination, name);
 
             if (!overwriteExisting && file.exists())
-                file = new File(FileUtils.pickupFileName(file.getAbsolutePath(), new FileUtils.ExistChecker() {
+                file = new File(FileUtils.findFileName(file.getAbsolutePath(), new FileUtils.ExistChecker() {
                     @Override
                     public boolean existFile(String filename) {
                         return new File(filename).exists();
@@ -308,22 +298,18 @@ public final class ArchiveUtils {
             File f;
             if (fh.isDirectory() && fh.isUnicode()) {
                 f = new File(destination, fh.getFileNameW());
-                if (!f.exists()) {
+                if (!f.exists())
                     makeDirectory(destination, fh.getFileNameW());
-                }
+
             } else if (fh.isDirectory() && !fh.isUnicode()) {
                 f = new File(destination, fh.getFileNameString());
-                if (!f.exists()) {
+                if (!f.exists())
                     makeDirectory(destination, fh.getFileNameString());
-                }
             }
         }
 
         private static void makeDirectory(File destination, String fileName) {
             String[] dirs = fileName.split("\\\\");
-            if (dirs == null) {
-                return;
-            }
             String path = "";
             for (String dir : dirs) {
                 path = path + File.separator + dir;
@@ -384,7 +370,7 @@ public final class ArchiveUtils {
                                 throw new RuntimeException("Can't create dir " + parentDir);
 
                             if (!overwriteExisting && file.exists())
-                                file = new File(FileUtils.pickupFileName(file.getAbsolutePath(), new FileUtils.ExistChecker() {
+                                file = new File(FileUtils.findFileName(file.getAbsolutePath(), new FileUtils.ExistChecker() {
                                     @Override
                                     public boolean existFile(String filename) {
                                         return new File(filename).exists();

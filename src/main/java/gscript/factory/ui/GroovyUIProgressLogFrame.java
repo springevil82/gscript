@@ -9,7 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * Окно прогресса
+ * Script execution progress window with two labels (progress + summary), progress bar, log text pane and cancellation button
  */
 public class GroovyUIProgressLogFrame extends GroovyAutoclosableFrame {
 
