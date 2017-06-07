@@ -6,16 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5d0fd85c-e95b-46c3-a235-dbb6452c1c43" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/format/GroovyDBTablePrinter.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/format/GroovyDBTablePrinter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/format/GroovyStringJoiner.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/format/GroovyStringJoiner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyFileProgressLog.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyFileProgressLog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyLogFactory.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyLogFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyStdoutProgressLog.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyStdoutProgressLog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/number/GroovyNumberFactory.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/number/GroovyNumberFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/proxy/GroovyProxyFactory.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/proxy/GroovyProxyFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/random/GroovyRandomFactory.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/random/GroovyRandomFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/script/GroovyScriptFactory.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/script/GroovyScriptFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/string/GroovyStringFactory.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/string/GroovyStringFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/ftp/GroovyFTPClient.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/ftp/GroovyFTPClient.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../gscript/out/" />
     <ignored path="$PROJECT_DIR$/../gscript/.gradle/" />
@@ -55,16 +46,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GroovyUIProgressLog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/log/GroovyUIProgressLog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-218">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GroovyNumberFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/number/GroovyNumberFactory.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -145,11 +126,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroovyStringFactory.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GroovyStringFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/string/GroovyStringFactory.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="377">
               <caret line="157" column="0" lean-forward="true" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroovyFTPClient.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/ftp/GroovyFTPClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="686">
+              <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -536,7 +527,6 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/report/GroovyReportFactory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/script/GroovyScriptArgsReader.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/security/GroovySecurityFactory.java" />
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/ftp/GroovyFTPClient.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/mail/GroovyIMAPClient.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/mail/GroovyIMAPMessage.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/mail/GroovySMTPClient.java" />
@@ -583,6 +573,7 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/random/GroovyRandomFactory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/script/GroovyScriptFactory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/string/GroovyStringFactory.java" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/ftp/GroovyFTPClient.java" />
       </list>
     </option>
   </component>
@@ -738,6 +729,78 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transport" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transport" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ftp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1726,7 +1789,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496760331878</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="dev">
+      <created>1496761732237</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1496761732237</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1783,14 +1853,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -2194,6 +2256,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="157" column="0" lean-forward="true" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/transport/ftp/GroovyFTPClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
           <folding />
         </state>
       </provider>

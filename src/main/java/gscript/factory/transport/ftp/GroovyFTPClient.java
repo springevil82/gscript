@@ -46,10 +46,10 @@ public final class GroovyFTPClient {
     }
 
     /**
-     * Проверить существует ли каталог на ftp сервере в текущем каталоге
+     * Check if FTP dir exists in current working dir
      *
-     * @param ftpDir каталог
-     * @return существует/нет
+     * @param ftpDir check dir
+     * @return true/false
      */
     public boolean existsDir(String ftpDir) throws Exception {
         final String currentDir = getCurrentDir();
@@ -88,11 +88,11 @@ public final class GroovyFTPClient {
     }
 
     /**
-     * Создать каталог на ftp сервере в текущем каталоге.
-     * Если каталог существует - будет создано исключение.
+     * Create new FTP dir in current working dir
      *
-     * @param ftpDir имя нового каталога
-     * @return true - каталог успешно создан, false не создан
+     * @param ftpDir new dir name
+     * @return true - dir created successfully, otherwise false
+     * @throws Exception dir already exists
      */
     public void createDir(String ftpDir) throws Exception {
         if (existsDir(ftpDir))
@@ -102,9 +102,9 @@ public final class GroovyFTPClient {
     }
 
     /**
-     * Создать каталог на ftp сервере если его нет и перейти в него
+     * Create FTP dir if not exists and goto it
      *
-     * @param ftpDir имя каталога
+     * @param ftpDir dir name
      * @throws Exception
      */
     public void ensureDir(String ftpDir) throws Exception {
@@ -112,12 +112,11 @@ public final class GroovyFTPClient {
             ftpCreateDir(ftpDir);
     }
 
-
     /**
-     * Перейти в каталог на ftp сервере.
-     * Если каталога не существует будет выброшено исключение.
+     * Goto FTP dir
      *
-     * @param ftpDir каталог
+     * @param ftpDir dir
+     * @throws Exception dir does not exists
      */
     public void changeDir(String ftpDir) throws Exception {
         if (!ftpClient.changeWorkingDirectory(ftpDir))
@@ -125,18 +124,16 @@ public final class GroovyFTPClient {
     }
 
     /**
-     * Получить текущий каталог
+     * Get current FTP dir
      *
-     * @return
+     * @return current working dir
      */
     public String getCurrentDir() throws Exception {
         return ftpClient.printWorkingDirectory();
     }
 
     /**
-     * Получить список файлов в текущем каталоге
-     *
-     * @return
+     * Get list of files in current FTP dir
      */
     public List<GroovyFTPFile> listFiles() throws Exception {
         final List<GroovyFTPFile> files = new ArrayList<>();
@@ -147,9 +144,10 @@ public final class GroovyFTPClient {
     }
 
     /**
-     * Загрузить локальный файл в текущий каталог на ftp сервере
+     * Upload file into current FTP dir
      *
-     * @param file файл
+     * @param file file or path to file
+     * @throws Exception upload error
      */
     public void uploadFile(Object file) throws Exception {
         final File f = file instanceof File ? (File) file : new File(file.toString());
@@ -158,14 +156,13 @@ public final class GroovyFTPClient {
             if (!ftpClient.storeFile(f.getName(), inputStream))
                 throw new GroovyException("File upload error. " + getFTPClientReplyString());
         }
-
     }
 
     /**
-     * Скачать файл с ftp сервера и сохранить в локальный файл
+     * Download file from current FTP dir
      *
-     * @param ftpFile имя файла на сервере
-     * @param file    локальный файл
+     * @param ftpFile FTP file name
+     * @param file    local file
      */
     public void downloadFile(String ftpFile, Object file) throws Exception {
         final File f = file instanceof File ? (File) file : new File(file.toString());
@@ -181,14 +178,18 @@ public final class GroovyFTPClient {
     }
 
     /**
-     * Удалить файл на ftp сервере в текущем каталоге с именем ftpFile
+     * Delete file from current FTP dir
+     *
+     * @param ftpFile FTP file name
      */
     public void deleteFile(String ftpFile) throws Exception {
         ftpRemove(ftpFile, true);
     }
 
     /**
-     * Удалить каталог на ftp сервере в текущем каталоге с именем ftpFile со всеми файлами и подкаталогами
+     * Delete dir from current FTP dir (recursive)
+     *
+     * @param ftpDir FTP dir name
      */
     public void deleteDir(String ftpDir) throws Exception {
         ftpRemove(ftpDir, false);
@@ -215,7 +216,9 @@ public final class GroovyFTPClient {
         }
     }
 
-
+    /**
+     * Logout FTP server
+     */
     public void close() throws Exception {
         ftpClient.logout();
     }
