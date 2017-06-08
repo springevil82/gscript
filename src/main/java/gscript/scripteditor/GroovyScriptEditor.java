@@ -25,7 +25,7 @@ public class GroovyScriptEditor extends JFrame {
     private final JTabbedPane documentPane;
     private final GroovyScriptOutputPanel scriptOutputPanel;
 
-    private final Map<String, File> scripts = new LinkedHashMap<>();
+    private final Map<String, File> openedFiles = new LinkedHashMap<>();
     private File lastFile;
     private JMenuItem menuItemSave;
     private JMenuItem menuItemRun;
@@ -285,7 +285,7 @@ public class GroovyScriptEditor extends JFrame {
     private String getNewScriptName() {
         for (int i = 1; i < Integer.MAX_VALUE; i++) {
             final String name = "script" + i + ".groovy";
-            if (!scripts.containsKey(name))
+            if (!openedFiles.containsKey(name))
                 return name;
         }
 
@@ -315,7 +315,7 @@ public class GroovyScriptEditor extends JFrame {
 
     public void doNew() {
         final String newScriptName = getNewScriptName();
-        scripts.put(newScriptName, null);
+        openedFiles.put(newScriptName, null);
         documentPane.addTab(newScriptName, new ImageIcon(getClass().getResource("/icons/groovy.png")), new GroovyScriptEditPanel());
     }
 
@@ -359,7 +359,7 @@ public class GroovyScriptEditor extends JFrame {
 
 
     private void doOpenScriptFile(File file) {
-        scripts.put(file.getName(), file);
+        openedFiles.put(file.getName(), file);
         final GroovyScriptEditPanel scriptEditPanel = new GroovyScriptEditPanel();
         scriptEditPanel.loadFile(file);
 
@@ -367,6 +367,7 @@ public class GroovyScriptEditor extends JFrame {
     }
 
     private void doOpenTextFile(File file) {
+        openedFiles.put(file.getName(), file);
         final GroovyTextFileEditPanel textFileEditPanel = new GroovyTextFileEditPanel(file);
         textFileEditPanel.loadFile();
 
@@ -374,6 +375,7 @@ public class GroovyScriptEditor extends JFrame {
     }
 
     private void doOpenDBFFile(File file) {
+        openedFiles.put(file.getName(), file);
         final GroovyDBFFileEditPanel dbfFileEditPanel = new GroovyDBFFileEditPanel(file);
 
         documentPane.addTab(file.getName(), new ImageIcon(getClass().getResource("/icons/dbf.png")), dbfFileEditPanel);
@@ -387,15 +389,11 @@ public class GroovyScriptEditor extends JFrame {
         String fileName = documentPane.getTitleAt(documentPane.getSelectedIndex());
 
         if (fileName.toLowerCase().endsWith(".groovy")) {
-            final File scriptFile = scripts.get(fileName);
+            final File scriptFile = openedFiles.get(fileName);
             if (scriptFile == null) {
                 final File file = chooseFileSave(fileName);
-                if (file != null) {
+                if (file != null)
                     scriptEditPanel.saveFile(file);
-                    scripts.remove(fileName);
-                    fileName = file.getName();
-                    scripts.put(fileName, file);
-                }
             } else {
                 scriptEditPanel.saveFile(scriptFile);
             }
@@ -440,9 +438,9 @@ public class GroovyScriptEditor extends JFrame {
     }
 
     protected void doExit() {
-        for (String fileName : scripts.keySet()) {
-            final File file = scripts.get(fileName);
-            if (file != null) {
+        for (String fileName : openedFiles.keySet()) {
+            final File file = openedFiles.get(fileName);
+            if (file != null && file.getName().toLowerCase().endsWith(".groovy")) {
                 int tabIndex = findTabByTitle(fileName);
                 if (tabIndex != -1) {
                     final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getTabComponentAt(tabIndex);
@@ -485,7 +483,7 @@ public class GroovyScriptEditor extends JFrame {
         String fileName = documentPane.getTitleAt(tabIndex);
 
         if (fileName.toLowerCase().endsWith(".groovy")) {
-            final File file = scripts.get(fileName);
+            final File file = openedFiles.get(fileName);
 
             showOutput();
             scriptOutputPanel.clearLog();
@@ -519,7 +517,7 @@ public class GroovyScriptEditor extends JFrame {
         String fileName = documentPane.getTitleAt(tabIndex);
 
         if (fileName.toLowerCase().endsWith(".groovy")) {
-            final File file = scripts.get(fileName);
+            final File file = openedFiles.get(fileName);
             if (file != null) {
 
                 final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getTabComponentAt(tabIndex);
@@ -545,6 +543,7 @@ public class GroovyScriptEditor extends JFrame {
         }
 
         documentPane.removeTabAt(tabIndex);
+        openedFiles.remove(fileName);
     }
 
     private void changeEncoding(String encoding) {
@@ -584,8 +583,13 @@ public class GroovyScriptEditor extends JFrame {
                 setExtendedState(preferences.getWindowState());
 
             if (getExtendedState() == NORMAL) {
-                setLocation(preferences.getWindowLocation() != null ? preferences.getWindowLocation() : new Point(100, 100));
-                setSize(preferences.getWindowSize() != null ? preferences.getWindowSize() : new Dimension(800, 600));
+                if (preferences.getWindowLocation() != null && preferences.getWindowSize() != null) {
+                    setLocation(preferences.getWindowLocation());
+                    setSize(preferences.getWindowSize());
+                } else {
+                    setSize(new Dimension(800, 600));
+                    setLocationRelativeTo(null);
+                }
             }
 
             for (File file : preferences.getRecentFiles())
@@ -597,6 +601,9 @@ public class GroovyScriptEditor extends JFrame {
             setLocationRelativeTo(null);
         }
 
+        if (openedFiles.isEmpty())
+            doNew();
+
         setVisible(true);
     }
 
@@ -605,6 +612,11 @@ public class GroovyScriptEditor extends JFrame {
         preferences.setWindowSize(getSize());
         preferences.setWindowLocation(getLocation());
         preferences.setWindowState(getExtendedState());
+
+        for (File file : openedFiles.values())
+            if (file != null && file.exists())
+                preferences.getRecentFiles().add(file);
+
         return preferences;
     }
 

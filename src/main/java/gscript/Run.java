@@ -1,6 +1,7 @@
 package gscript;
 
 import gscript.scripteditor.GroovyScriptEditor;
+import gscript.scripteditor.GroovyScriptEditorPreferences;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.swing.*;
@@ -56,14 +57,23 @@ public final class Run {
             throw new RuntimeException(e);
         }
 
+        final GroovyScriptEditorPreferences preferences = new GroovyScriptEditorPreferences();
+        final File propertiesFile = new File(GroovyScriptEditorPreferences.DEFAULT_PROPERTIES_FILE);
+        preferences.load(propertiesFile);
+
         final GroovyScriptEditor groovyScriptEditor = new GroovyScriptEditor();
         groovyScriptEditor.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                groovyScriptEditor.getPreferences().save(propertiesFile);
+            }
+
             @Override
             public void windowClosed(WindowEvent e) {
                 System.exit(0);
             }
         });
-        groovyScriptEditor.showWindow();
+        groovyScriptEditor.showWindow(preferences);
     }
 
 }

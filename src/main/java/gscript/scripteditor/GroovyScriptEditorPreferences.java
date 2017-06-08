@@ -8,6 +8,8 @@ import java.util.Properties;
 
 public final class GroovyScriptEditorPreferences {
 
+    public static final String DEFAULT_PROPERTIES_FILE = "gscript.properties";
+
     private static final String PROPERTY_WINDOW_LOCATION = "windowLocation";
     private static final String PROPERTY_WINDOW_SIZE = "windowSize";
     private static final String PROPERTY_WINDOW_STATE = "windowState";
@@ -48,6 +50,9 @@ public final class GroovyScriptEditorPreferences {
     }
 
     public void load(File file) {
+        if (!file.exists())
+            return;
+
         final Properties properties = new Properties();
         try (InputStream inputStream = new FileInputStream(file)) {
             properties.load(inputStream);
@@ -78,14 +83,14 @@ public final class GroovyScriptEditorPreferences {
         final Properties properties = new Properties();
 
         if (windowLocation != null)
-            properties.put(PROPERTY_WINDOW_LOCATION, windowLocation.x + "," + windowLocation.y);
+            properties.setProperty(PROPERTY_WINDOW_LOCATION, windowLocation.x + "," + windowLocation.y);
         if (windowSize != null)
-            properties.put(PROPERTY_WINDOW_SIZE, windowSize.width + "," + windowSize.height);
+            properties.setProperty(PROPERTY_WINDOW_SIZE, windowSize.width + "," + windowSize.height);
         if (windowState != null)
-            properties.put(PROPERTY_WINDOW_STATE, windowState);
+            properties.setProperty(PROPERTY_WINDOW_STATE, String.valueOf(windowState));
 
         for (File recentFile : getRecentFiles())
-            properties.put(PROPERTY_RECENT_FILE + recentFile.getName(), recentFile.getAbsolutePath());
+            properties.setProperty(PROPERTY_RECENT_FILE + recentFile.getName(), recentFile.getAbsolutePath());
 
         try (OutputStream outputStream = new FileOutputStream(file)) {
             properties.store(outputStream, "GroovyScriptEditor");
