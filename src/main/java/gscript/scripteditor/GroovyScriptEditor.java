@@ -84,66 +84,12 @@ public class GroovyScriptEditor extends JFrame {
         toolbar.add(btnRun);
 
         documentPane = new JTabbedPane();
-        documentPane.setComponentPopupMenu(new JPopupMenu());
-/*
-        documentPane.setPopupMenuCustomizer(new PopupMenuCustomizer() {
+        documentPane.setComponentPopupMenu(new TabPopupMenu() {
             @Override
-            public void customizePopupMenu(JPopupMenu menu, final IDocumentPane pane, final String
-                    dragComponentName, final IDocumentGroup dropGroup, final boolean onTab) {
-                menu.removeAll();
-
-                if (documentPane.getActiveDocumentName().toLowerCase().endsWith(".groovy")) {
-                    final JMenuItem menuItemRun = new JMenuItem(new AbstractAction("Запустить скрипт") {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            doRun();
-                        }
-                    });
-                    menuItemRun.setIcon(Icons.Other.RUN);
-                    menu.add(menuItemRun);
-                }
-
-                final JMenu menuItemEncoding = new JMenu("Кодировка");
-                menu.add(menuItemEncoding);
-                menuItemEncoding.add(new JMenuItem(new AbstractAction("utf-8") {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        changeEncoding("utf-8");
-                    }
-                }));
-                menuItemEncoding.add(new JMenuItem(new AbstractAction("windows-1251") {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        changeEncoding("windows-1251");
-                    }
-                }));
-                menuItemEncoding.add(new JMenuItem(new AbstractAction("cp866") {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        changeEncoding("cp866");
-                    }
-                }));
-                menuItemEncoding.addSeparator();
-                menuItemEncoding.add(new JMenuItem(new AbstractAction("Задать кодировку") {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        final String encoding = OptionDialog.showInputDialog("Укажите кодировку", "Укажите кодировку", "");
-                        if (encoding != null)
-                            changeEncoding(encoding);
-                    }
-                }));
-
-                final JMenuItem menuItemClose = new JMenuItem(new AbstractAction("Закрыть") {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        doCloseActiveTab();
-                    }
-                });
-                menu.add(menuItemClose);
+            protected void popupMenuWillBecomeVisible(JPopupMenu menu) {
+                buildPopupMenu(menu);
             }
         });
-*/
-
 
         documentPanel.add(documentPane);
 
@@ -184,6 +130,60 @@ public class GroovyScriptEditor extends JFrame {
         });
 
         updateToolbarButtons();
+    }
+
+    private void buildPopupMenu(JPopupMenu menu) {
+        menu.removeAll();
+
+        if (documentPane.getSelectedIndex() != -1 && documentPane.getTitleAt(documentPane.getSelectedIndex()).toLowerCase().endsWith(".groovy")) {
+            final JMenuItem menuItemRun = new JMenuItem(new AbstractAction("Run script") {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    doRun();
+                }
+            });
+            menuItemRun.setIcon(new ImageIcon(getClass().getResource("/icons/run.png")));
+            menu.add(menuItemRun);
+        }
+
+        final JMenu menuItemEncoding = new JMenu("Encoding");
+        menu.add(menuItemEncoding);
+        menuItemEncoding.add(new JMenuItem(new AbstractAction("utf-8") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeEncoding("utf-8");
+            }
+        }));
+        menuItemEncoding.add(new JMenuItem(new AbstractAction("windows-1251") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeEncoding("windows-1251");
+            }
+        }));
+        menuItemEncoding.add(new JMenuItem(new AbstractAction("cp866") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeEncoding("cp866");
+            }
+        }));
+        menuItemEncoding.addSeparator();
+        menuItemEncoding.add(new JMenuItem(new AbstractAction("Set another encoding...") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                final String encoding = JOptionPane.showInputDialog(GroovyScriptEditor.this, "Type your encoding");
+                if (encoding != null) {
+                    changeEncoding(encoding);
+                }
+            }
+        }));
+
+        final JMenuItem menuItemClose = new JMenuItem(new AbstractAction("Close tab") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doCloseActiveTab();
+            }
+        });
+        menu.add(menuItemClose);
     }
 
     private void initMenu() {

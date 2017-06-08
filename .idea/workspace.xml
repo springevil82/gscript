@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0fd85c-e95b-46c3-a235-dbb6452c1c43" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/TabPopupMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../gscript/out/" />
     <ignored path="$PROJECT_DIR$/../gscript/.gradle/" />
@@ -67,27 +67,39 @@
       <file leaf-file-name="GroovyScriptEditor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="509" column="28" lean-forward="true" selection-start-line="509" selection-start-column="28" selection-end-line="509" selection-end-column="28" />
+            <state relative-caret-position="513">
+              <caret line="175" column="17" lean-forward="true" selection-start-line="175" selection-start-column="17" selection-end-line="175" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6775#6923#0" expanded="true" />
-                <element signature="e#6922#6923#0" expanded="true" />
-                <element signature="e#19043#19044#0" expanded="true" />
-                <element signature="e#19119#19120#0" expanded="true" />
-                <element signature="e#22266#22267#0" expanded="true" />
-                <element signature="e#22298#22299#0" expanded="true" />
-                <marker date="1496929515256" expanded="false" signature="3536:3567" ph=" { " />
-                <marker date="1496929515256" expanded="false" signature="3575:3601" ph=" }" />
-                <marker date="1496929515256" expanded="false" signature="4034:4061" ph=" { " />
-                <marker date="1496929515256" expanded="false" signature="4085:4107" ph=" }" />
-                <marker date="1496929515256" expanded="false" signature="4309:4336" ph=" { " />
-                <marker date="1496929515256" expanded="false" signature="4367:4389" ph=" }" />
-                <marker date="1496929515256" expanded="false" signature="4584:4611" ph=" { " />
-                <marker date="1496929515256" expanded="false" signature="4635:4657" ph=" }" />
-                <marker date="1496929515256" expanded="false" signature="5369:5396" ph=" { " />
-                <marker date="1496929515256" expanded="false" signature="5415:5437" ph=" }" />
+                <element signature="e#2893#3070#0" expanded="true" />
+                <element signature="e#3069#3070#0" expanded="true" />
+                <element signature="e#4319#4467#0" expanded="true" />
+                <element signature="e#4466#4467#0" expanded="true" />
+                <element signature="e#18689#18690#0" expanded="true" />
+                <element signature="e#18765#18766#0" expanded="true" />
+                <element signature="e#21912#21913#0" expanded="true" />
+                <element signature="e#21944#21945#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TabPopupMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/TabPopupMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JPopupMenu.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/javax/swing/JPopupMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="673" column="19" lean-forward="false" selection-start-line="673" selection-start-column="19" selection-end-line="673" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,7 +183,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nonexistent</find>
       <find>s</find>
       <find>split</find>
       <find>split f</find>
@@ -201,6 +212,7 @@
       <find>openedFiles</find>
       <find>getTabComponentAt</find>
       <find>showOptionDialog</find>
+      <find>updateToolbarButtons</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -563,7 +575,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/GroovyAutoCompletionProvider.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/GroovyCompletion.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/ui/util/TableUtils.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/util/SystemUtils.java" />
@@ -613,6 +624,7 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditorPreferences.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/TabPopupMenu.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java" />
       </list>
     </option>
@@ -1232,7 +1244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496928216409</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="dev">
+      <created>1496929556644</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1496929556644</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1282,7 +1301,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1291,22 +1310,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/ui/GroovyUIFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/ui/GroovyUIProgressLogFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/ui/GroovyProgressLogPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1068">
@@ -1768,28 +1771,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/javax/swing/JPopupMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="673" column="19" lean-forward="false" selection-start-line="673" selection-start-column="19" selection-end-line="673" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/TabPopupMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="509" column="28" lean-forward="true" selection-start-line="509" selection-start-column="28" selection-end-line="509" selection-end-column="28" />
+        <state relative-caret-position="513">
+          <caret line="175" column="17" lean-forward="true" selection-start-line="175" selection-start-column="17" selection-end-line="175" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6775#6923#0" expanded="true" />
-            <element signature="e#6922#6923#0" expanded="true" />
-            <element signature="e#19043#19044#0" expanded="true" />
-            <element signature="e#19119#19120#0" expanded="true" />
-            <element signature="e#22266#22267#0" expanded="true" />
-            <element signature="e#22298#22299#0" expanded="true" />
-            <marker date="1496929515256" expanded="false" signature="3536:3567" ph=" { " />
-            <marker date="1496929515256" expanded="false" signature="3575:3601" ph=" }" />
-            <marker date="1496929515256" expanded="false" signature="4034:4061" ph=" { " />
-            <marker date="1496929515256" expanded="false" signature="4085:4107" ph=" }" />
-            <marker date="1496929515256" expanded="false" signature="4309:4336" ph=" { " />
-            <marker date="1496929515256" expanded="false" signature="4367:4389" ph=" }" />
-            <marker date="1496929515256" expanded="false" signature="4584:4611" ph=" { " />
-            <marker date="1496929515256" expanded="false" signature="4635:4657" ph=" }" />
-            <marker date="1496929515256" expanded="false" signature="5369:5396" ph=" { " />
-            <marker date="1496929515256" expanded="false" signature="5415:5437" ph=" }" />
+            <element signature="e#2893#3070#0" expanded="true" />
+            <element signature="e#3069#3070#0" expanded="true" />
+            <element signature="e#4319#4467#0" expanded="true" />
+            <element signature="e#4466#4467#0" expanded="true" />
+            <element signature="e#18689#18690#0" expanded="true" />
+            <element signature="e#18765#18766#0" expanded="true" />
+            <element signature="e#21912#21913#0" expanded="true" />
+            <element signature="e#21944#21945#0" expanded="true" />
           </folding>
         </state>
       </provider>
