@@ -4,6 +4,8 @@ import gscript.scripteditor.GroovyScriptEditor;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 public final class Run {
@@ -54,7 +56,14 @@ public final class Run {
             throw new RuntimeException(e);
         }
 
-        new GroovyScriptEditor().showWindow();
+        final GroovyScriptEditor groovyScriptEditor = new GroovyScriptEditor();
+        groovyScriptEditor.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        groovyScriptEditor.showWindow();
     }
 
 }

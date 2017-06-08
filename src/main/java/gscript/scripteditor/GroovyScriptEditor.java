@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public final class GroovyScriptEditor extends JFrame {
+public class GroovyScriptEditor extends JFrame {
 
     private final JToolBar toolbar;
     private final JPanel documentPanel;
@@ -339,7 +339,10 @@ public final class GroovyScriptEditor extends JFrame {
             return;
 
         this.lastFile = file;
+        doOpen(file);
+    }
 
+    private void doOpen(File file) {
         for (int i = 0; i < documentPane.getTabCount(); i++)
             if (file.getName().equals(documentPane.getTitleAt(i))) {
                 documentPane.setSelectedIndex(i);
@@ -353,6 +356,7 @@ public final class GroovyScriptEditor extends JFrame {
         else
             doOpenTextFile(file);
     }
+
 
     private void doOpenScriptFile(File file) {
         scripts.put(file.getName(), file);
@@ -435,7 +439,7 @@ public final class GroovyScriptEditor extends JFrame {
         return -1;
     }
 
-    private void doExit() {
+    protected void doExit() {
         for (String fileName : scripts.keySet()) {
             final File file = scripts.get(fileName);
             if (file != null) {
@@ -563,15 +567,46 @@ public final class GroovyScriptEditor extends JFrame {
     }
 
     public void showWindow() {
+        showWindow(null);
+    }
+
+    public void showWindow(GroovyScriptEditorPreferences preferences) {
         if (isVisible())
             return;
 
         setIconImage(new ImageIcon(getClass().getResource("/icons/script.png")).getImage());
         setTitle("Script Editor");
         setContentPane(contentPanel);
-        setSize(new Dimension(800, 600));
-        setLocationRelativeTo(null);
+
+        if (preferences != null) {
+
+            if (preferences.getWindowState() != null)
+                setExtendedState(preferences.getWindowState());
+
+            if (getExtendedState() == NORMAL) {
+                setLocation(preferences.getWindowLocation() != null ? preferences.getWindowLocation() : new Point(100, 100));
+                setSize(preferences.getWindowSize() != null ? preferences.getWindowSize() : new Dimension(800, 600));
+            }
+
+            for (File file : preferences.getRecentFiles())
+                if (file.exists())
+                    doOpen(file);
+
+        } else {
+            setSize(new Dimension(800, 600));
+            setLocationRelativeTo(null);
+        }
+
         setVisible(true);
     }
+
+    public GroovyScriptEditorPreferences getPreferences() {
+        final GroovyScriptEditorPreferences preferences = new GroovyScriptEditorPreferences();
+        preferences.setWindowSize(getSize());
+        preferences.setWindowLocation(getLocation());
+        preferences.setWindowState(getExtendedState());
+        return preferences;
+    }
+
 
 }
