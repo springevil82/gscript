@@ -25,103 +25,135 @@ public final class ScriptRunner {
     public static boolean runScript(final File scriptFile, final Logger logger) {
         final PrintStream stdout = System.out;
         try {
-            final boolean wereErrors[] = new boolean[]{false};
-
-            new GroovyRunner() {
-                private GroovyProgressLog internalProgressLog;
-
-                @Override
-                protected void initialize(Factory factory, Binding binding) {
-                    final PrintStream scriptOut = new PrintStream(new RedirectStream(new RedirectPublisher() {
-                        @Override
-                        public void println(String text) {
-                            logger.logMessage(text);
-                        }
-                    }));
-                    binding.setProperty("out", scriptOut);
-                    System.setOut(scriptOut);
-
-                    internalProgressLog = new GroovyProgressLog() {
-
-                        @Override
-                        public void close() throws Exception {
-                        }
-
-                        @Override
-                        public void setProgressText(final String text) {
-                        }
-
-                        @Override
-                        public void setProgressDetailText(final String text) {
-                        }
-
-                        @Override
-                        public void setProgressMax(final int maxValue) {
-                        }
-
-                        @Override
-                        public void moveProgress() {
-                        }
-
-                        @Override
-                        public void setProgressInfinity(final boolean infinityProgress) {
-                        }
-
-                        private String object2String(Object text) {
-                            if (text == null)
-                                return "";
-
-                            String message = text.toString();
-                            if (text.getClass().isArray())
-                                message = Arrays.toString((Object[]) text);
-
-                            return message;
-                        }
-
-                        @Override
-                        public void addInfo(final Object text) {
-                            logger.logMessage("INFO: " + object2String(text));
-                        }
-
-                        @Override
-                        public void addWarn(final Object text) {
-                            logger.logMessage("WARN: " + object2String(text));
-                        }
-
-                        @Override
-                        public void addError(final Object text) {
-                            wereErrors[0] = true;
-                            logger.logMessage("ERROR: " + object2String(text));
-                        }
-
-                        @Override
-                        public void throwException(final Object text) {
-                            wereErrors[0] = true;
-                            final GroovyException groovyException = new GroovyException(object2String(text));
-                            logger.logError(groovyException);
-                            throw groovyException;
-                        }
-
-                        @Override
-                        public boolean isCancelled() {
-                            return false;
-                        }
-
-                        @Override
-                        public void deleteLogFile() {
-                        }
-                    };
-
-                    factory.log.presetInternalProgressLog(internalProgressLog);
-                }
-            }.runScript(scriptFile);
-
-            return !wereErrors[0];
+            final Runner runner = new Runner(logger);
+            runner.runScript(scriptFile);
+            return runner.wereErrors();
         } catch (Throwable e) {
             logger.logError(e);
             return false;
         } finally {
             System.setOut(stdout);
+        }
+    }
+
+    /**
+     * Run script
+     *
+     * @param script script text
+     * @param logger output logger
+     * @return true - script executed successfully, otherwise false
+     */
+    public static boolean runScript(String script, final Logger logger) {
+        final PrintStream stdout = System.out;
+        try {
+            final Runner runner = new Runner(logger);
+            runner.runScript(script);
+            return runner.wereErrors();
+        } catch (Throwable e) {
+            logger.logError(e);
+            return false;
+        } finally {
+            System.setOut(stdout);
+        }
+    }
+
+    private final static class Runner extends GroovyRunner {
+
+        private GroovyProgressLog internalProgressLog;
+        private Logger logger;
+        private boolean wereErrors = false;
+
+        public Runner(Logger logger) {
+            this.logger = logger;
+        }
+
+        public boolean wereErrors() {
+            return wereErrors;
+        }
+
+        @Override
+        protected void initialize(Factory factory, Binding binding) {
+            final PrintStream scriptOut = new PrintStream(new RedirectStream(new RedirectPublisher() {
+                @Override
+                public void println(String text) {
+                    logger.logMessage(text);
+                }
+            }));
+            binding.setProperty("out", scriptOut);
+            System.setOut(scriptOut);
+
+            internalProgressLog = new GroovyProgressLog() {
+
+                @Override
+                public void close() throws Exception {
+                }
+
+                @Override
+                public void setProgressText(final String text) {
+                }
+
+                @Override
+                public void setProgressDetailText(final String text) {
+                }
+
+                @Override
+                public void setProgressMax(final int maxValue) {
+                }
+
+                @Override
+                public void moveProgress() {
+                }
+
+                @Override
+                public void setProgressInfinity(final boolean infinityProgress) {
+                }
+
+                private String object2String(Object text) {
+                    if (text == null)
+                        return "";
+
+                    String message = text.toString();
+                    if (text.getClass().isArray())
+                        message = Arrays.toString((Object[]) text);
+
+                    return message;
+                }
+
+                @Override
+                public void addInfo(final Object text) {
+                    logger.logMessage("INFO: " + object2String(text));
+                }
+
+                @Override
+                public void addWarn(final Object text) {
+                    logger.logMessage("WARN: " + object2String(text));
+                }
+
+                @Override
+                public void addError(final Object text) {
+                    wereErrors = true;
+                    logger.logMessage("ERROR: " + object2String(text));
+                }
+
+                @Override
+                public void throwException(final Object text) {
+                    wereErrors = true;
+                    final GroovyException groovyException = new GroovyException(object2String(text));
+                    logger.logError(groovyException);
+                    throw groovyException;
+                }
+
+                @Override
+                public boolean isCancelled() {
+                    return false;
+                }
+
+                @Override
+                public void deleteLogFile() {
+                }
+            };
+
+            factory.log.presetInternalProgressLog(internalProgressLog);
         }
     }
 

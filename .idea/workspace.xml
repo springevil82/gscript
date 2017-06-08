@@ -7,6 +7,7 @@
     <list default="true" id="5d0fd85c-e95b-46c3-a235-dbb6452c1c43" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../gscript/out/" />
     <ignored path="$PROJECT_DIR$/../gscript/.gradle/" />
@@ -67,23 +68,43 @@
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="427">
-              <caret line="536" column="0" lean-forward="true" selection-start-line="536" selection-start-column="0" selection-end-line="536" selection-end-column="0" />
+              <caret line="509" column="28" lean-forward="true" selection-start-line="509" selection-start-column="28" selection-end-line="509" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6775#6923#0" expanded="true" />
                 <element signature="e#6922#6923#0" expanded="true" />
-                <element signature="e#21863#21864#0" expanded="true" />
-                <element signature="e#21895#21896#0" expanded="true" />
-                <marker date="1496928182548" expanded="false" signature="3536:3567" ph=" { " />
-                <marker date="1496928182548" expanded="false" signature="3575:3601" ph=" }" />
-                <marker date="1496928182548" expanded="false" signature="4034:4061" ph=" { " />
-                <marker date="1496928182548" expanded="false" signature="4085:4107" ph=" }" />
-                <marker date="1496928182548" expanded="false" signature="4309:4336" ph=" { " />
-                <marker date="1496928182548" expanded="false" signature="4367:4389" ph=" }" />
-                <marker date="1496928182548" expanded="false" signature="4584:4611" ph=" { " />
-                <marker date="1496928182548" expanded="false" signature="4635:4657" ph=" }" />
-                <marker date="1496928182548" expanded="false" signature="5369:5396" ph=" { " />
-                <marker date="1496928182548" expanded="false" signature="5415:5437" ph=" }" />
+                <element signature="e#19043#19044#0" expanded="true" />
+                <element signature="e#19119#19120#0" expanded="true" />
+                <element signature="e#22266#22267#0" expanded="true" />
+                <element signature="e#22298#22299#0" expanded="true" />
+                <marker date="1496929515256" expanded="false" signature="3536:3567" ph=" { " />
+                <marker date="1496929515256" expanded="false" signature="3575:3601" ph=" }" />
+                <marker date="1496929515256" expanded="false" signature="4034:4061" ph=" { " />
+                <marker date="1496929515256" expanded="false" signature="4085:4107" ph=" }" />
+                <marker date="1496929515256" expanded="false" signature="4309:4336" ph=" { " />
+                <marker date="1496929515256" expanded="false" signature="4367:4389" ph=" }" />
+                <marker date="1496929515256" expanded="false" signature="4584:4611" ph=" { " />
+                <marker date="1496929515256" expanded="false" signature="4635:4657" ph=" }" />
+                <marker date="1496929515256" expanded="false" signature="5369:5396" ph=" { " />
+                <marker date="1496929515256" expanded="false" signature="5415:5437" ph=" }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScriptRunner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="547">
+              <caret line="49" column="37" lean-forward="false" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1869#1870#0" expanded="true" />
+                <element signature="e#1913#1914#0" expanded="true" />
+                <element signature="e#1952#1953#0" expanded="true" />
+                <element signature="e#1993#1994#0" expanded="true" />
+                <element signature="e#2161#2340#0" expanded="true" />
+                <element signature="e#2339#2340#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,9 +123,10 @@
       <file leaf-file-name="GroovyScriptEditPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+            <state relative-caret-position="581">
+              <caret line="137" column="16" lean-forward="false" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="16" />
               <folding>
+                <element signature="e#4423#4424#0" expanded="true" />
                 <element signature="e#4478#4479#0" expanded="true" />
               </folding>
             </state>
@@ -555,7 +577,6 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditPanel.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptOutputPanel.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" />
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyTextFileEditPanel.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/UniversalComparator.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/DataObjectComparator.java" />
@@ -591,6 +612,7 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/GroovyMultilineDocumentQueryOrder.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditorPreferences.java" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java" />
       </list>
     </option>
@@ -1203,7 +1225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496926242470</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="dev">
+      <created>1496928216409</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1496928216409</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1459,22 +1488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1085#1304#0" expanded="true" />
-            <element signature="e#1303#1304#0" expanded="true" />
-            <element signature="e#2804#2805#0" expanded="true" />
-            <element signature="e#2909#2910#0" expanded="true" />
-            <element signature="e#3009#3010#0" expanded="true" />
-            <element signature="e#3114#3115#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptOutputPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
@@ -1720,16 +1733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-          <folding>
-            <element signature="e#4478#4479#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/javax/swing/JOptionPane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -1738,26 +1741,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="49" column="37" lean-forward="false" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1869#1870#0" expanded="true" />
+            <element signature="e#1913#1914#0" expanded="true" />
+            <element signature="e#1952#1953#0" expanded="true" />
+            <element signature="e#1993#1994#0" expanded="true" />
+            <element signature="e#2161#2340#0" expanded="true" />
+            <element signature="e#2339#2340#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="137" column="16" lean-forward="false" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="16" />
+          <folding>
+            <element signature="e#4423#4424#0" expanded="true" />
+            <element signature="e#4478#4479#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
-          <caret line="536" column="0" lean-forward="true" selection-start-line="536" selection-start-column="0" selection-end-line="536" selection-end-column="0" />
+          <caret line="509" column="28" lean-forward="true" selection-start-line="509" selection-start-column="28" selection-end-line="509" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6775#6923#0" expanded="true" />
             <element signature="e#6922#6923#0" expanded="true" />
-            <element signature="e#21863#21864#0" expanded="true" />
-            <element signature="e#21895#21896#0" expanded="true" />
-            <marker date="1496928182548" expanded="false" signature="3536:3567" ph=" { " />
-            <marker date="1496928182548" expanded="false" signature="3575:3601" ph=" }" />
-            <marker date="1496928182548" expanded="false" signature="4034:4061" ph=" { " />
-            <marker date="1496928182548" expanded="false" signature="4085:4107" ph=" }" />
-            <marker date="1496928182548" expanded="false" signature="4309:4336" ph=" { " />
-            <marker date="1496928182548" expanded="false" signature="4367:4389" ph=" }" />
-            <marker date="1496928182548" expanded="false" signature="4584:4611" ph=" { " />
-            <marker date="1496928182548" expanded="false" signature="4635:4657" ph=" }" />
-            <marker date="1496928182548" expanded="false" signature="5369:5396" ph=" { " />
-            <marker date="1496928182548" expanded="false" signature="5415:5437" ph=" }" />
+            <element signature="e#19043#19044#0" expanded="true" />
+            <element signature="e#19119#19120#0" expanded="true" />
+            <element signature="e#22266#22267#0" expanded="true" />
+            <element signature="e#22298#22299#0" expanded="true" />
+            <marker date="1496929515256" expanded="false" signature="3536:3567" ph=" { " />
+            <marker date="1496929515256" expanded="false" signature="3575:3601" ph=" }" />
+            <marker date="1496929515256" expanded="false" signature="4034:4061" ph=" { " />
+            <marker date="1496929515256" expanded="false" signature="4085:4107" ph=" }" />
+            <marker date="1496929515256" expanded="false" signature="4309:4336" ph=" { " />
+            <marker date="1496929515256" expanded="false" signature="4367:4389" ph=" }" />
+            <marker date="1496929515256" expanded="false" signature="4584:4611" ph=" { " />
+            <marker date="1496929515256" expanded="false" signature="4635:4657" ph=" }" />
+            <marker date="1496929515256" expanded="false" signature="5369:5396" ph=" { " />
+            <marker date="1496929515256" expanded="false" signature="5415:5437" ph=" }" />
           </folding>
         </state>
       </provider>

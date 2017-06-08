@@ -477,8 +477,6 @@ public class GroovyScriptEditor extends JFrame {
     }
 
     private void doRun() {
-        doSave();
-
         int tabIndex = documentPane.getSelectedIndex();
         if (tabIndex == -1)
             return;
@@ -488,12 +486,13 @@ public class GroovyScriptEditor extends JFrame {
         if (fileName.toLowerCase().endsWith(".groovy")) {
             final File file = openedFiles.get(fileName);
 
+            if (file != null)
+                doSave();
+
             showOutput();
             scriptOutputPanel.clearLog();
 
-            long startTime = System.currentTimeMillis();
-            scriptOutputPanel.appendLog("system:Script runned");
-            boolean success = ScriptRunner.runScript(file, new ScriptRunner.Logger() {
+            final ScriptRunner.Logger logger = new ScriptRunner.Logger() {
                 @Override
                 public void logMessage(String message) {
                     scriptOutputPanel.appendLog(message);
@@ -503,7 +502,18 @@ public class GroovyScriptEditor extends JFrame {
                 public void logError(Throwable e) {
                     scriptOutputPanel.appendLog("FATAL: " + SystemUtils.getExceptionCauses(e));
                 }
-            });
+            };
+
+            long startTime = System.currentTimeMillis();
+            scriptOutputPanel.appendLog("system:Script runned");
+
+            boolean success;
+            if (file != null) {
+                success = ScriptRunner.runScript(file, logger);
+            } else {
+                final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getComponentAt(tabIndex);
+                success = ScriptRunner.runScript(scriptEditPanel.getScriptText(), logger);
+            }
 
             if (success)
                 scriptOutputPanel.appendLog("system:Script executed successfully (" + DateUtils.millisToString(System.currentTimeMillis() - startTime) + ")");
