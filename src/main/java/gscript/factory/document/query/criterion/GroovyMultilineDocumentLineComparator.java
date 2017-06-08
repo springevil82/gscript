@@ -5,12 +5,12 @@ import gscript.factory.document.GroovyMultilineDocument;
 import java.util.Comparator;
 import java.util.List;
 
-public class LineComparator implements Comparator<GroovyMultilineDocument.Line> {
+public class GroovyMultilineDocumentLineComparator implements Comparator<GroovyMultilineDocument.Line> {
 
-    private static final ObjectComparator objectComparator = new ObjectComparator();
-    private final List<OrderBy> sort;
+    private static final GroovyMultilineDocumentObjectComparator objectComparator = new GroovyMultilineDocumentObjectComparator();
+    private final List<GroovyMultilineDocumentQueryOrder> sort;
 
-    public LineComparator(final List<OrderBy> sort) {
+    public GroovyMultilineDocumentLineComparator(final List<GroovyMultilineDocumentQueryOrder> sort) {
         this.sort = sort;
     }
 
@@ -19,7 +19,7 @@ public class LineComparator implements Comparator<GroovyMultilineDocument.Line> 
         final int sortCount = sort.size();
         int sortIndex = 0;
         int result = objectComparator.compareNull(line1, line2);
-        OrderBy curOrderElement;
+        GroovyMultilineDocumentQueryOrder curOrderElement;
         String fieldName;
         Object fieldValue1, fieldValue2;
 
@@ -37,7 +37,7 @@ public class LineComparator implements Comparator<GroovyMultilineDocument.Line> 
 
             result = objectComparator.compare(fieldValue1, fieldValue2);
 
-            if (curOrderElement.getDirection() == OrderBy.Direction.DESC)
+            if (curOrderElement.getDirection() == GroovyMultilineDocumentQueryOrder.Direction.DESC)
                 result = -result;
 
             ++sortIndex;

@@ -1,10 +1,10 @@
 package gscript.factory.document.query.criterion;
 
-public class FieldCriterionNull extends FieldCriterion {
+public class GroovyMultilineDocumentQueryFieldCriterionNull extends GroovyMultilineDocumentQueryFieldCriterion {
 
     private final boolean isNull;
 
-    FieldCriterionNull(String fieldName, boolean isNull) {
+    GroovyMultilineDocumentQueryFieldCriterionNull(String fieldName, boolean isNull) {
         super(fieldName);
         this.isNull = isNull;
     }

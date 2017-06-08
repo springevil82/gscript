@@ -5,13 +5,13 @@ import gscript.factory.document.GroovyMultilineDocument;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FieldCriterion extends Criterion {
+public abstract class GroovyMultilineDocumentQueryFieldCriterion extends GroovyMultilineDocumentQueryCriterion {
 
-    protected static final ObjectComparator objectComparator = new ObjectComparator();
+    protected static final GroovyMultilineDocumentObjectComparator objectComparator = new GroovyMultilineDocumentObjectComparator();
 
     protected final String fieldName;
 
-    protected FieldCriterion(String fieldName) {
+    protected GroovyMultilineDocumentQueryFieldCriterion(String fieldName) {
         this.fieldName = fieldName;
     }
 

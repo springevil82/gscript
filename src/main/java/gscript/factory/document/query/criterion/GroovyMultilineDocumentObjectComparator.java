@@ -2,7 +2,7 @@ package gscript.factory.document.query.criterion;
 
 import java.util.Comparator;
 
-public final class ObjectComparator implements Comparator {
+public final class GroovyMultilineDocumentObjectComparator implements Comparator {
 
     public int compareNull(Object obj1, Object obj2) {
         final int result;

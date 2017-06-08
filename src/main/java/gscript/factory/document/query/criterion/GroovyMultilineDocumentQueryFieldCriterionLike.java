@@ -1,10 +1,10 @@
 package gscript.factory.document.query.criterion;
 
-public class FieldCriterionLike extends FieldCriterion {
+public class GroovyMultilineDocumentQueryFieldCriterionLike extends GroovyMultilineDocumentQueryFieldCriterion {
 
     private final String value;
 
-    FieldCriterionLike(String fieldName, String value) {
+    GroovyMultilineDocumentQueryFieldCriterionLike(String fieldName, String value) {
         super(fieldName);
         this.value = value;
     }

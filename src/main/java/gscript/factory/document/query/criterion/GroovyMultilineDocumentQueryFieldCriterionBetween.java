@@ -1,13 +1,13 @@
 package gscript.factory.document.query.criterion;
 
-public class FieldCriterionBetween extends FieldCriterion {
+public class GroovyMultilineDocumentQueryFieldCriterionBetween extends GroovyMultilineDocumentQueryFieldCriterion {
 
     private final Object leftValue;
     private final Object rightValue;
     private final boolean includeLeft;
     private final boolean includeRight;
 
-    FieldCriterionBetween(String fieldName, Object leftValue, Object rightValue, boolean includeLeft, boolean includeRight) {
+    GroovyMultilineDocumentQueryFieldCriterionBetween(String fieldName, Object leftValue, Object rightValue, boolean includeLeft, boolean includeRight) {
         super(fieldName);
         this.leftValue = leftValue;
         this.rightValue = rightValue;

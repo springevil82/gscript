@@ -4,12 +4,12 @@ import gscript.factory.document.GroovyMultilineDocument;
 
 import java.util.List;
 
-public class FieldCriterionField extends Criterion {
+public class GroovyMultilineDocumentQueryFieldCriterionField extends GroovyMultilineDocumentQueryCriterion {
 
-    private final Criterion criterion;
+    private final GroovyMultilineDocumentQueryCriterion criterion;
     private final String fieldName;
 
-    FieldCriterionField(String fieldName, Criterion criterion) {
+    GroovyMultilineDocumentQueryFieldCriterionField(String fieldName, GroovyMultilineDocumentQueryCriterion criterion) {
         this.fieldName = fieldName;
         this.criterion = criterion;
     }

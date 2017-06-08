@@ -1,6 +1,6 @@
 package gscript.factory.document.query.criterion;
 
-public class OrderBy {
+public class GroovyMultilineDocumentQueryOrder {
 
     private final String fieldName;
     private final Direction direction;
@@ -10,17 +10,17 @@ public class OrderBy {
         DESC
     }
 
-    OrderBy(String fieldName, Direction direction) {
+    GroovyMultilineDocumentQueryOrder(String fieldName, Direction direction) {
         this.fieldName = fieldName;
         this.direction = direction;
     }
 
-    public static OrderBy asc(String fieldName) {
-        return new OrderBy(fieldName, Direction.ASC);
+    public static GroovyMultilineDocumentQueryOrder asc(String fieldName) {
+        return new GroovyMultilineDocumentQueryOrder(fieldName, Direction.ASC);
     }
 
-    public static OrderBy desc(String fieldName) {
-        return new OrderBy(fieldName, Direction.DESC);
+    public static GroovyMultilineDocumentQueryOrder desc(String fieldName) {
+        return new GroovyMultilineDocumentQueryOrder(fieldName, Direction.DESC);
     }
 
     public String getFieldName() {
@@ -34,10 +34,10 @@ public class OrderBy {
     @Override
     public boolean equals(Object obj) {
         final boolean result;
-        final OrderBy orderElem;
+        final GroovyMultilineDocumentQueryOrder orderElem;
 
-        if (obj instanceof OrderBy) {
-            orderElem = (OrderBy) obj;
+        if (obj instanceof GroovyMultilineDocumentQueryOrder) {
+            orderElem = (GroovyMultilineDocumentQueryOrder) obj;
 
             result = fieldName.equals(orderElem.fieldName) && direction == orderElem.direction;
         } else {

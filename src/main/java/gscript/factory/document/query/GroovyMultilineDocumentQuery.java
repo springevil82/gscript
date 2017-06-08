@@ -1,25 +1,25 @@
 package gscript.factory.document.query;
 
 import gscript.factory.document.GroovyMultilineDocument;
-import gscript.factory.document.query.criterion.Criterion;
-import gscript.factory.document.query.criterion.LineComparator;
-import gscript.factory.document.query.criterion.OrderBy;
+import gscript.factory.document.query.criterion.GroovyMultilineDocumentLineComparator;
+import gscript.factory.document.query.criterion.GroovyMultilineDocumentQueryCriterion;
+import gscript.factory.document.query.criterion.GroovyMultilineDocumentQueryOrder;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public final class GroovyDocumentQuery {
+public final class GroovyMultilineDocumentQuery {
 
     private GroovyMultilineDocument document;
 
-    final List<Criterion> criterionList = new ArrayList<>();
-    final List<OrderBy> orders = new ArrayList<>();
+    final List<GroovyMultilineDocumentQueryCriterion> criterionList = new ArrayList<>();
+    final List<GroovyMultilineDocumentQueryOrder> orders = new ArrayList<>();
 
     private int limit = -1;
 
-    public GroovyDocumentQuery(GroovyMultilineDocument document) {
+    public GroovyMultilineDocumentQuery(GroovyMultilineDocument document) {
         this.document = document;
     }
 
@@ -29,7 +29,7 @@ public final class GroovyDocumentQuery {
      * @param criterion criterion
      * @return this
      */
-    public GroovyDocumentQuery addCriterion(Criterion criterion) {
+    public GroovyMultilineDocumentQuery addCriterion(GroovyMultilineDocumentQueryCriterion criterion) {
         criterionList.add(criterion);
         return this;
     }
@@ -40,7 +40,7 @@ public final class GroovyDocumentQuery {
      * @param orderBy sort
      * @return this
      */
-    public GroovyDocumentQuery addOrderBy(OrderBy orderBy) {
+    public GroovyMultilineDocumentQuery addOrderBy(GroovyMultilineDocumentQueryOrder orderBy) {
         orders.add(orderBy);
         return this;
     }
@@ -51,7 +51,7 @@ public final class GroovyDocumentQuery {
      * @param limit max rows
      * @return this
      */
-    public GroovyDocumentQuery setLimit(int limit) {
+    public GroovyMultilineDocumentQuery setLimit(int limit) {
         this.limit = limit;
         return this;
     }
@@ -60,10 +60,10 @@ public final class GroovyDocumentQuery {
         List<GroovyMultilineDocument.Line> list = new ArrayList<>(document.getLinesCount());
         list.addAll(document.getLines());
 
-        for (Criterion criterion : criterionList)
+        for (GroovyMultilineDocumentQueryCriterion criterion : criterionList)
             list = criterion.select(list);
 
-        final Comparator<GroovyMultilineDocument.Line> comparator = new LineComparator(orders);
+        final Comparator<GroovyMultilineDocument.Line> comparator = new GroovyMultilineDocumentLineComparator(orders);
         Collections.sort(list, comparator);
 
         if (limit >= 0)

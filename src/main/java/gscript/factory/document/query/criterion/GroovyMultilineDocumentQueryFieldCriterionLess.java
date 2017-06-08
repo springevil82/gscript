@@ -1,11 +1,11 @@
 package gscript.factory.document.query.criterion;
 
-public class FieldCriterionLess extends FieldCriterion {
+public class GroovyMultilineDocumentQueryFieldCriterionLess extends GroovyMultilineDocumentQueryFieldCriterion {
 
     private final Object value;
     private final boolean include;
 
-    FieldCriterionLess(String fieldName, Object value, boolean include) {
+    GroovyMultilineDocumentQueryFieldCriterionLess(String fieldName, Object value, boolean include) {
         super(fieldName);
         this.value = value;
         this.include = include;
