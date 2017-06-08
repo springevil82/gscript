@@ -439,29 +439,32 @@ public class GroovyScriptEditor extends JFrame {
 
     protected void doExit() {
         for (String fileName : openedFiles.keySet()) {
-            final File file = openedFiles.get(fileName);
-            if (file != null && file.getName().toLowerCase().endsWith(".groovy")) {
+            if (fileName.toLowerCase().endsWith(".groovy")) {
                 int tabIndex = findTabByTitle(fileName);
                 if (tabIndex != -1) {
-                    final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getTabComponentAt(tabIndex);
+                    final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getComponentAt(tabIndex);
                     if (scriptEditPanel.isChanged()) {
 
                         documentPane.setSelectedIndex(tabIndex);
 
-                        final String[] options = new String[]{"Yes", "No", "Cancel"};
-                        final int buttonIndex = JOptionPane.showOptionDialog(null,
+                        final int buttonIndex = JOptionPane.showOptionDialog(this,
                                 "Save changes?",
                                 "Attention",
                                 JOptionPane.YES_NO_CANCEL_OPTION,
                                 JOptionPane.PLAIN_MESSAGE,
-                                new ImageIcon(getClass().getResource("/icons/script.png")),
-                                options,
-                                options[2]);
+                                null,
+                                null,
+                                null);
 
-                        if (buttonIndex == 0)
-                            scriptEditPanel.saveFile(file);
+                        if (buttonIndex == 0) {
+                            final File file = openedFiles.get(fileName);
+                            if (file != null)
+                                scriptEditPanel.saveFile(file);
+                            else
+                                doSave();
+                        }
 
-                        if (buttonIndex == 2)
+                        if (buttonIndex == -1 || buttonIndex == 2)
                             return;
 
                     }
@@ -520,23 +523,22 @@ public class GroovyScriptEditor extends JFrame {
             final File file = openedFiles.get(fileName);
             if (file != null) {
 
-                final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getTabComponentAt(tabIndex);
+                final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getComponentAt(tabIndex);
 
                 if (scriptEditPanel.isChanged()) {
-                    final String[] options = new String[]{"Yes", "No", "Cancel"};
-                    final int buttonIndex = JOptionPane.showOptionDialog(null,
+                    final int buttonIndex = JOptionPane.showOptionDialog(this,
                             "Save changes?",
                             "Attention",
                             JOptionPane.YES_NO_CANCEL_OPTION,
                             JOptionPane.PLAIN_MESSAGE,
-                            new ImageIcon(getClass().getResource("/icons/script.png")),
-                            options,
-                            options[2]);
+                            null,
+                            null,
+                            null);
 
                     if (buttonIndex == 0)
                         scriptEditPanel.saveFile(file);
 
-                    if (buttonIndex == 2)
+                    if (buttonIndex == -1 || buttonIndex == 2)
                         return;
                 }
             }
@@ -551,7 +553,7 @@ public class GroovyScriptEditor extends JFrame {
         if (tabIndex == -1)
             return;
 
-        final Component activeDocument = documentPane.getTabComponentAt(tabIndex);
+        final Component activeDocument = documentPane.getComponentAt(tabIndex);
         if (activeDocument != null) {
             if (activeDocument instanceof GroovyDBFFileEditPanel) {
                 final GroovyDBFFileEditPanel groovyDBFFileEditPanel = (GroovyDBFFileEditPanel) activeDocument;
