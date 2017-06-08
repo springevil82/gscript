@@ -3,7 +3,6 @@ package gscript;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import gscript.factory.file.text.GroovyTextFileReader;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,28 +10,42 @@ import java.util.List;
 
 public class GroovyRunner {
 
-    public static void main(String[] args) throws Exception {
-        if (args.length == 0) {
-            System.out.println("Script file not defined");
-            System.out.println("Usage: java -cp orders.jar ru.esc.script.GroovyRunner <script_file> -V<script_arg0> -V<script_arg1> -V<script_argX>");
-            return;
+    /**
+     * Run script
+     *
+     * @param scriptText script text
+     */
+    public void runScript(String scriptText) throws Exception {
+        final Factory factory = new Factory();
+
+        try {
+            final Binding binding = new Binding();
+            binding.setVariable("factory", factory);
+            initialize(factory, binding);
+
+            try {
+                new GroovyShell(binding).evaluate(scriptText);
+            } catch (Throwable e) {
+
+                if (factory.log.getCurrentProgressLog() != null)
+                    factory.log.getCurrentProgressLog().addError(getExceptionCauses(e));
+                else
+                    System.out.println(getExceptionCauses(e));
+
+                throw e;
+            }
+        } finally {
+            for (AutoCloseable closeable : factory.getAutoCloseables())
+                closeable.close();
         }
-
-        final File file = new File(args[0]);
-        if (!file.exists()) {
-            System.out.println("Script file not found");
-            System.out.println("Usage: java -cp orders.jar ru.esc.script.GroovyRunner <script_file> -V<script_arg0> -V<script_arg1> -V<script_argX>");
-            return;
-        }
-
-        String[] otherArgs = new String[0];
-
-        for (int i = 1; i < args.length; i++)
-            otherArgs = ArrayUtils.add(otherArgs, args[i]);
-
-        new GroovyRunner().runScript(file, otherArgs);
     }
 
+    /**
+     * Run script file
+     *
+     * @param scriptFile script file
+     * @param args       args
+     */
     public void runScript(File scriptFile, String... args) throws Exception {
         final Factory factory = new Factory(new ScriptFile(scriptFile, args));
 
@@ -71,7 +84,6 @@ public class GroovyRunner {
     }
 
     protected void initialize(Factory factory, Binding binding) {
-        // перекрыть если нужно что-то от фабрики
     }
 
     public String getExceptionCauses(Throwable e) {

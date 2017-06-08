@@ -59,6 +59,9 @@ public class Factory {
     public final GroovyNumberFactory number = new GroovyNumberFactory(this);
     public final GroovyProxyFactory proxy = new GroovyProxyFactory(this);
 
+    public Factory() {
+    }
+
     public Factory(Script script) {
         this.thisScript = script;
     }
