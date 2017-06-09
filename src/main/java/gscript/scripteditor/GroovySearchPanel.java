@@ -16,7 +16,6 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
     private final JTextField searchField;
     private final JCheckBox regexComboBox;
     private final JCheckBox matchCaseComboBox;
-    private final JButton nextButton;
 
     public GroovySearchPanel(final GroovyAbstractEditPanel editPanel) {
         this.editPanel = editPanel;
@@ -26,7 +25,8 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
         toolBar.add(new JLabel("Search for: "));
         toolBar.add(searchField);
 
-        nextButton = new JButton("Find Next");
+        final JButton nextButton = new JButton("Find Next");
+        nextButton.setToolTipText("Next occurrence (F3)");
         nextButton.setActionCommand("FindNext");
         nextButton.addActionListener(this);
         toolBar.add(nextButton);
@@ -48,15 +48,9 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
             }
         });
 
-        searchField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-                    closeSearch();
-            }
-        });
 
         final JButton prevButton = new JButton("Find Previous");
+        prevButton.setToolTipText("Previous Occurrence (Shift+F3)");
         prevButton.setActionCommand("FindPrev");
         prevButton.addActionListener(this);
         toolBar.add(prevButton);
@@ -65,6 +59,20 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
 
         matchCaseComboBox = new JCheckBox("Match Case");
         toolBar.add(matchCaseComboBox);
+
+        searchField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                    closeSearch();
+
+                if (e.getKeyCode() == KeyEvent.VK_F3 && !e.isShiftDown())
+                    nextButton.doClick();
+
+                if (e.getKeyCode() == KeyEvent.VK_F3 && e.isShiftDown())
+                    prevButton.doClick();
+            }
+        });
 
         final JButton closeSearchPanelButton = new JButton(new AbstractAction() {
             @Override
