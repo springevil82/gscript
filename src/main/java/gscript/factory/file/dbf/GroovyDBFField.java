@@ -236,8 +236,8 @@ public final class GroovyDBFField {
                 else
                     return new Double(s);
 
-            } catch (NumberFormatException numberformatexception) {
-                throw new GroovyDBFException(numberformatexception);
+            } catch (NumberFormatException e) {
+                throw new GroovyDBFException(e);
             }
         }
 
@@ -260,8 +260,8 @@ public final class GroovyDBFField {
                     return null;
                 else
                     return DATE_FORMAT_YYYYMMDD.parse(s);
-            } catch (ParseException parseexception) {
-                throw new GroovyDBFException(parseexception);
+            } catch (ParseException e) {
+                throw new GroovyDBFException(e);
             }
         } else {
             throw new GroovyDBFException("Unrecognized JDBFField type: " + type);

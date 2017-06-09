@@ -384,14 +384,16 @@ public class GroovyScriptEditor extends JFrame {
         scriptEditPanel.loadFile(file);
 
         documentPane.addTab(file.getName(), new ImageIcon(getClass().getResource("/icons/groovy.png")), scriptEditPanel);
+        documentPane.setSelectedIndex(documentPane.getTabCount() - 1);
     }
 
     private void doOpenTextFile(File file) {
         openedFiles.put(file.getName(), file);
         final GroovyTextFileEditPanel textFileEditPanel = new GroovyTextFileEditPanel(file);
-        textFileEditPanel.loadFile();
+        textFileEditPanel.loadFile(file);
 
         documentPane.addTab(file.getName(), new ImageIcon(getClass().getResource("/icons/txt.png")), textFileEditPanel);
+        documentPane.setSelectedIndex(documentPane.getTabCount() - 1);
     }
 
     private void doOpenDBFFile(File file) {
@@ -399,6 +401,7 @@ public class GroovyScriptEditor extends JFrame {
         final GroovyDBFFileEditPanel dbfFileEditPanel = new GroovyDBFFileEditPanel(file);
 
         documentPane.addTab(file.getName(), new ImageIcon(getClass().getResource("/icons/dbf.png")), dbfFileEditPanel);
+        documentPane.setSelectedIndex(documentPane.getTabCount() - 1);
     }
 
     private void doSave() {
@@ -532,7 +535,7 @@ public class GroovyScriptEditor extends JFrame {
                 success = ScriptRunner.runScript(file, logger);
             } else {
                 final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getComponentAt(tabIndex);
-                success = ScriptRunner.runScript(scriptEditPanel.getScriptText(), logger);
+                success = ScriptRunner.runScript(scriptEditPanel.getText(), logger);
             }
 
             if (success)

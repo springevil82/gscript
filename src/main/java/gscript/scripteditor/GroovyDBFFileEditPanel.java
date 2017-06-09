@@ -35,6 +35,28 @@ public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
+    public void showSearchPanel(JPanel searchPanel) {
+        removeAll();
+        add(searchPanel, BorderLayout.NORTH);
+        add(new JScrollPane(table), BorderLayout.CENTER);
+        add(statusLabel, BorderLayout.SOUTH);
+        updateUI();
+    }
+
+    @Override
+    protected void doSearch(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
+        // todo
+    }
+
+    @Override
+    public void hideSearchPanel() {
+        removeAll();
+        add(new JScrollPane(table), BorderLayout.CENTER);
+        add(statusLabel, BorderLayout.SOUTH);
+        updateUI();
+    }
+
+    @Override
     public void changeEncoding(String encoding) {
         loadFile(encoding);
     }
@@ -84,7 +106,7 @@ public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
             statusLabel.setText("Record Count: " + rows.size());
 
         } catch (Throwable e) {
-            Dialogs.showExceptionDialog("Ошибка при чтении файла", e);
+            Dialogs.showExceptionDialog("DBF File read error:\n" + e.getMessage(), e);
         }
     }
 
