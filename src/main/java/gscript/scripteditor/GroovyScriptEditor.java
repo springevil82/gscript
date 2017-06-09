@@ -194,7 +194,6 @@ public class GroovyScriptEditor extends JFrame {
             menuItemRun.setIcon(new ImageIcon(getClass().getResource("/icons/run.png")));
             menu.add(menuItemRun);
         }
-
     }
 
     private void initMenu() {
@@ -635,6 +634,11 @@ public class GroovyScriptEditor extends JFrame {
             else
                 Collections.addAll(userEncodings, "utf-8", "windows-1251", "cp866");
 
+            if (preferences.getOutputDividerLocation() != null) {
+                showOutput();
+                mainSplitPane.setDividerLocation(preferences.getOutputDividerLocation());
+            }
+
         } else {
             setSize(new Dimension(800, 600));
             setLocationRelativeTo(null);
@@ -651,6 +655,9 @@ public class GroovyScriptEditor extends JFrame {
         preferences.setWindowSize(getSize());
         preferences.setWindowLocation(getLocation());
         preferences.setWindowState(getExtendedState());
+
+        if (outputShown)
+            preferences.setOutputDividerLocation(mainSplitPane.getDividerLocation());
 
         if (!userEncodings.isEmpty()) {
             final GroovyStringJoiner encodingBuilder = new GroovyStringJoiner(",");

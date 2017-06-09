@@ -15,11 +15,13 @@ public final class GroovyScriptEditorPreferences {
     private static final String PROPERTY_WINDOW_STATE = "windowState";
     private static final String PROPERTY_RECENT_FILE = "recentFile.";
     private static final String PROPERTY_USER_ENCODING = "encodings";
+    private static final String PROPERTY_OUTPUT_DIVIDER_LOCATION = "outputDividerLocation";
 
+    private String userEncodings;
     private Point windowLocation;
     private Dimension windowSize;
     private Integer windowState;
-    private String userEncodings;
+    private Integer outputDividerLocation;
 
     private final List<File> recentFiles = new ArrayList<>();
 
@@ -59,6 +61,14 @@ public final class GroovyScriptEditorPreferences {
         this.userEncodings = userEncodings;
     }
 
+    public Integer getOutputDividerLocation() {
+        return outputDividerLocation;
+    }
+
+    public void setOutputDividerLocation(Integer outputDividerLocation) {
+        this.outputDividerLocation = outputDividerLocation;
+    }
+
     public void load(File file) {
         if (!file.exists())
             return;
@@ -81,6 +91,15 @@ public final class GroovyScriptEditorPreferences {
 
             userEncodings = properties.getProperty(PROPERTY_USER_ENCODING);
 
+            final String outputDividerLocationValue = properties.getProperty(PROPERTY_OUTPUT_DIVIDER_LOCATION);
+            if (outputDividerLocationValue != null) {
+                try {
+                    outputDividerLocation = Integer.parseInt(outputDividerLocationValue);
+                } catch (Exception e) {
+                    outputDividerLocation = null;
+                }
+            }
+
             recentFiles.clear();
             for (String propName : properties.stringPropertyNames())
                 if (propName.startsWith(PROPERTY_RECENT_FILE))
@@ -102,6 +121,8 @@ public final class GroovyScriptEditorPreferences {
             properties.setProperty(PROPERTY_WINDOW_STATE, String.valueOf(windowState));
         if (userEncodings != null)
             properties.setProperty(PROPERTY_USER_ENCODING, userEncodings);
+        if (outputDividerLocation != null)
+            properties.setProperty(PROPERTY_OUTPUT_DIVIDER_LOCATION, String.valueOf(outputDividerLocation));
 
         for (File recentFile : getRecentFiles())
             properties.setProperty(PROPERTY_RECENT_FILE + recentFile.getName(), recentFile.getAbsolutePath());
