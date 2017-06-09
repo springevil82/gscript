@@ -2,6 +2,8 @@ package gscript.scripteditor;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,22 +16,35 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
     private final JTextField searchField;
     private final JCheckBox regexComboBox;
     private final JCheckBox matchCaseComboBox;
+    private final JButton nextButton;
 
     public GroovySearchPanel(final GroovyAbstractEditPanel editPanel) {
         this.editPanel = editPanel;
 
         final JToolBar toolBar = new JToolBar();
         searchField = new JTextField(30);
+        toolBar.add(new JLabel("Search for: "));
         toolBar.add(searchField);
 
-        final JButton nextButton = new JButton("Find Next");
+        nextButton = new JButton("Find Next");
         nextButton.setActionCommand("FindNext");
         nextButton.addActionListener(this);
         toolBar.add(nextButton);
 
-        searchField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                nextButton.doClick();
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                doSearch();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                doSearch();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                doSearch();
             }
         });
 
@@ -67,6 +82,14 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
 
         setLayout(new BorderLayout());
         add(toolBar, BorderLayout.NORTH);
+    }
+
+    public JTextField getSearchField() {
+        return searchField;
+    }
+
+    private void doSearch() {
+        actionPerformed(new ActionEvent(this, 0, "FindNext"));
     }
 
     private void closeSearch() {

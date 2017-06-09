@@ -343,7 +343,6 @@ public class GroovyScriptEditor extends JFrame {
         btnRun.setEnabled(isGroovyDocument);
     }
 
-
     public void doNew() {
         final String newScriptName = getNewScriptName();
         openedFiles.put(newScriptName, null);
@@ -613,7 +612,7 @@ public class GroovyScriptEditor extends JFrame {
         final Component activeDocument = documentPane.getComponentAt(tabIndex);
         if (activeDocument instanceof GroovyAbstractEditPanel) {
             final GroovyAbstractEditPanel editPanel = (GroovyAbstractEditPanel) activeDocument;
-            editPanel.doSearch();
+            editPanel.startSearch();
         }
     }
 

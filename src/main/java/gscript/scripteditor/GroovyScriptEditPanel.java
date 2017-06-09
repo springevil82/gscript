@@ -3,6 +3,7 @@ package gscript.scripteditor;
 import gscript.scripteditor.completion.GroovyAutoCompletionProvider;
 import gscript.scripteditor.completion.GroovyCompletion;
 import org.fife.ui.autocomplete.*;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
@@ -18,6 +19,7 @@ public final class GroovyScriptEditPanel extends GroovySyntaxAreaEditPanel {
     private final GroovyAutoCompletionProvider groovyAutoCompletionProvider;
 
     public GroovyScriptEditPanel() {
+        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_GROOVY);
         textArea.append(FACTORY + "\n\n");
 
         groovyAutoCompletionProvider = new GroovyAutoCompletionProvider();

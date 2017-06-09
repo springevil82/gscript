@@ -2,14 +2,14 @@ package gscript.scripteditor;
 
 import gscript.ui.Dialogs;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import org.fife.ui.rtextarea.SearchContext;
 import org.fife.ui.rtextarea.SearchEngine;
 
-import javax.swing.*;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -27,9 +27,15 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
         setLayout(new BorderLayout());
 
         textArea = new RSyntaxTextArea(20, 40);
-        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_GROOVY);
         textArea.setBracketMatchingEnabled(false);
         textArea.setCaretPosition(0);
+        textArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (isSearchPanelVisible() && e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                    cancelSearch();
+            }
+        });
 
         add(new RTextScrollPane(textArea), BorderLayout.CENTER);
     }
@@ -53,14 +59,17 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
         context.setRegularExpression(regularExpression);
         context.setSearchForward(searchForward);
         context.setWholeWord(wholeWord);
+        context.setMarkAll(true);
 
-        boolean found = SearchEngine.find(textArea, context).wasFound();
-        if (!found)
-            JOptionPane.showMessageDialog(this, "Text not found");
+        SearchEngine.find(textArea, context);
     }
 
     @Override
     protected void hideSearchPanel() {
+        final SearchContext context = new SearchContext();
+        context.setMarkAll(false);
+        SearchEngine.find(textArea, context);
+
         removeAll();
         add(new RTextScrollPane(textArea), BorderLayout.CENTER);
         updateUI();

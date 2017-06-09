@@ -9,8 +9,22 @@ public abstract class GroovyAbstractEditPanel extends JPanel {
 
     private final GroovySearchPanel searchPanel = new GroovySearchPanel(this);
 
-    public void doSearch() {
+    private boolean searchPanelVisible = false;
+
+    public void startSearch() {
+        searchPanel.getSearchField().setText("");
         showSearchPanel(searchPanel);
+        searchPanel.getSearchField().requestFocus();
+        searchPanelVisible = true;
+    }
+
+    public void cancelSearch() {
+        hideSearchPanel();
+        searchPanelVisible = false;
+    }
+
+    public boolean isSearchPanelVisible() {
+        return searchPanelVisible;
     }
 
     public abstract void changeEncoding(String encoding);
@@ -20,5 +34,6 @@ public abstract class GroovyAbstractEditPanel extends JPanel {
     protected abstract void doSearchNext(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord);
 
     protected abstract void hideSearchPanel();
+
 
 }
