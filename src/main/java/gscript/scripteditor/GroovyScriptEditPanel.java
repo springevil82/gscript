@@ -8,7 +8,6 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
-import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
@@ -19,18 +18,18 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class GroovyScriptEditPanel extends JPanel {
+public final class GroovyScriptEditPanel extends GroovyAbstractEditPanel {
 
     private static final String FACTORY = "@groovy.transform.Field gscript.Factory factory = new gscript.Factory(this)";
 
     private final RSyntaxTextArea textArea;
     private String lastChecksum;
+    private String encoding = "UTF-8";
     private final GroovyAutoCompletionProvider groovyAutoCompletionProvider;
 
     public GroovyScriptEditPanel() {
@@ -124,22 +123,32 @@ public final class GroovyScriptEditPanel extends JPanel {
         return !calcSHA1().equals(lastChecksum);
     }
 
+    @Override
+    public void changeEncoding(String encoding) {
+        this.encoding = encoding;
+
+        if (file != null)
+            loadFile(file);
+    }
+
     public void loadFile(File file) {
+        this.file = file;
+
         try {
-            final String text = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+            final String text = new String(Files.readAllBytes(file.toPath()), encoding);
             textArea.setText(text);
         } catch (Throwable e) {
-            Dialogs.showExceptionDialog("Load file error", e);
+            Dialogs.showExceptionDialog("File load error", e);
         }
 
         lastChecksum = calcSHA1();
     }
 
     public void saveFile(File file) {
-        try (PrintStream printStream = new PrintStream(file, "UTF-8")) {
+        try (PrintStream printStream = new PrintStream(file, encoding)) {
             printStream.print(getScriptText());
         } catch (Throwable e) {
-            Dialogs.showExceptionDialog("Save file error", e);
+            Dialogs.showExceptionDialog("File save error", e);
         }
 
         lastChecksum = calcSHA1();

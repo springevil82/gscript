@@ -13,9 +13,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class GroovyDBFFileEditPanel extends JPanel {
+public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
 
-    private final File file;
     private final JTable table;
     private final JLabel statusLabel;
 
@@ -33,6 +32,11 @@ public final class GroovyDBFFileEditPanel extends JPanel {
         add(statusLabel, BorderLayout.SOUTH);
 
         loadFile("windows-1251");
+    }
+
+    @Override
+    public void changeEncoding(String encoding) {
+        loadFile(encoding);
     }
 
     public void loadFile(String encoding) {

@@ -5,15 +5,13 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.nio.file.Files;
 
-public final class GroovyTextFileEditPanel extends JPanel {
+public final class GroovyTextFileEditPanel extends GroovyAbstractEditPanel {
 
     private final RSyntaxTextArea textArea;
-    private final File file;
     private String lastChecksum;
 
     public GroovyTextFileEditPanel(File file) {
@@ -39,6 +37,11 @@ public final class GroovyTextFileEditPanel extends JPanel {
         textArea.setEditable(false);
 
         add(new RTextScrollPane(textArea));
+    }
+
+    @Override
+    public void changeEncoding(String encoding) {
+        loadFile(encoding);
     }
 
     public void loadFile(String encoding) {

@@ -584,17 +584,14 @@ public class GroovyScriptEditor extends JFrame {
             return;
 
         final Component activeDocument = documentPane.getComponentAt(tabIndex);
-        if (activeDocument != null) {
-            if (activeDocument instanceof GroovyDBFFileEditPanel) {
-                final GroovyDBFFileEditPanel groovyDBFFileEditPanel = (GroovyDBFFileEditPanel) activeDocument;
-                groovyDBFFileEditPanel.loadFile(encoding);
-            }
-
-            if (activeDocument instanceof GroovyTextFileEditPanel) {
-                final GroovyTextFileEditPanel textFileEditPanel = (GroovyTextFileEditPanel) activeDocument;
-                textFileEditPanel.loadFile(encoding);
-            }
+        if (activeDocument instanceof GroovyAbstractEditPanel) {
+            final GroovyAbstractEditPanel editPanel = (GroovyAbstractEditPanel) activeDocument;
+            editPanel.changeEncoding(encoding);
         }
+    }
+
+    private void showFindPanel() {
+
     }
 
     public void showWindow() {
