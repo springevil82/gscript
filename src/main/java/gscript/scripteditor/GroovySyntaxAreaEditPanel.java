@@ -35,7 +35,7 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    public void showSearchPanel(JPanel searchPanel) {
+    protected void showSearchPanel(GroovySearchPanel searchPanel) {
         removeAll();
         add(searchPanel, BorderLayout.NORTH);
         add(new RTextScrollPane(textArea), BorderLayout.CENTER);
@@ -43,7 +43,7 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    protected void doSearch(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
+    protected void doSearchNext(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
         final SearchContext context = new SearchContext();
         if (searchText.length() == 0)
             return;
@@ -60,7 +60,7 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    public void hideSearchPanel() {
+    protected void hideSearchPanel() {
         removeAll();
         add(new RTextScrollPane(textArea), BorderLayout.CENTER);
         updateUI();

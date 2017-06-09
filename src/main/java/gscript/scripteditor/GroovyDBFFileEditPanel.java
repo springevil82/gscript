@@ -23,6 +23,8 @@ public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
 
         setLayout(new BorderLayout());
         table = new JTable();
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setRowSelectionAllowed(false);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         table.setFillsViewportHeight(true);
 
@@ -35,7 +37,7 @@ public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    public void showSearchPanel(JPanel searchPanel) {
+    protected void showSearchPanel(GroovySearchPanel searchPanel) {
         removeAll();
         add(searchPanel, BorderLayout.NORTH);
         add(new JScrollPane(table), BorderLayout.CENTER);
@@ -44,12 +46,12 @@ public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    protected void doSearch(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
+    protected void doSearchNext(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
         // todo
     }
 
     @Override
-    public void hideSearchPanel() {
+    protected void hideSearchPanel() {
         removeAll();
         add(new JScrollPane(table), BorderLayout.CENTER);
         add(statusLabel, BorderLayout.SOUTH);

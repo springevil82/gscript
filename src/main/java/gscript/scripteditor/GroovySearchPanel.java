@@ -1,9 +1,12 @@
 package gscript.scripteditor;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public final class GroovySearchPanel extends JPanel implements ActionListener {
 
@@ -12,7 +15,7 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
     private final JCheckBox regexComboBox;
     private final JCheckBox matchCaseComboBox;
 
-    public GroovySearchPanel(GroovyAbstractEditPanel editPanel) {
+    public GroovySearchPanel(final GroovyAbstractEditPanel editPanel) {
         this.editPanel = editPanel;
 
         final JToolBar toolBar = new JToolBar();
@@ -23,9 +26,18 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
         nextButton.setActionCommand("FindNext");
         nextButton.addActionListener(this);
         toolBar.add(nextButton);
+
         searchField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nextButton.doClick();
+            }
+        });
+
+        searchField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                    closeSearch();
             }
         });
 
@@ -39,12 +51,30 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
         matchCaseComboBox = new JCheckBox("Match Case");
         toolBar.add(matchCaseComboBox);
 
+        final JButton closeSearchPanelButton = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeSearch();
+            }
+        });
+        closeSearchPanelButton.setBorder(new EmptyBorder(0, 5, 0, 5));
+        closeSearchPanelButton.setIcon(new ImageIcon(getClass().getResource("/icons/close.png")));
+        closeSearchPanelButton.setToolTipText("Close output");
+        closeSearchPanelButton.setOpaque(false);
+
+        toolBar.add(new JLabel("  "));
+        toolBar.add(closeSearchPanelButton);
+
         setLayout(new BorderLayout());
         add(toolBar, BorderLayout.NORTH);
     }
 
+    private void closeSearch() {
+        editPanel.hideSearchPanel();
+    }
+
     public void actionPerformed(ActionEvent e) {
-        editPanel.doSearch(
+        editPanel.doSearchNext(
                 searchField.getText(),
                 matchCaseComboBox.isSelected(),
                 regexComboBox.isSelected(),

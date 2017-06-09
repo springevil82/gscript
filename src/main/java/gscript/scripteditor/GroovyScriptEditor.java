@@ -238,6 +238,16 @@ public class GroovyScriptEditor extends JFrame {
         });
         menuFile.add(menuItemExit);
 
+        final JMenu menuEdit = new JMenu("Edit");
+        final JMenuItem menuItemFind = new JMenuItem(new AbstractAction("Find") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showFindPanel();
+            }
+        });
+        menuItemFind.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_DOWN_MASK));
+        menuEdit.add(menuItemFind);
+
         final JMenu menuView = new JMenu("View");
         final JCheckBoxMenuItem menuItemOutput = new JCheckBoxMenuItem(new AbstractAction("Toggle output") {
             @Override
@@ -284,6 +294,7 @@ public class GroovyScriptEditor extends JFrame {
         menuRun.add(menuItemRun);
 
         menubar.add(menuFile);
+        menubar.add(menuEdit);
         menubar.add(menuView);
         menubar.add(menuRun);
 
@@ -337,6 +348,7 @@ public class GroovyScriptEditor extends JFrame {
         final String newScriptName = getNewScriptName();
         openedFiles.put(newScriptName, null);
         documentPane.addTab(newScriptName, new ImageIcon(getClass().getResource("/icons/groovy.png")), new GroovyScriptEditPanel());
+        documentPane.setSelectedIndex(documentPane.getTabCount() - 1);
     }
 
     public void doOpen() {
@@ -594,7 +606,15 @@ public class GroovyScriptEditor extends JFrame {
     }
 
     private void showFindPanel() {
+        int tabIndex = documentPane.getSelectedIndex();
+        if (tabIndex == -1)
+            return;
 
+        final Component activeDocument = documentPane.getComponentAt(tabIndex);
+        if (activeDocument instanceof GroovyAbstractEditPanel) {
+            final GroovyAbstractEditPanel editPanel = (GroovyAbstractEditPanel) activeDocument;
+            editPanel.doSearch();
+        }
     }
 
     public void showWindow() {

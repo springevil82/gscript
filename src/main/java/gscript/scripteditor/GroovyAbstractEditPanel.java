@@ -7,12 +7,18 @@ public abstract class GroovyAbstractEditPanel extends JPanel {
 
     protected File file;
 
+    private final GroovySearchPanel searchPanel = new GroovySearchPanel(this);
+
+    public void doSearch() {
+        showSearchPanel(searchPanel);
+    }
+
     public abstract void changeEncoding(String encoding);
 
-    public abstract void showSearchPanel(JPanel searchPanel);
+    protected abstract void showSearchPanel(GroovySearchPanel searchPanel);
 
-    protected abstract void doSearch(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord);
+    protected abstract void doSearchNext(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord);
 
-    public abstract void hideSearchPanel();
+    protected abstract void hideSearchPanel();
 
 }
