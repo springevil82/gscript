@@ -1,5 +1,6 @@
 package gscript.scripteditor;
 
+import gscript.factory.format.GroovyStringJoiner;
 import gscript.ui.Dialogs;
 import gscript.ui.TitledPanel;
 import gscript.util.DateUtils;
@@ -13,8 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class GroovyScriptEditor extends JFrame {
 
@@ -28,7 +28,9 @@ public class GroovyScriptEditor extends JFrame {
     private final GroovyScriptOutputPanel scriptOutputPanel;
 
     private final Map<String, File> openedFiles = new LinkedHashMap<>();
+    private final Set<String> userEncodings = new LinkedHashSet<>();
     private File lastFile;
+
     private JMenuItem menuItemSave;
     private JMenuItem menuItemRun;
     private final JButton btnSave;
@@ -175,12 +177,27 @@ public class GroovyScriptEditor extends JFrame {
                 changeEncoding("cp866");
             }
         }));
+
+        if (!userEncodings.isEmpty()) {
+            menuItemEncoding.addSeparator();
+
+            for (final String encoding : userEncodings) {
+                menuItemEncoding.add(new JMenuItem(new AbstractAction(encoding) {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        changeEncoding(encoding);
+                    }
+                }));
+            }
+        }
+
         menuItemEncoding.addSeparator();
         menuItemEncoding.add(new JMenuItem(new AbstractAction("Set another encoding...") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 final String encoding = JOptionPane.showInputDialog(GroovyScriptEditor.this, "Type your encoding");
                 if (encoding != null) {
+                    userEncodings.add(encoding);
                     changeEncoding(encoding);
                 }
             }
@@ -607,6 +624,10 @@ public class GroovyScriptEditor extends JFrame {
                 if (file.exists())
                     doOpen(file);
 
+            userEncodings.clear();
+            if (preferences.getUserEncodings() != null)
+                Collections.addAll(userEncodings, preferences.getUserEncodings().split(","));
+
         } else {
             setSize(new Dimension(800, 600));
             setLocationRelativeTo(null);
@@ -623,6 +644,14 @@ public class GroovyScriptEditor extends JFrame {
         preferences.setWindowSize(getSize());
         preferences.setWindowLocation(getLocation());
         preferences.setWindowState(getExtendedState());
+
+        if (!userEncodings.isEmpty()) {
+            final GroovyStringJoiner encodingBuilder = new GroovyStringJoiner(",");
+            for (String encoding : userEncodings)
+                encodingBuilder.add(encoding);
+
+            preferences.setUserEncodings(encodingBuilder.toString());
+        }
 
         for (File file : openedFiles.values())
             if (file != null && file.exists())

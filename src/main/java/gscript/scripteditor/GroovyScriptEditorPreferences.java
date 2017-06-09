@@ -14,10 +14,12 @@ public final class GroovyScriptEditorPreferences {
     private static final String PROPERTY_WINDOW_SIZE = "windowSize";
     private static final String PROPERTY_WINDOW_STATE = "windowState";
     private static final String PROPERTY_RECENT_FILE = "recentFile.";
+    private static final String PROPERTY_USER_ENCODING = "encodings";
 
     private Point windowLocation;
     private Dimension windowSize;
     private Integer windowState;
+    private String userEncodings;
 
     private final List<File> recentFiles = new ArrayList<>();
 
@@ -49,6 +51,14 @@ public final class GroovyScriptEditorPreferences {
         return recentFiles;
     }
 
+    public String getUserEncodings() {
+        return userEncodings;
+    }
+
+    public void setUserEncodings(String userEncodings) {
+        this.userEncodings = userEncodings;
+    }
+
     public void load(File file) {
         if (!file.exists())
             return;
@@ -69,6 +79,8 @@ public final class GroovyScriptEditorPreferences {
             if (windowStateValue != null)
                 windowState = Integer.parseInt(windowStateValue);
 
+            userEncodings = properties.getProperty(PROPERTY_USER_ENCODING);
+
             recentFiles.clear();
             for (String propName : properties.stringPropertyNames())
                 if (propName.startsWith(PROPERTY_RECENT_FILE))
@@ -88,6 +100,8 @@ public final class GroovyScriptEditorPreferences {
             properties.setProperty(PROPERTY_WINDOW_SIZE, windowSize.width + "," + windowSize.height);
         if (windowState != null)
             properties.setProperty(PROPERTY_WINDOW_STATE, String.valueOf(windowState));
+        if (userEncodings != null)
+            properties.setProperty(PROPERTY_USER_ENCODING, userEncodings);
 
         for (File recentFile : getRecentFiles())
             properties.setProperty(PROPERTY_RECENT_FILE + recentFile.getName(), recentFile.getAbsolutePath());
