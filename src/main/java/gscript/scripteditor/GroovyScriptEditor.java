@@ -7,6 +7,8 @@ import gscript.util.SystemUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
@@ -88,6 +90,13 @@ public class GroovyScriptEditor extends JFrame {
             @Override
             protected void popupMenuWillBecomeVisible(JPopupMenu menu) {
                 buildPopupMenu(menu);
+            }
+        });
+
+        documentPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                updateToolbarButtons();
             }
         });
 
@@ -292,16 +301,6 @@ public class GroovyScriptEditor extends JFrame {
         throw new RuntimeException("Could't lookup new script name");
     }
 
-    /*
-        private void installDocumentComponentListener(DocumentComponent documentComponent) {
-            documentComponent.addDocumentComponentListener(new DocumentComponentAdapter() {
-                @Override
-                public void documentComponentActivated(DocumentComponentEvent documentComponentEvent) {
-                    updateToolbarButtons();
-                }
-            });
-        }
-    */
     private void updateToolbarButtons() {
         boolean isGroovyDocument = documentPane.getSelectedIndex() != -1 &&
                 documentPane.getTitleAt(documentPane.getSelectedIndex()).toLowerCase().endsWith(".groovy");
@@ -505,7 +504,7 @@ public class GroovyScriptEditor extends JFrame {
             };
 
             long startTime = System.currentTimeMillis();
-            scriptOutputPanel.appendLog("system:Script runned");
+            scriptOutputPanel.appendLog("system:Script launched");
 
             boolean success;
             if (file != null) {

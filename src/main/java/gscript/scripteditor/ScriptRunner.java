@@ -27,7 +27,7 @@ public final class ScriptRunner {
         try {
             final Runner runner = new Runner(logger);
             runner.runScript(scriptFile);
-            return runner.wereErrors();
+            return !runner.wereErrors();
         } catch (Throwable e) {
             logger.logError(e);
             return false;
@@ -48,7 +48,7 @@ public final class ScriptRunner {
         try {
             final Runner runner = new Runner(logger);
             runner.runScript(script);
-            return runner.wereErrors();
+            return !runner.wereErrors();
         } catch (Throwable e) {
             logger.logError(e);
             return false;
