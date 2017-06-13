@@ -16,6 +16,7 @@ public final class ScriptEditorSearchPanel extends JPanel {
     private final JTextField searchField;
     private final JCheckBox regexCheckBox;
     private final JCheckBox matchCaseCheckBox;
+    private final JCheckBox wholeWordCheckBox;
 
     private Timer findFirstTimer;
 
@@ -68,6 +69,7 @@ public final class ScriptEditorSearchPanel extends JPanel {
                 findFirst();
             }
         });
+        regexCheckBox.setBorder(new EmptyBorder(0, 5, 0, 5));
         toolBar.add(regexCheckBox);
 
         matchCaseCheckBox = new JCheckBox(new AbstractAction("Match Case") {
@@ -76,7 +78,17 @@ public final class ScriptEditorSearchPanel extends JPanel {
                 findFirst();
             }
         });
+        matchCaseCheckBox.setBorder(new EmptyBorder(0, 5, 0, 5));
         toolBar.add(matchCaseCheckBox);
+
+        wholeWordCheckBox = new JCheckBox(new AbstractAction("Whole Word") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                findFirst();
+            }
+        });
+        wholeWordCheckBox.setBorder(new EmptyBorder(0, 5, 0, 5));
+        toolBar.add(wholeWordCheckBox);
 
         searchField.addKeyListener(new KeyAdapter() {
             @Override
@@ -135,7 +147,7 @@ public final class ScriptEditorSearchPanel extends JPanel {
                 matchCaseCheckBox.isSelected(),
                 regexCheckBox.isSelected(),
                 true,
-                false);
+                wholeWordCheckBox.isSelected());
     }
 
     private void findNext(boolean searchForward) {
