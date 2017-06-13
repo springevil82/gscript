@@ -46,8 +46,13 @@ public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    protected void doSearchNext(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
+    protected void findFirst(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
         // todo
+    }
+
+    @Override
+    protected void findNext(boolean searchForward) {
+
     }
 
     @Override

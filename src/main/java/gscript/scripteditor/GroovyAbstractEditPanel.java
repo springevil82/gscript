@@ -31,7 +31,9 @@ public abstract class GroovyAbstractEditPanel extends JPanel {
 
     protected abstract void showSearchPanel(GroovySearchPanel searchPanel);
 
-    protected abstract void doSearchNext(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord);
+    protected abstract void findFirst(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord);
+
+    protected abstract void findNext(boolean searchForward);
 
     protected abstract void hideSearchPanel();
 

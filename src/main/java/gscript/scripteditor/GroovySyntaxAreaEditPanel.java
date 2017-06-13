@@ -23,6 +23,9 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
     protected String lastChecksum;
     private String encoding = "UTF-8";
 
+    private int searchFromCaretPosition;
+    private SearchContext searchContext;
+
     public GroovySyntaxAreaEditPanel() {
         setLayout(new BorderLayout());
 
@@ -42,6 +45,8 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
 
     @Override
     protected void showSearchPanel(GroovySearchPanel searchPanel) {
+        searchFromCaretPosition = textArea.getCaretPosition();
+
         removeAll();
         add(searchPanel, BorderLayout.NORTH);
         add(new RTextScrollPane(textArea), BorderLayout.CENTER);
@@ -49,19 +54,29 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    protected void doSearchNext(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
-        final SearchContext context = new SearchContext();
+    protected void findFirst(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord) {
+        textArea.setCaretPosition(searchFromCaretPosition);
+
+        searchContext = new SearchContext();
         if (searchText.length() == 0)
             return;
 
-        context.setSearchFor(searchText);
-        context.setMatchCase(matchCase);
-        context.setRegularExpression(regularExpression);
-        context.setSearchForward(searchForward);
-        context.setWholeWord(wholeWord);
-        context.setMarkAll(true);
+        searchContext.setSearchFor(searchText);
+        searchContext.setMatchCase(matchCase);
+        searchContext.setRegularExpression(regularExpression);
+        searchContext.setSearchForward(searchForward);
+        searchContext.setWholeWord(wholeWord);
+        searchContext.setMarkAll(true);
 
-        SearchEngine.find(textArea, context);
+        SearchEngine.find(textArea, searchContext);
+    }
+
+    @Override
+    protected void findNext(boolean searchForward) {
+        if (searchContext != null) {
+            searchContext.setSearchForward(searchForward);
+            SearchEngine.find(textArea, searchContext);
+        }
     }
 
     @Override
@@ -69,6 +84,7 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
         final SearchContext context = new SearchContext();
         context.setMarkAll(false);
         SearchEngine.find(textArea, context);
+        searchContext = null;
 
         removeAll();
         add(new RTextScrollPane(textArea), BorderLayout.CENTER);

@@ -6,16 +6,15 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public final class GroovySearchPanel extends JPanel implements ActionListener {
+public final class GroovySearchPanel extends JPanel {
 
     private GroovyAbstractEditPanel editPanel;
     private final JTextField searchField;
-    private final JCheckBox regexComboBox;
-    private final JCheckBox matchCaseComboBox;
+    private final JCheckBox regexCheckBox;
+    private final JCheckBox matchCaseCheckBox;
 
     public GroovySearchPanel(final GroovyAbstractEditPanel editPanel) {
         this.editPanel = editPanel;
@@ -25,40 +24,57 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
         toolBar.add(new JLabel("Search for: "));
         toolBar.add(searchField);
 
-        final JButton nextButton = new JButton("Find Next");
+        final JButton nextButton = new JButton(new AbstractAction("Find Next") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                findNext(true);
+            }
+        });
         nextButton.setToolTipText("Next occurrence (F3)");
-        nextButton.setActionCommand("FindNext");
-        nextButton.addActionListener(this);
         toolBar.add(nextButton);
 
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                doSearch();
+                findFirst();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                doSearch();
+                findFirst();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                doSearch();
+                findFirst();
             }
         });
 
 
-        final JButton prevButton = new JButton("Find Previous");
+        final JButton prevButton = new JButton(new AbstractAction("Find Previous") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                findNext(false);
+            }
+        });
         prevButton.setToolTipText("Previous Occurrence (Shift+F3)");
-        prevButton.setActionCommand("FindPrev");
-        prevButton.addActionListener(this);
-        toolBar.add(prevButton);
-        regexComboBox = new JCheckBox("Regex");
-        toolBar.add(regexComboBox);
 
-        matchCaseComboBox = new JCheckBox("Match Case");
-        toolBar.add(matchCaseComboBox);
+        toolBar.add(prevButton);
+        regexCheckBox = new JCheckBox(new AbstractAction("Regex") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                findFirst();
+            }
+        });
+        toolBar.add(regexCheckBox);
+
+        matchCaseCheckBox = new JCheckBox(new AbstractAction("Match Case") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                findFirst();
+            }
+        });
+        toolBar.add(matchCaseCheckBox);
 
         searchField.addKeyListener(new KeyAdapter() {
             @Override
@@ -67,10 +83,10 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
                     closeSearch();
 
                 if (e.getKeyCode() == KeyEvent.VK_F3 && !e.isShiftDown())
-                    nextButton.doClick();
+                    findNext(true);
 
                 if (e.getKeyCode() == KeyEvent.VK_F3 && e.isShiftDown())
-                    prevButton.doClick();
+                    findNext(false);
             }
         });
 
@@ -96,20 +112,21 @@ public final class GroovySearchPanel extends JPanel implements ActionListener {
         return searchField;
     }
 
-    private void doSearch() {
-        actionPerformed(new ActionEvent(this, 0, "FindNext"));
+    private void findFirst() {
+        editPanel.findFirst(
+                searchField.getText(),
+                matchCaseCheckBox.isSelected(),
+                regexCheckBox.isSelected(),
+                true,
+                false);
+    }
+
+    private void findNext(boolean searchForward) {
+        editPanel.findNext(searchForward);
     }
 
     private void closeSearch() {
         editPanel.hideSearchPanel();
     }
 
-    public void actionPerformed(ActionEvent e) {
-        editPanel.doSearchNext(
-                searchField.getText(),
-                matchCaseComboBox.isSelected(),
-                regexComboBox.isSelected(),
-                "FindNext".equals(e.getActionCommand()),
-                false);
-    }
 }
