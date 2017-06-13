@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorFindAndReplaceDialog.java" line="167" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java" line="41" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0fd85c-e95b-46c3-a235-dbb6452c1c43" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/FindAndReplaceDialog.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorFindAndReplaceDialog.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyAbstractEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAbstractEditPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyDBFFileEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorDBFFileEditPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditor.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptEditorPreferences.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorPreferences.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptOutputPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorOutputPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovySearchPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSearchPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovySyntaxAreaEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyTextFileEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorTextFileEditPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/TabPopupMenu.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorTabPopupMenu.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/GroovyAutoCompletionProvider.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/ScriptEditorAutoCompletionProvider.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/GroovyCompletion.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/ScriptEditorAutoCompletion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../gscript/out/" />
     <ignored path="$PROJECT_DIR$/../gscript/.gradle/" />
@@ -87,7 +74,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptEditorAbstractEditPanel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScriptEditorAbstractEditPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAbstractEditPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
@@ -115,25 +102,27 @@
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptEditorSyntaxAreaEditPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ScriptEditorSyntaxAreaEditPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="71" column="5" lean-forward="false" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+            <state relative-caret-position="375">
+              <caret line="46" column="17" lean-forward="false" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1114#1347#0" expanded="true" />
-                <element signature="e#1346#1347#0" expanded="true" />
-                <element signature="e#4544#4545#0" expanded="true" />
-                <element signature="e#4585#4586#0" expanded="true" />
-                <element signature="e#4619#4620#0" expanded="true" />
-                <element signature="e#4674#4675#0" expanded="true" />
+                <element signature="e#1114#1631#0" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
+                <element signature="e#4828#4829#0" expanded="true" />
+                <element signature="e#4869#4870#0" expanded="true" />
+                <element signature="e#4903#4904#0" expanded="true" />
+                <element signature="e#4958#4959#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,7 +163,7 @@
       <file leaf-file-name="ScriptEditorSearchPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSearchPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
+            <state relative-caret-position="836">
               <caret line="112" column="5" lean-forward="false" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -611,7 +600,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/util/DateUtils.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/string/GroovyStringFactory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovyScriptOutputPanel.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" />
@@ -662,6 +650,7 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/GroovySyntaxAreaEditPanel.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/AutoCompletionProvider.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAbstractEditPanel.java" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java" />
       </list>
     </option>
   </component>
@@ -1516,7 +1505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497348666486</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="dev">
+      <created>1497349218021</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1497349218021</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1999,8 +1995,10 @@
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2050,9 +2048,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorDBFFileEditPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/ScriptEditorAutoCompletionProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="734">
+          <caret line="311" column="0" lean-forward="false" selection-start-line="311" selection-start-column="0" selection-end-line="311" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAbstractEditPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSearchPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
+        <state relative-caret-position="836">
           <caret line="112" column="5" lean-forward="false" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2084,46 +2110,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorDBFFileEditPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="71" column="5" lean-forward="false" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+        <state relative-caret-position="375">
+          <caret line="46" column="17" lean-forward="false" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1114#1347#0" expanded="true" />
-            <element signature="e#1346#1347#0" expanded="true" />
-            <element signature="e#4544#4545#0" expanded="true" />
-            <element signature="e#4585#4586#0" expanded="true" />
-            <element signature="e#4619#4620#0" expanded="true" />
-            <element signature="e#4674#4675#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/completion/ScriptEditorAutoCompletionProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="734">
-          <caret line="311" column="0" lean-forward="false" selection-start-line="311" selection-start-column="0" selection-end-line="311" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAbstractEditPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#672#673#0" expanded="true" />
-            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#1114#1631#0" expanded="true" />
+            <element signature="e#1630#1631#0" expanded="true" />
+            <element signature="e#4828#4829#0" expanded="true" />
+            <element signature="e#4869#4870#0" expanded="true" />
+            <element signature="e#4903#4904#0" expanded="true" />
+            <element signature="e#4958#4959#0" expanded="true" />
           </folding>
         </state>
       </provider>

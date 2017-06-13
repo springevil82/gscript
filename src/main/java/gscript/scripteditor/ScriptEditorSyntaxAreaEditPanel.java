@@ -35,8 +35,16 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
         textArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (isSearchPanelVisible() && e.getKeyCode() == KeyEvent.VK_ESCAPE)
-                    cancelSearch();
+                if (isSearchPanelVisible()) {
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                        cancelSearch();
+
+                    if (e.getKeyCode() == KeyEvent.VK_F3 && !e.isShiftDown())
+                        findNext(true);
+
+                    if (e.getKeyCode() == KeyEvent.VK_F3 && e.isShiftDown())
+                        findNext(false);
+                }
             }
         });
 
