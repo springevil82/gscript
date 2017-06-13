@@ -71,7 +71,8 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
     }
 
     private void highlightFound(JLabel cellRenderer, int row, int column) {
-
+        final boolean found = searchContext != null && TableSearchEngine.matchCellText(table.getValueAt(row, column), searchContext);
+        cellRenderer.setFont(new Font(cellRenderer.getFont().getName(), found ? Font.BOLD : Font.PLAIN, cellRenderer.getFont().getSize()));
     }
 
     @Override
@@ -103,6 +104,8 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
         searchContext.setMarkAll(true);
 
         TableSearchEngine.find(table, searchContext);
+
+        table.updateUI();
     }
 
     @Override
@@ -274,7 +277,7 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
             return true;
         }
 
-        private static boolean matchCellText(Object cellValue, SearchContext searchContext) {
+        public static boolean matchCellText(Object cellValue, SearchContext searchContext) {
             if (cellValue == null)
                 return false;
 
