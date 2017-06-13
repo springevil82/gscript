@@ -84,6 +84,7 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
         if (searchContext != null) {
             searchContext.setSearchForward(searchForward);
             SearchEngine.find(textArea, searchContext);
+            searchFromCaretPosition = textArea.getCaretPosition();
         }
     }
 

@@ -110,6 +110,8 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
         if (searchContext != null) {
             searchContext.setSearchForward(searchForward);
             TableSearchEngine.find(table, searchContext);
+            searchFromRow = table.getSelectedRow();
+            searchFromCol = table.getSelectedColumn();
         }
     }
 
@@ -292,6 +294,7 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
                 return searchWords(searchText, cellValue.toString(), matchCase);
             }
         }
+
 
     }
 }
