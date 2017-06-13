@@ -6,6 +6,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -15,6 +16,8 @@ public final class ScriptEditorSearchPanel extends JPanel {
     private final JTextField searchField;
     private final JCheckBox regexCheckBox;
     private final JCheckBox matchCaseCheckBox;
+
+    private Timer findFirstTimer;
 
     public ScriptEditorSearchPanel(final ScriptEditorAbstractEditPanel editPanel) {
         this.editPanel = editPanel;
@@ -36,20 +39,19 @@ public final class ScriptEditorSearchPanel extends JPanel {
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                findFirst();
+                runFindFirstTimer();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                findFirst();
+                runFindFirstTimer();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                findFirst();
+                runFindFirstTimer();
             }
         });
-
 
         final JButton prevButton = new JButton(new AbstractAction("Find Previous") {
             @Override
@@ -106,6 +108,21 @@ public final class ScriptEditorSearchPanel extends JPanel {
 
         setLayout(new BorderLayout());
         add(toolBar, BorderLayout.NORTH);
+    }
+
+    private void runFindFirstTimer() {
+        if (findFirstTimer == null) {
+            findFirstTimer = new Timer(500, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    findFirst();
+                }
+            });
+            findFirstTimer.setRepeats(false);
+            findFirstTimer.start();
+        } else {
+            findFirstTimer.restart();
+        }
     }
 
     public JTextField getSearchField() {

@@ -185,7 +185,8 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
             while (iterator.hasNext()) {
                 final Cell cell = iterator.next();
                 Object valueAt = table.getValueAt(cell.row, cell.col);
-                if (matchCell(valueAt, searchContext)) {
+
+                if (matchCellText(valueAt, searchContext)) {
                     table.changeSelection(cell.row, cell.col, true, false);
                     break;
                 }
@@ -218,10 +219,10 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
             @Override
             public boolean hasNext() {
                 if (searchForward) {
-                    if (currentCell.col < table.getColumnCount()) {
+                    if (currentCell.col < table.getColumnCount() - 1) {
                         currentCell.col++;
                         return true;
-                    } else if (currentCell.row < table.getRowCount()) {
+                    } else if (currentCell.row < table.getRowCount() - 1) {
                         currentCell.row++;
                         currentCell.col = 0;
                         return true;
@@ -232,7 +233,7 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
                         return true;
                     } else if (currentCell.row > 0) {
                         currentCell.row--;
-                        currentCell.col = table.getColumnCount();
+                        currentCell.col = table.getColumnCount() - 1;
                         return true;
                     }
                 }
@@ -271,7 +272,7 @@ public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEdit
             return true;
         }
 
-        private static boolean matchCell(Object cellValue, SearchContext searchContext) {
+        private static boolean matchCellText(Object cellValue, SearchContext searchContext) {
             if (cellValue == null)
                 return false;
 
