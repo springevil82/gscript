@@ -9,14 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public final class GroovySearchPanel extends JPanel {
+public final class ScriptEditorSearchPanel extends JPanel {
 
-    private GroovyAbstractEditPanel editPanel;
+    private ScriptEditorAbstractEditPanel editPanel;
     private final JTextField searchField;
     private final JCheckBox regexCheckBox;
     private final JCheckBox matchCaseCheckBox;
 
-    public GroovySearchPanel(final GroovyAbstractEditPanel editPanel) {
+    public ScriptEditorSearchPanel(final ScriptEditorAbstractEditPanel editPanel) {
         this.editPanel = editPanel;
 
         final JToolBar toolBar = new JToolBar();

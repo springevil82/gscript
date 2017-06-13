@@ -10,7 +10,7 @@ import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.util.regex.Matcher;
 
-public final class GroovyScriptOutputPanel extends JPanel {
+public final class ScriptEditorOutputPanel extends JPanel {
 
     private final JTextPane logEditor;
     private final Style styleTime;
@@ -21,7 +21,7 @@ public final class GroovyScriptOutputPanel extends JPanel {
     private final Style styleError;
     private final Style styleFatal;
 
-    public GroovyScriptOutputPanel() {
+    public ScriptEditorOutputPanel() {
         setLayout(new BorderLayout());
 
         logEditor = new JTextPane();

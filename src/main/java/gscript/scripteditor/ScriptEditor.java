@@ -18,7 +18,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.*;
 
-public class GroovyScriptEditor extends JFrame {
+public class ScriptEditor extends JFrame {
 
     private final JToolBar toolbar;
     private final JPanel documentPanel;
@@ -27,7 +27,7 @@ public class GroovyScriptEditor extends JFrame {
     private JSplitPane mainSplitPane;
     private boolean outputShown;
     private final JTabbedPane documentPane;
-    private final GroovyScriptOutputPanel scriptOutputPanel;
+    private final ScriptEditorOutputPanel scriptOutputPanel;
 
     private final Map<String, File> openedFiles = new LinkedHashMap<>();
     private final Set<String> userEncodings = new LinkedHashSet<>();
@@ -38,7 +38,7 @@ public class GroovyScriptEditor extends JFrame {
     private final JButton btnSave;
     private final JButton btnRun;
 
-    public GroovyScriptEditor() throws HeadlessException {
+    public ScriptEditor() throws HeadlessException {
 
         contentPanel = new JPanel(new BorderLayout());
         documentPanel = new JPanel(new BorderLayout());
@@ -90,7 +90,7 @@ public class GroovyScriptEditor extends JFrame {
         toolbar.add(btnRun);
 
         documentPane = new JTabbedPane();
-        documentPane.setComponentPopupMenu(new TabPopupMenu() {
+        documentPane.setComponentPopupMenu(new ScriptEditorTabPopupMenu() {
             @Override
             protected void popupMenuWillBecomeVisible(JPopupMenu menu) {
                 buildPopupMenu(menu);
@@ -106,7 +106,7 @@ public class GroovyScriptEditor extends JFrame {
 
         documentPanel.add(documentPane);
 
-        scriptOutputPanel = new GroovyScriptOutputPanel();
+        scriptOutputPanel = new ScriptEditorOutputPanel();
 
         final JButton btnCloseOutput = new JButton(new AbstractAction() {
             @Override
@@ -163,7 +163,7 @@ public class GroovyScriptEditor extends JFrame {
         menu.add(new JMenuItem(new AbstractAction("Add encoding...") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final String encoding = JOptionPane.showInputDialog(GroovyScriptEditor.this, "Type your encoding");
+                final String encoding = JOptionPane.showInputDialog(ScriptEditor.this, "Type your encoding");
                 if (encoding != null) {
                     userEncodings.add(encoding);
                     changeEncoding(encoding);
@@ -346,7 +346,7 @@ public class GroovyScriptEditor extends JFrame {
     public void doNew() {
         final String newScriptName = getNewScriptName();
         openedFiles.put(newScriptName, null);
-        documentPane.addTab(newScriptName, new ImageIcon(getClass().getResource("/icons/groovy.png")), new GroovyScriptEditPanel());
+        documentPane.addTab(newScriptName, new ImageIcon(getClass().getResource("/icons/groovy.png")), new ScriptEditorScriptEditPanel());
         documentPane.setSelectedIndex(documentPane.getTabCount() - 1);
     }
 
@@ -391,7 +391,7 @@ public class GroovyScriptEditor extends JFrame {
 
     private void doOpenScriptFile(File file) {
         openedFiles.put(file.getName(), file);
-        final GroovyScriptEditPanel scriptEditPanel = new GroovyScriptEditPanel();
+        final ScriptEditorScriptEditPanel scriptEditPanel = new ScriptEditorScriptEditPanel();
         scriptEditPanel.loadFile(file);
 
         documentPane.addTab(file.getName(), new ImageIcon(getClass().getResource("/icons/groovy.png")), scriptEditPanel);
@@ -400,7 +400,7 @@ public class GroovyScriptEditor extends JFrame {
 
     private void doOpenTextFile(File file) {
         openedFiles.put(file.getName(), file);
-        final GroovyTextFileEditPanel textFileEditPanel = new GroovyTextFileEditPanel(file);
+        final ScriptEditorTextFileEditPanel textFileEditPanel = new ScriptEditorTextFileEditPanel(file);
         textFileEditPanel.loadFile(file);
 
         documentPane.addTab(file.getName(), new ImageIcon(getClass().getResource("/icons/txt.png")), textFileEditPanel);
@@ -409,7 +409,7 @@ public class GroovyScriptEditor extends JFrame {
 
     private void doOpenDBFFile(File file) {
         openedFiles.put(file.getName(), file);
-        final GroovyDBFFileEditPanel dbfFileEditPanel = new GroovyDBFFileEditPanel(file);
+        final ScriptEditorDBFFileEditPanel dbfFileEditPanel = new ScriptEditorDBFFileEditPanel(file);
 
         documentPane.addTab(file.getName(), new ImageIcon(getClass().getResource("/icons/dbf.png")), dbfFileEditPanel);
         documentPane.setSelectedIndex(documentPane.getTabCount() - 1);
@@ -419,7 +419,7 @@ public class GroovyScriptEditor extends JFrame {
         if (documentPane.getSelectedComponent() == null)
             return;
 
-        final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getSelectedComponent();
+        final ScriptEditorScriptEditPanel scriptEditPanel = (ScriptEditorScriptEditPanel) documentPane.getSelectedComponent();
         String fileName = documentPane.getTitleAt(documentPane.getSelectedIndex());
 
         if (fileName.toLowerCase().endsWith(".groovy")) {
@@ -476,7 +476,7 @@ public class GroovyScriptEditor extends JFrame {
             if (fileName.toLowerCase().endsWith(".groovy")) {
                 int tabIndex = findTabByTitle(fileName);
                 if (tabIndex != -1) {
-                    final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getComponentAt(tabIndex);
+                    final ScriptEditorScriptEditPanel scriptEditPanel = (ScriptEditorScriptEditPanel) documentPane.getComponentAt(tabIndex);
                     if (scriptEditPanel.isChanged()) {
 
                         documentPane.setSelectedIndex(tabIndex);
@@ -545,7 +545,7 @@ public class GroovyScriptEditor extends JFrame {
             if (file != null) {
                 success = ScriptRunner.runScript(file, logger);
             } else {
-                final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getComponentAt(tabIndex);
+                final ScriptEditorScriptEditPanel scriptEditPanel = (ScriptEditorScriptEditPanel) documentPane.getComponentAt(tabIndex);
                 success = ScriptRunner.runScript(scriptEditPanel.getText(), logger);
             }
 
@@ -567,7 +567,7 @@ public class GroovyScriptEditor extends JFrame {
             final File file = openedFiles.get(fileName);
             if (file != null) {
 
-                final GroovyScriptEditPanel scriptEditPanel = (GroovyScriptEditPanel) documentPane.getComponentAt(tabIndex);
+                final ScriptEditorScriptEditPanel scriptEditPanel = (ScriptEditorScriptEditPanel) documentPane.getComponentAt(tabIndex);
 
                 if (scriptEditPanel.isChanged()) {
                     final int buttonIndex = JOptionPane.showOptionDialog(this,
@@ -598,8 +598,8 @@ public class GroovyScriptEditor extends JFrame {
             return;
 
         final Component activeDocument = documentPane.getComponentAt(tabIndex);
-        if (activeDocument instanceof GroovyAbstractEditPanel) {
-            final GroovyAbstractEditPanel editPanel = (GroovyAbstractEditPanel) activeDocument;
+        if (activeDocument instanceof ScriptEditorAbstractEditPanel) {
+            final ScriptEditorAbstractEditPanel editPanel = (ScriptEditorAbstractEditPanel) activeDocument;
             editPanel.changeEncoding(encoding);
         }
     }
@@ -610,8 +610,8 @@ public class GroovyScriptEditor extends JFrame {
             return;
 
         final Component activeDocument = documentPane.getComponentAt(tabIndex);
-        if (activeDocument instanceof GroovyAbstractEditPanel) {
-            final GroovyAbstractEditPanel editPanel = (GroovyAbstractEditPanel) activeDocument;
+        if (activeDocument instanceof ScriptEditorAbstractEditPanel) {
+            final ScriptEditorAbstractEditPanel editPanel = (ScriptEditorAbstractEditPanel) activeDocument;
             editPanel.startSearch();
         }
     }
@@ -620,7 +620,7 @@ public class GroovyScriptEditor extends JFrame {
         showWindow(null);
     }
 
-    public void showWindow(GroovyScriptEditorPreferences preferences) {
+    public void showWindow(ScriptEditorPreferences preferences) {
         if (isVisible())
             return;
 
@@ -669,8 +669,8 @@ public class GroovyScriptEditor extends JFrame {
         setVisible(true);
     }
 
-    public GroovyScriptEditorPreferences getPreferences() {
-        final GroovyScriptEditorPreferences preferences = new GroovyScriptEditorPreferences();
+    public ScriptEditorPreferences getPreferences() {
+        final ScriptEditorPreferences preferences = new ScriptEditorPreferences();
         preferences.setWindowSize(getSize());
         preferences.setWindowLocation(getLocation());
         preferences.setWindowState(getExtendedState());

@@ -13,12 +13,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
+public final class ScriptEditorDBFFileEditPanel extends ScriptEditorAbstractEditPanel {
 
     private final JTable table;
     private final JLabel statusLabel;
 
-    public GroovyDBFFileEditPanel(File file) {
+    public ScriptEditorDBFFileEditPanel(File file) {
         this.file = file;
 
         setLayout(new BorderLayout());
@@ -37,7 +37,7 @@ public final class GroovyDBFFileEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    protected void showSearchPanel(GroovySearchPanel searchPanel) {
+    protected void showSearchPanel(ScriptEditorSearchPanel searchPanel) {
         removeAll();
         add(searchPanel, BorderLayout.NORTH);
         add(new JScrollPane(table), BorderLayout.CENTER);

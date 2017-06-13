@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class GroovyAutoCompletionProvider {
+public final class ScriptEditorAutoCompletionProvider {
 
     private static Pattern DEF_VARIABLE = Pattern.compile("^(\\s+|)+def\\s+(.+)\\s+=\\s+(.+)(\\s+|)$");
 
@@ -43,16 +43,16 @@ public final class GroovyAutoCompletionProvider {
         return classMeta;
     }
 
-    public List<GroovyCompletion> getCompletionsForFields(List<Field> fields) {
-        final List<GroovyCompletion> completions = new ArrayList<>();
+    public List<ScriptEditorAutoCompletion> getCompletionsForFields(List<Field> fields) {
+        final List<ScriptEditorAutoCompletion> completions = new ArrayList<>();
         for (Field field : fields)
-            completions.add(new GroovyCompletion(field.getName(), field.getType()));
+            completions.add(new ScriptEditorAutoCompletion(field.getName(), field.getType()));
 
         return completions;
     }
 
-    public List<GroovyCompletion> getCompletionsForMethods(List<Method> methods) {
-        final List<GroovyCompletion> completions = new ArrayList<>();
+    public List<ScriptEditorAutoCompletion> getCompletionsForMethods(List<Method> methods) {
+        final List<ScriptEditorAutoCompletion> completions = new ArrayList<>();
 
         for (Method method : methods) {
             final Class<?>[] parameterTypes = method.getParameterTypes();
@@ -60,14 +60,14 @@ public final class GroovyAutoCompletionProvider {
             for (Class aClass : parameterTypes)
                 stringJoiner.add(aClass.getSimpleName());
 
-            completions.add(new GroovyCompletion(method.getName() + stringJoiner, method.getReturnType()));
+            completions.add(new ScriptEditorAutoCompletion(method.getName() + stringJoiner, method.getReturnType()));
         }
 
         return completions;
     }
 
-    public List<GroovyCompletion> getCompletionsFor(ClassMeta classMeta) {
-        final List<GroovyCompletion> completions = new ArrayList<>();
+    public List<ScriptEditorAutoCompletion> getCompletionsFor(ClassMeta classMeta) {
+        final List<ScriptEditorAutoCompletion> completions = new ArrayList<>();
         completions.addAll(getCompletionsForFields(classMeta.fields));
         completions.addAll(getCompletionsForMethods(classMeta.methods));
         return completions;
@@ -185,7 +185,7 @@ public final class GroovyAutoCompletionProvider {
         return currentTokenClass;
     }
 
-    public List<GroovyCompletion> getCompletionsFor(String enteredText, String allText) {
+    public List<ScriptEditorAutoCompletion> getCompletionsFor(String enteredText, String allText) {
         final Map<String, Class> variables = getVariables(allText);
 
         String currentToken;
@@ -193,15 +193,15 @@ public final class GroovyAutoCompletionProvider {
         final List<String> tokens = parseTokens(enteredText);
 
         if (tokens.size() == 1) {
-            final List<GroovyCompletion> completions = new ArrayList<>();
+            final List<ScriptEditorAutoCompletion> completions = new ArrayList<>();
 
             if (FACTORY.startsWith(tokens.get(0)))
-                completions.add(new GroovyCompletion(FACTORY, Factory.class));
+                completions.add(new ScriptEditorAutoCompletion(FACTORY, Factory.class));
 
             // match other vars
             for (String varName : variables.keySet())
                 if (varName.startsWith(tokens.get(0)))
-                    completions.add(new GroovyCompletion(varName, variables.get(varName)));
+                    completions.add(new ScriptEditorAutoCompletion(varName, variables.get(varName)));
 
             return completions;
         }
@@ -223,7 +223,7 @@ public final class GroovyAutoCompletionProvider {
                 final ClassMeta meta = getMeta(currentTokenClass);
 
                 if (i == 1) {
-                    final List<GroovyCompletion> completions = new ArrayList<>();
+                    final List<ScriptEditorAutoCompletion> completions = new ArrayList<>();
 
                     final List<Field> applicableFields = new ArrayList<>();
                     final List<Method> applicableMethods = new ArrayList<>();

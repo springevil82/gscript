@@ -2,7 +2,7 @@ package gscript.scripteditor;
 
 import javax.swing.*;
 
-public abstract class TabPopupMenu extends JPopupMenu {
+public abstract class ScriptEditorTabPopupMenu extends JPopupMenu {
 
     @Override
     protected void firePopupMenuWillBecomeVisible() {

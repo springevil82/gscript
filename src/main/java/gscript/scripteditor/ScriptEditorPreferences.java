@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public final class GroovyScriptEditorPreferences {
+public final class ScriptEditorPreferences {
 
     public static final String DEFAULT_PROPERTIES_FILE = "gscript.properties";
 
@@ -128,7 +128,7 @@ public final class GroovyScriptEditorPreferences {
             properties.setProperty(PROPERTY_RECENT_FILE + recentFile.getName(), recentFile.getAbsolutePath());
 
         try (OutputStream outputStream = new FileOutputStream(file)) {
-            properties.store(outputStream, "GroovyScriptEditor");
+            properties.store(outputStream, "ScriptEditor");
         } catch (IOException e) {
             throw new RuntimeException("Preferences store error", e);
         }

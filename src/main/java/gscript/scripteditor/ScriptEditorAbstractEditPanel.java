@@ -3,11 +3,11 @@ package gscript.scripteditor;
 import javax.swing.*;
 import java.io.File;
 
-public abstract class GroovyAbstractEditPanel extends JPanel {
+public abstract class ScriptEditorAbstractEditPanel extends JPanel {
 
     protected File file;
 
-    private final GroovySearchPanel searchPanel = new GroovySearchPanel(this);
+    private final ScriptEditorSearchPanel searchPanel = new ScriptEditorSearchPanel(this);
 
     private boolean searchPanelVisible = false;
 
@@ -29,7 +29,7 @@ public abstract class GroovyAbstractEditPanel extends JPanel {
 
     public abstract void changeEncoding(String encoding);
 
-    protected abstract void showSearchPanel(GroovySearchPanel searchPanel);
+    protected abstract void showSearchPanel(ScriptEditorSearchPanel searchPanel);
 
     protected abstract void findFirst(String searchText, boolean matchCase, boolean regularExpression, boolean searchForward, boolean wholeWord);
 

@@ -17,7 +17,7 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 
-public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
+public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPanel {
 
     protected final RSyntaxTextArea textArea;
     protected String lastChecksum;
@@ -26,7 +26,7 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
     private int searchFromCaretPosition;
     private SearchContext searchContext;
 
-    public GroovySyntaxAreaEditPanel() {
+    public ScriptEditorSyntaxAreaEditPanel() {
         setLayout(new BorderLayout());
 
         textArea = new RSyntaxTextArea(20, 40);
@@ -44,7 +44,7 @@ public class GroovySyntaxAreaEditPanel extends GroovyAbstractEditPanel {
     }
 
     @Override
-    protected void showSearchPanel(GroovySearchPanel searchPanel) {
+    protected void showSearchPanel(ScriptEditorSearchPanel searchPanel) {
         searchFromCaretPosition = textArea.getCaretPosition();
 
         removeAll();

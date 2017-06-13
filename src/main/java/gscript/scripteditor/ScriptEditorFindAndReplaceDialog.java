@@ -12,14 +12,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class FindAndReplaceDialog extends JDialog implements ActionListener {
+public class ScriptEditorFindAndReplaceDialog extends JDialog implements ActionListener {
     RTextArea textEditor;
     JTextField searchField, replaceField;
     JLabel replaceLabel;
     JCheckBox matchCase, wholeWord, markAll, regex, forward;
     JButton findNext, replace, replaceAll, cancel;
 
-    public FindAndReplaceDialog(RSyntaxTextArea editor) {
+    public ScriptEditorFindAndReplaceDialog(RSyntaxTextArea editor) {
         textEditor = editor;
 
         Container root = getContentPane();
@@ -103,7 +103,7 @@ public class FindAndReplaceDialog extends JDialog implements ActionListener {
 
     private JTextField createField(String name, Container container,
                                    GridBagConstraints c,
-                                   FindAndReplaceDialog replaceDialog) {
+                                   ScriptEditorFindAndReplaceDialog replaceDialog) {
         c.weightx = 0.001;
         JLabel label = new JLabel(name);
         if (replaceDialog != null)

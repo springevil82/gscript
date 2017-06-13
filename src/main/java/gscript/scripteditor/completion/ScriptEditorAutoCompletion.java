@@ -1,11 +1,11 @@
 package gscript.scripteditor.completion;
 
-public final class GroovyCompletion {
+public final class ScriptEditorAutoCompletion {
 
     private String completion;
     private Class type;
 
-    public GroovyCompletion(String completion, Class type) {
+    public ScriptEditorAutoCompletion(String completion, Class type) {
         this.completion = completion;
         this.type = type;
     }

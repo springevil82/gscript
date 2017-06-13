@@ -4,9 +4,9 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
 import java.io.File;
 
-public final class GroovyTextFileEditPanel extends GroovySyntaxAreaEditPanel {
+public final class ScriptEditorTextFileEditPanel extends ScriptEditorSyntaxAreaEditPanel {
 
-    public GroovyTextFileEditPanel(File file) {
+    public ScriptEditorTextFileEditPanel(File file) {
         this.file = file;
 
         if (file.getName().toLowerCase().endsWith(".xml"))
