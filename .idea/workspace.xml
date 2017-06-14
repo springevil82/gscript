@@ -81,18 +81,18 @@
       <file leaf-file-name="ScriptEditorSyntaxAreaEditPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="86" column="9" lean-forward="true" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+            <state relative-caret-position="341">
+              <caret line="79" column="51" lean-forward="true" selection-start-line="79" selection-start-column="51" selection-end-line="79" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1347#2138#0" expanded="true" />
-                <element signature="e#2137#2138#0" expanded="true" />
-                <element signature="e#2252#2253#0" expanded="true" />
-                <element signature="e#2315#2316#0" expanded="true" />
+                <element signature="e#1325#2115#0" expanded="true" />
+                <element signature="e#2114#2115#0" expanded="true" />
+                <element signature="e#2229#2230#0" expanded="true" />
+                <element signature="e#2292#2293#0" expanded="true" />
+                <element signature="e#6702#6703#0" expanded="true" />
                 <element signature="e#6743#6744#0" expanded="true" />
-                <element signature="e#6784#6785#0" expanded="true" />
-                <element signature="e#6818#6819#0" expanded="true" />
-                <element signature="e#6873#6874#0" expanded="true" />
+                <element signature="e#6777#6778#0" expanded="true" />
+                <element signature="e#6832#6833#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1571,7 +1571,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497437261089</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="dev">
+      <created>1497438080987</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1497438080987</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2178,18 +2185,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="86" column="9" lean-forward="true" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+        <state relative-caret-position="341">
+          <caret line="79" column="51" lean-forward="true" selection-start-line="79" selection-start-column="51" selection-end-line="79" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1347#2138#0" expanded="true" />
-            <element signature="e#2137#2138#0" expanded="true" />
-            <element signature="e#2252#2253#0" expanded="true" />
-            <element signature="e#2315#2316#0" expanded="true" />
+            <element signature="e#1325#2115#0" expanded="true" />
+            <element signature="e#2114#2115#0" expanded="true" />
+            <element signature="e#2229#2230#0" expanded="true" />
+            <element signature="e#2292#2293#0" expanded="true" />
+            <element signature="e#6702#6703#0" expanded="true" />
             <element signature="e#6743#6744#0" expanded="true" />
-            <element signature="e#6784#6785#0" expanded="true" />
-            <element signature="e#6818#6819#0" expanded="true" />
-            <element signature="e#6873#6874#0" expanded="true" />
+            <element signature="e#6777#6778#0" expanded="true" />
+            <element signature="e#6832#6833#0" expanded="true" />
           </folding>
         </state>
       </provider>

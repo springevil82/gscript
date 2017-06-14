@@ -56,7 +56,7 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_F7 && e.isShiftDown() && e.isShiftDown())
-                    highlightCurrentToken();
+                    highlightCurrentWord();
 
             }
         });
@@ -68,33 +68,33 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
         textArea.getHighlighter().removeAllHighlights();
     }
 
-    private void highlightAllTokens(String token) throws BadLocationException {
-        if (token == null || "".equals(token))
+    private void highlightAllWords(String word) throws BadLocationException {
+        if (word == null || "".equals(word))
             return;
 
         final String allText = textArea.getText();
         int fromIndex = 0;
-        int nextTokenPos;
+        int nextWordPos;
 
-        while ((nextTokenPos = allText.indexOf(token, fromIndex)) != -1) {
+        while ((nextWordPos = allText.indexOf(word, fromIndex)) != -1) {
             textArea.getHighlighter().addHighlight(
-                    nextTokenPos,
-                    nextTokenPos + token.length(),
+                    nextWordPos,
+                    nextWordPos + word.length(),
                     new DefaultHighlighter.DefaultHighlightPainter(highlightColor));
 
-            fromIndex = nextTokenPos + token.length();
+            fromIndex = nextWordPos + word.length();
         }
     }
 
-    private void highlightCurrentToken() {
-        final String token = getTokenUnderCaret();
+    private void highlightCurrentWord() {
+        final String word = getWordUnderCaret();
         try {
-            highlightAllTokens(token);
+            highlightAllWords(word);
         } catch (BadLocationException ignored) {
         }
     }
 
-    public String getTokenUnderCaret() {
+    public String getWordUnderCaret() {
         try {
             int wordStart = RSyntaxUtilities.getWordStart(textArea, textArea.getCaretPosition());
             int wordEnd = RSyntaxUtilities.getWordEnd(textArea, textArea.getCaretPosition());
