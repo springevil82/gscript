@@ -2,10 +2,13 @@ package gscript.scripteditor;
 
 import gscript.ui.Dialogs;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.RSyntaxUtilities;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import org.fife.ui.rtextarea.SearchContext;
 import org.fife.ui.rtextarea.SearchEngine;
 
+import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -35,20 +38,46 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
         textArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (isSearchPanelVisible()) {
-                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (isSearchPanelVisible())
                         cancelSearch();
+                    else
+                        clearAllHighlights();
+                }
 
+                if (isSearchPanelVisible()) {
                     if (e.getKeyCode() == KeyEvent.VK_F3 && !e.isShiftDown())
                         findNext(true);
 
                     if (e.getKeyCode() == KeyEvent.VK_F3 && e.isShiftDown())
                         findNext(false);
                 }
+
+                if (e.getKeyCode() == KeyEvent.VK_F7 && e.isShiftDown() && e.isShiftDown())
+                    highlightCurrentToken();
+
             }
         });
 
         add(new RTextScrollPane(textArea), BorderLayout.CENTER);
+    }
+
+    private void clearAllHighlights() {
+        textArea.getHighlighter().removeAllHighlights();
+    }
+
+    private void highlightCurrentToken() {
+        JOptionPane.showMessageDialog(null, getTokenUnderCaret(), "debug", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public String getTokenUnderCaret() {
+        try {
+            int wordStart = RSyntaxUtilities.getWordStart(textArea, textArea.getCaretPosition());
+            int wordEnd = RSyntaxUtilities.getWordEnd(textArea, textArea.getCaretPosition());
+            return textArea.getText().substring(wordStart, wordEnd);
+        } catch (BadLocationException e) {
+            return null;
+        }
     }
 
     @Override
