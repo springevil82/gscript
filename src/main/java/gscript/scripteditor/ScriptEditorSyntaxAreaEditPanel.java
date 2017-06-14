@@ -7,8 +7,8 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 import org.fife.ui.rtextarea.SearchContext;
 import org.fife.ui.rtextarea.SearchEngine;
 
-import javax.swing.*;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -28,6 +28,8 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
 
     private int searchFromCaretPosition;
     private SearchContext searchContext;
+
+    private final Color highlightColor = new Color(136, 208, 236);
 
     public ScriptEditorSyntaxAreaEditPanel() {
         setLayout(new BorderLayout());
@@ -66,8 +68,30 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
         textArea.getHighlighter().removeAllHighlights();
     }
 
+    private void highlightAllTokens(String token) throws BadLocationException {
+        if (token == null || "".equals(token))
+            return;
+
+        final String allText = textArea.getText();
+        int fromIndex = 0;
+        int nextTokenPos;
+
+        while ((nextTokenPos = allText.indexOf(token, fromIndex)) != -1) {
+            textArea.getHighlighter().addHighlight(
+                    nextTokenPos,
+                    nextTokenPos + token.length(),
+                    new DefaultHighlighter.DefaultHighlightPainter(highlightColor));
+
+            fromIndex = nextTokenPos + token.length();
+        }
+    }
+
     private void highlightCurrentToken() {
-        JOptionPane.showMessageDialog(null, getTokenUnderCaret(), "debug", JOptionPane.INFORMATION_MESSAGE);
+        final String token = getTokenUnderCaret();
+        try {
+            highlightAllTokens(token);
+        } catch (BadLocationException ignored) {
+        }
     }
 
     public String getTokenUnderCaret() {
