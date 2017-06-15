@@ -35,6 +35,10 @@ public class Factory {
         return thisScriptFile;
     }
 
+    public void setThisScriptFile(ScriptFile thisScriptFile) {
+        this.thisScriptFile = thisScriptFile;
+    }
+
     public void registerAutoCloseable(AutoCloseable autoCloseable) {
         autoCloseables.add(autoCloseable);
     }
@@ -62,11 +66,13 @@ public class Factory {
     public Factory() {
     }
 
+    /**
+     * Constructor for debugging
+     *
+     * @param script current groovy script
+     */
     public Factory(Script script) {
         this.thisScript = script;
     }
 
-    Factory(ScriptFile scriptFile) {
-        this.thisScriptFile = scriptFile;
-    }
 }

@@ -16,7 +16,7 @@ public class GroovyRunner {
      * @param scriptText script text
      */
     public void runScript(String scriptText) throws Exception {
-        final Factory factory = new Factory();
+        final Factory factory = createFactory();
 
         try {
             final Binding binding = new Binding();
@@ -47,7 +47,8 @@ public class GroovyRunner {
      * @param args       args
      */
     public void runScript(File scriptFile, String... args) throws Exception {
-        final Factory factory = new Factory(new ScriptFile(scriptFile, args));
+        final Factory factory = createFactory();
+        factory.setThisScriptFile(new ScriptFile(scriptFile, args));
 
         try {
             final Binding binding = new Binding();
@@ -81,6 +82,10 @@ public class GroovyRunner {
             for (AutoCloseable closeable : factory.getAutoCloseables())
                 closeable.close();
         }
+    }
+
+    protected Factory createFactory() {
+        return new Factory();
     }
 
     protected void initialize(Factory factory, Binding binding) {

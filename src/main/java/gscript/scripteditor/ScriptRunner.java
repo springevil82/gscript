@@ -2,6 +2,7 @@ package gscript.scripteditor;
 
 import groovy.lang.Binding;
 import gscript.Factory;
+import gscript.FactoryInitializer;
 import gscript.GroovyException;
 import gscript.GroovyRunner;
 import gscript.factory.log.GroovyProgressLog;
@@ -14,6 +15,8 @@ import java.io.PrintStream;
 import java.util.Arrays;
 
 public final class ScriptRunner {
+
+    private static FactoryInitializer factoryInitializer;
 
     /**
      * Run script file
@@ -57,6 +60,13 @@ public final class ScriptRunner {
         }
     }
 
+    /**
+     * Set your factory initializer
+     */
+    public static void setFactoryInitializer(FactoryInitializer factoryInitializer) {
+        ScriptRunner.factoryInitializer = factoryInitializer;
+    }
+
     private final static class Runner extends GroovyRunner {
 
         private GroovyProgressLog internalProgressLog;
@@ -69,6 +79,14 @@ public final class ScriptRunner {
 
         public boolean wereErrors() {
             return wereErrors;
+        }
+
+        @Override
+        protected Factory createFactory() {
+            if (factoryInitializer != null)
+                return factoryInitializer.createFactory();
+
+            return super.createFactory();
         }
 
         @Override
