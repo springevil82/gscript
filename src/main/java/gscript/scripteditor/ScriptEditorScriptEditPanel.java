@@ -1,7 +1,5 @@
 package gscript.scripteditor;
 
-import gscript.scripteditor.completion.ScriptEditorAutoCompletion;
-import gscript.scripteditor.completion.ScriptEditorAutoCompletionProvider;
 import org.fife.ui.autocomplete.BasicCompletion;
 import org.fife.ui.autocomplete.Completion;
 import org.fife.ui.autocomplete.CompletionProvider;

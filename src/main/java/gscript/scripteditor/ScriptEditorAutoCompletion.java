@@ -1,4 +1,4 @@
-package gscript.scripteditor.completion;
+package gscript.scripteditor;
 
 public final class ScriptEditorAutoCompletion {
 

@@ -1,4 +1,4 @@
-package gscript.scripteditor.completion;
+package gscript.scripteditor;
 
 import gscript.Factory;
 import gscript.factory.format.GroovyStringJoiner;
