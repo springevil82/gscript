@@ -154,6 +154,10 @@ public class ScriptEditor extends JFrame {
         updateToolbarButtons();
     }
 
+    public Map<String, File> getOpenedFiles() {
+        return openedFiles;
+    }
+
     private void buildEncodingsMenu(JMenu menu) {
         menu.removeAll();
 
@@ -671,9 +675,6 @@ public class ScriptEditor extends JFrame {
             setSize(new Dimension(800, 600));
             setLocationRelativeTo(null);
         }
-
-        if (openedFiles.isEmpty())
-            doNew();
 
         setVisible(true);
     }

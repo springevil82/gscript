@@ -73,7 +73,11 @@ public final class Run {
                 System.exit(0);
             }
         });
+
         scriptEditor.showWindow(preferences);
+
+        if (scriptEditor.getOpenedFiles().isEmpty())
+            scriptEditor.doNew();
     }
 
 }

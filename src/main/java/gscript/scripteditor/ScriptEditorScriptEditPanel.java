@@ -22,7 +22,7 @@ public final class ScriptEditorScriptEditPanel extends ScriptEditorSyntaxAreaEdi
         textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_GROOVY);
         textArea.append(buildFactoryDefinition(factoryClass) + "\n\n");
 
-        autoCompletionProvider = new ScriptEditorAutoCompletionProvider();
+        autoCompletionProvider = new ScriptEditorAutoCompletionProvider(factoryClass);
         final DefaultCompletionProvider completionProvider = new DefaultCompletionProvider();
         final org.fife.ui.autocomplete.AutoCompletion autoCompletion = new org.fife.ui.autocomplete.AutoCompletion(new DefaultCompletionProvider() {
             @Override

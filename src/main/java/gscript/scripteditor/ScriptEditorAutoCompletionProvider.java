@@ -14,10 +14,15 @@ public final class ScriptEditorAutoCompletionProvider {
 
     private static Pattern DEF_VARIABLE = Pattern.compile("^(\\s+|)+def\\s+(.+)\\s+=\\s+(.+)(\\s+|)$");
 
+    private Class<? extends Factory> factoryClass;
     private static final String FACTORY = "factory";
     private static final String OBJECT = "Object";
 
     private final Map<Class, ClassMeta> cache = new HashMap<>();
+
+    public ScriptEditorAutoCompletionProvider(Class<? extends Factory> factoryClass) {
+        this.factoryClass = factoryClass;
+    }
 
     private class ClassMeta {
         Class c;
@@ -146,7 +151,7 @@ public final class ScriptEditorAutoCompletionProvider {
             currentToken = tokens.get(i - 1).trim();
 
             if (FACTORY.equals(currentToken)) {
-                currentTokenClass = Factory.class;
+                currentTokenClass = factoryClass;
             } else if (variables.containsKey(currentToken)) {
                 currentTokenClass = variables.get(currentToken);
             } else if (currentTokenClass != null) {
@@ -196,7 +201,7 @@ public final class ScriptEditorAutoCompletionProvider {
             final List<ScriptEditorAutoCompletion> completions = new ArrayList<>();
 
             if (FACTORY.startsWith(tokens.get(0)))
-                completions.add(new ScriptEditorAutoCompletion(FACTORY, Factory.class));
+                completions.add(new ScriptEditorAutoCompletion(FACTORY, factoryClass));
 
             // match other vars
             for (String varName : variables.keySet())
@@ -210,7 +215,7 @@ public final class ScriptEditorAutoCompletionProvider {
             currentToken = tokens.get(i - 1);
 
             if (FACTORY.equals(currentToken)) {
-                currentTokenClass = Factory.class;
+                currentTokenClass = factoryClass;
             } else if (variables.containsKey(currentToken)) {
                 currentTokenClass = variables.get(currentToken);
             } else if (currentTokenClass != null) {
