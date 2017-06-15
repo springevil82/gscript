@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5d0fd85c-e95b-46c3-a235-dbb6452c1c43" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../gscript/out/" />
     <ignored path="$PROJECT_DIR$/../gscript/.gradle/" />
@@ -49,15 +47,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GroovyRunner.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GroovyRunner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+            <state relative-caret-position="153">
+              <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
               <folding>
-                <element signature="e#2774#2775#0" expanded="true" />
-                <element signature="e#2810#2811#0" expanded="true" />
+                <element signature="e#2263#2264#0" expanded="true" />
+                <element signature="e#2299#2300#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Scanner.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/util/Scanner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="347" column="19" lean-forward="false" selection-start-line="347" selection-start-column="19" selection-end-line="347" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -75,21 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptEditorAutoCompletionProvider.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ScriptEditorAutoCompletionProvider.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
-              <caret line="212" column="0" lean-forward="false" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScriptFile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/ScriptFile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="422">
+              <caret line="289" column="20" lean-forward="false" selection-start-line="289" selection-start-column="20" selection-end-line="289" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -619,11 +617,11 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/Factory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/FactoryInitializer.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" />
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" />
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java" />
       </list>
     </option>
   </component>
@@ -1576,7 +1574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497540528665</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="dev">
+      <created>1497542424069</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1497542424069</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1626,7 +1631,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="42" />
+      <option name="time" value="44" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1635,16 +1640,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/GroovyMultilineDocumentQueryCriterion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="50" lean-forward="false" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/GroovyMultilineDocumentQueryFieldCriterion.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -2133,14 +2128,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="212" column="0" lean-forward="false" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -2166,14 +2153,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/util/Scanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="347" column="19" lean-forward="false" selection-start-line="347" selection-start-column="19" selection-end-line="347" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+        <state relative-caret-position="153">
+          <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
           <folding>
-            <element signature="e#2774#2775#0" expanded="true" />
-            <element signature="e#2810#2811#0" expanded="true" />
+            <element signature="e#2263#2264#0" expanded="true" />
+            <element signature="e#2299#2300#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="289" column="20" lean-forward="false" selection-start-line="289" selection-start-column="20" selection-end-line="289" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

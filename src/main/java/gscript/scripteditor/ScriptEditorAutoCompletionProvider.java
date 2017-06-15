@@ -286,12 +286,15 @@ public final class ScriptEditorAutoCompletionProvider {
         int lastTokenEnd = enteredText.length();
         int bracketOpened = 0;
         int bracketClosed = 0;
-        for (int i = enteredText.length() - 1; i > 0; i--) {
 
-            if (enteredText.charAt(i) == ')')
+        char charAt;
+        for (int i = enteredText.length() - 1; i > 0; i--) {
+            charAt = enteredText.charAt(i);
+
+            if (charAt == ')')
                 bracketClosed++;
 
-            if (enteredText.charAt(i) == '(') {
+            if (charAt == '(') {
                 bracketOpened++;
                 if (bracketClosed != bracketOpened) {
                     tokens.add(enteredText.substring(i + 1, lastTokenEnd).trim());
@@ -299,12 +302,12 @@ public final class ScriptEditorAutoCompletionProvider {
                 }
             }
 
-            if (enteredText.charAt(i) == '=') {
+            if ((charAt == '=') || (charAt == ' ')) {
                 tokens.add(enteredText.substring(i + 1, lastTokenEnd).trim());
                 return tokens;
             }
 
-            if (enteredText.charAt(i) == '.') {
+            if (charAt == '.') {
                 tokens.add(enteredText.substring(i, lastTokenEnd).trim());
                 lastTokenEnd = i;
             }

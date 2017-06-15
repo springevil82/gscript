@@ -2,11 +2,12 @@ package gscript;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
-import gscript.factory.file.text.GroovyTextFileReader;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class GroovyRunner {
 
@@ -16,28 +17,7 @@ public class GroovyRunner {
      * @param scriptText script text
      */
     public void runScript(String scriptText) throws Exception {
-        final Factory factory = createFactory();
-
-        try {
-            final Binding binding = new Binding();
-            binding.setVariable("factory", factory);
-            initialize(factory, binding);
-
-            try {
-                new GroovyShell(binding).evaluate(scriptText);
-            } catch (Throwable e) {
-
-                if (factory.log.getCurrentProgressLog() != null)
-                    factory.log.getCurrentProgressLog().addError(getExceptionCauses(e));
-                else
-                    System.out.println(getExceptionCauses(e));
-
-                throw e;
-            }
-        } finally {
-            for (AutoCloseable closeable : factory.getAutoCloseables())
-                closeable.close();
-        }
+        internalRunScript(createFactory(), scriptText);
     }
 
     /**
@@ -49,23 +29,26 @@ public class GroovyRunner {
     public void runScript(File scriptFile, String... args) throws Exception {
         final Factory factory = createFactory();
         factory.setThisScriptFile(new ScriptFile(scriptFile, args));
+        internalRunScript(factory, new String(Files.readAllBytes(scriptFile.toPath()), "UTF-8"));
+    }
+
+    private void internalRunScript(Factory factory, String scriptText) throws Exception {
+        // remove factory definition from script text, we will replace it with own
+        final StringBuilder scriptBuilder = new StringBuilder();
+        try (Scanner scanner = new Scanner(scriptText)) {
+            while (scanner.hasNextLine()) {
+                final String line = scanner.nextLine();
+                if (line.contains("@groovy.transform.Field") && line.contains(" factory"))
+                    continue;
+
+                scriptBuilder.append(line).append("\n");
+            }
+        }
 
         try {
             final Binding binding = new Binding();
             binding.setVariable("factory", factory);
-
             initialize(factory, binding);
-
-            final StringBuilder scriptBuilder = new StringBuilder();
-            try (GroovyTextFileReader fileReader = factory.file.createTextFileReader(scriptFile, "UTF-8")) {
-                while (fileReader.hasNextLine()) {
-                    final String lineText = fileReader.nextLine().getText();
-                    scriptBuilder.append(lineText).append("\n");
-
-                    if (lineText.contains("@groovy.transform.Field") && lineText.contains(" factory"))
-                        scriptBuilder.delete(0, scriptBuilder.length());
-                }
-            }
 
             try {
                 new GroovyShell(binding).evaluate(scriptBuilder.toString());
@@ -83,6 +66,7 @@ public class GroovyRunner {
                 closeable.close();
         }
     }
+
 
     protected Factory createFactory() {
         return new Factory();
