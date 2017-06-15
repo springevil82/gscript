@@ -1,5 +1,6 @@
 package gscript.scripteditor;
 
+import gscript.Factory;
 import org.fife.ui.autocomplete.BasicCompletion;
 import org.fife.ui.autocomplete.Completion;
 import org.fife.ui.autocomplete.CompletionProvider;
@@ -15,13 +16,11 @@ import java.util.List;
 
 public final class ScriptEditorScriptEditPanel extends ScriptEditorSyntaxAreaEditPanel {
 
-    private static final String FACTORY = "@groovy.transform.Field gscript.Factory factory = new gscript.Factory(this)";
-
     private final ScriptEditorAutoCompletionProvider autoCompletionProvider;
 
-    public ScriptEditorScriptEditPanel() {
+    public ScriptEditorScriptEditPanel(Class<? extends Factory> factoryClass) {
         textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_GROOVY);
-        textArea.append(FACTORY + "\n\n");
+        textArea.append(buildFactoryDefinition(factoryClass) + "\n\n");
 
         autoCompletionProvider = new ScriptEditorAutoCompletionProvider();
         final DefaultCompletionProvider completionProvider = new DefaultCompletionProvider();
@@ -33,6 +32,10 @@ public final class ScriptEditorScriptEditPanel extends ScriptEditorSyntaxAreaEdi
         });
 
         autoCompletion.install(textArea);
+    }
+
+    private String buildFactoryDefinition(Class<? extends Factory> factoryClass) {
+        return "@groovy.transform.Field " + factoryClass.getCanonicalName() + " factory = new " + factoryClass.getCanonicalName() + "(this)";
     }
 
     public String getCurrentText(JTextComponent comp) {

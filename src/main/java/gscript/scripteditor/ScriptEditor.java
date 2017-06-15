@@ -1,5 +1,6 @@
 package gscript.scripteditor;
 
+import gscript.Factory;
 import gscript.factory.format.GroovyStringJoiner;
 import gscript.ui.Dialogs;
 import gscript.ui.TitledPanel;
@@ -20,6 +21,8 @@ import java.util.*;
 
 public class ScriptEditor extends JFrame {
 
+    private final Class<? extends Factory> factoryClass;
+
     private final JToolBar toolbar;
     private final JPanel documentPanel;
     private final JPanel outputPanel;
@@ -38,7 +41,13 @@ public class ScriptEditor extends JFrame {
     private final JButton btnSave;
     private final JButton btnRun;
 
-    public ScriptEditor() throws HeadlessException {
+    /**
+     * Create Script Editor window, that allows you to write script code and view other file formats
+     *
+     * @param factoryClass class of Factory (you can extend base Factory class to add your specific packages)
+     */
+    public ScriptEditor(Class<? extends Factory> factoryClass) throws HeadlessException {
+        this.factoryClass = factoryClass;
 
         contentPanel = new JPanel(new BorderLayout());
         documentPanel = new JPanel(new BorderLayout());
@@ -346,7 +355,7 @@ public class ScriptEditor extends JFrame {
     public void doNew() {
         final String newScriptName = getNewScriptName();
         openedFiles.put(newScriptName, null);
-        documentPane.addTab(newScriptName, new ImageIcon(getClass().getResource("/icons/groovy.png")), new ScriptEditorScriptEditPanel());
+        documentPane.addTab(newScriptName, new ImageIcon(getClass().getResource("/icons/groovy.png")), new ScriptEditorScriptEditPanel(factoryClass));
         documentPane.setSelectedIndex(documentPane.getTabCount() - 1);
     }
 
@@ -391,7 +400,7 @@ public class ScriptEditor extends JFrame {
 
     private void doOpenScriptFile(File file) {
         openedFiles.put(file.getName(), file);
-        final ScriptEditorScriptEditPanel scriptEditPanel = new ScriptEditorScriptEditPanel();
+        final ScriptEditorScriptEditPanel scriptEditPanel = new ScriptEditorScriptEditPanel(factoryClass);
         scriptEditPanel.loadFile(file);
 
         documentPane.addTab(file.getName(), new ImageIcon(getClass().getResource("/icons/groovy.png")), scriptEditPanel);

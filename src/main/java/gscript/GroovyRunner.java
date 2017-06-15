@@ -61,7 +61,7 @@ public class GroovyRunner {
                     final String lineText = fileReader.nextLine().getText();
                     scriptBuilder.append(lineText).append("\n");
 
-                    if (lineText.contains("@groovy.transform.Field") && lineText.contains("gscript.Factory"))
+                    if (lineText.contains("@groovy.transform.Field") && lineText.contains(" factory"))
                         scriptBuilder.delete(0, scriptBuilder.length());
                 }
             }

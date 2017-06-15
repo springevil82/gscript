@@ -61,7 +61,7 @@ public final class Run {
         final File propertiesFile = new File(ScriptEditorPreferences.DEFAULT_PROPERTIES_FILE);
         preferences.load(propertiesFile);
 
-        final ScriptEditor scriptEditor = new ScriptEditor();
+        final ScriptEditor scriptEditor = new ScriptEditor(Factory.class);
         scriptEditor.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
