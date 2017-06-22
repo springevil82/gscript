@@ -439,8 +439,12 @@ public class ScriptEditor extends JFrame {
             final File scriptFile = openedFiles.get(fileName);
             if (scriptFile == null) {
                 final File file = chooseFileSave(fileName);
-                if (file != null)
+                if (file != null) {
                     scriptEditPanel.saveFile(file);
+                    openedFiles.remove(fileName);
+                    openedFiles.put(file.getName(), file);
+                    documentPane.setTitleAt(documentPane.getSelectedIndex(), file.getName());
+                }
             } else {
                 scriptEditPanel.saveFile(scriptFile);
             }

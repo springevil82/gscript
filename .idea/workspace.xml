@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0fd85c-e95b-46c3-a235-dbb6452c1c43" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/modules/gscript.iml" afterPath="$PROJECT_DIR$/../gscript/.idea/modules/gscript.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/modules/gscript_main.iml" afterPath="$PROJECT_DIR$/../gscript/.idea/modules/gscript_main.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/modules/gscript_test.iml" afterPath="$PROJECT_DIR$/../gscript/.idea/modules/gscript_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/build.gradle" afterPath="$PROJECT_DIR$/../gscript/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorPreferences.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorPreferences.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../gscript/out/" />
     <ignored path="$PROJECT_DIR$/../gscript/.gradle/" />
@@ -47,116 +51,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GroovyRunner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-              <folding>
-                <element signature="e#2263#2264#0" expanded="true" />
-                <element signature="e#2299#2300#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Scanner.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/util/Scanner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="347" column="19" lean-forward="false" selection-start-line="347" selection-start-column="19" selection-end-line="347" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Factory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/Factory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="66" column="5" lean-forward="false" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-              <folding>
-                <element signature="e#1240#1241#0" expanded="true" />
-                <element signature="e#1292#1293#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScriptEditorAutoCompletionProvider.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="289" column="20" lean-forward="false" selection-start-line="289" selection-start-column="20" selection-end-line="289" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScriptEditorAutoCompletion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletion.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScriptEditor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5396#5397#0" expanded="true" />
-                <element signature="e#5430#5431#0" expanded="true" />
-                <element signature="e#7489#7490#0" expanded="true" />
-                <element signature="e#7528#7529#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScriptEditorScriptEditPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="24" column="85" lean-forward="false" selection-start-line="24" selection-start-column="85" selection-end-line="24" selection-end-column="85" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FactoryInitializer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/FactoryInitializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScriptRunner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="135" column="0" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Run.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="73" column="13" lean-forward="false" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+            <state relative-caret-position="195">
+              <caret line="61" column="22" lean-forward="false" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScriptEditorPreferences.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorPreferences.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="379">
+              <caret line="107" column="50" lean-forward="false" selection-start-line="107" selection-start-column="50" selection-end-line="107" selection-end-column="50" />
               <folding>
-                <element signature="e#2471#2472#0" expanded="true" />
-                <element signature="e#2553#2554#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScriptEditor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="664" column="0" lean-forward="false" selection-start-line="664" selection-start-column="0" selection-end-line="664" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScriptEditorSyntaxAreaEditPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="177" column="16" lean-forward="false" selection-start-line="177" selection-start-column="16" selection-end-line="177" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>orders</find>
       <find>exit</find>
       <find>doex</find>
       <find>scripts</find>
@@ -204,6 +138,7 @@
       <find>showW</find>
       <find>openedFiles</find>
       <find>doNew</find>
+      <find>save</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -396,8 +331,8 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$/../gscript" value="5908991489911" />
-        <entry key="$PROJECT_DIR$/../gscript/build.gradle" value="1717502408" />
+        <entry key="$PROJECT_DIR$/../gscript" value="5909602248121" />
+        <entry key="$PROJECT_DIR$/../gscript/build.gradle" value="3740274237" />
         <entry key="$PROJECT_DIR$/../gscript/gradle/wrapper/gradle-wrapper.properties" value="829777938" />
       </map>
     </option>
@@ -571,8 +506,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/FieldCriterion.java" />
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/GroovyMultilineDocumentQueryFieldCriterion.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/FieldCriterionBetween.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/GroovyMultilineDocumentQueryFieldCriterionBetween.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/FieldCriterionEqual.java" />
@@ -613,15 +546,17 @@
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSearchPanel.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorDBFFileEditPanel.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java" />
-        <option value="$PROJECT_DIR$/../gscript/build.gradle" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/Factory.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/FactoryInitializer.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptRunner.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" />
-        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java" />
         <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java" />
+        <option value="$USER_HOME$/Dropbox/springevil/index.html" />
+        <option value="$PROJECT_DIR$/../gscript/build.gradle" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java" />
+        <option value="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorPreferences.java" />
       </list>
     </option>
   </component>
@@ -676,7 +611,6 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -865,102 +799,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripteditor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="factory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="factory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="format" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -968,6 +809,7 @@
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/springevil/index.html" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1237,13 +1079,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1496323823406</updated>
-    </task>
-    <task id="LOCAL-00001" summary="first commit">
-      <created>1496332354587</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1496332354587</updated>
     </task>
     <task id="LOCAL-00002" summary="dev">
       <created>1496745405509</created>
@@ -1581,7 +1416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497542424069</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="dev">
+      <created>1497543564512</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1497543564513</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1591,7 +1433,6 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1603,8 +1444,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29904053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23809524" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3022388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985073" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1616,7 +1456,9 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23809524" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -1631,7 +1473,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="44" />
+      <option name="time" value="50" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1640,27 +1482,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/GroovyMultilineDocumentQueryFieldCriterion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="50" lean-forward="false" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/GroovyMultilineDocumentQueryFieldCriterionBetween.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="55" lean-forward="false" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/factory/document/query/criterion/GroovyMultilineDocumentQueryFieldCriterionEqual.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1668,9 +1493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="41" lean-forward="false" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1678,7 +1500,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1686,7 +1507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1694,7 +1514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1702,7 +1521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1710,7 +1528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1718,9 +1535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="44" lean-forward="false" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1728,11 +1542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#565#566#0" expanded="false" />
-            <element signature="e#597#598#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1740,7 +1549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1748,12 +1556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding>
-            <element signature="e#470#471#0" expanded="false" />
-            <element signature="e#556#557#0" expanded="false" />
-            <element signature="e#634#635#0" expanded="false" />
-            <element signature="e#721#722#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1761,10 +1563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="751">
           <caret line="230" column="18" lean-forward="false" selection-start-line="230" selection-start-column="18" selection-end-line="230" selection-end-column="18" />
-          <folding>
-            <element signature="e#6697#6698#0" expanded="false" />
-            <element signature="e#6770#6771#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1780,7 +1578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1788,7 +1585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
           <caret line="808" column="16" lean-forward="false" selection-start-line="808" selection-start-column="16" selection-end-line="808" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1812,37 +1608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorPreferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="123" column="42" lean-forward="false" selection-start-line="123" selection-start-column="42" selection-end-line="123" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1004#1005#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
-            <element signature="e#1092#1093#0" expanded="true" />
-            <element signature="e#1136#1137#0" expanded="true" />
-            <element signature="e#1175#1176#0" expanded="true" />
-            <element signature="e#1209#1210#0" expanded="true" />
-            <element signature="e#1264#1265#0" expanded="true" />
-            <element signature="e#1310#1311#0" expanded="true" />
-            <element signature="e#1369#1370#0" expanded="true" />
-            <element signature="e#1421#1422#0" expanded="true" />
-            <element signature="e#1461#1462#0" expanded="true" />
-            <element signature="e#1498#1499#0" expanded="true" />
-            <element signature="e#1540#1541#0" expanded="true" />
-            <element signature="e#1574#1575#0" expanded="true" />
-            <element signature="e#1614#1615#0" expanded="true" />
-            <element signature="e#1650#1651#0" expanded="true" />
-            <element signature="e#1708#1709#0" expanded="true" />
-            <element signature="e#1758#1759#0" expanded="true" />
-            <element signature="e#1807#1808#0" expanded="true" />
-            <element signature="e#1851#1852#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1850,9 +1615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1860,7 +1622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="167" column="22" lean-forward="false" selection-start-line="167" selection-start-column="22" selection-end-line="167" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1868,7 +1629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="158" column="13" lean-forward="false" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1876,7 +1636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="524">
           <caret line="240" column="13" lean-forward="false" selection-start-line="240" selection-start-column="13" selection-end-line="240" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1884,7 +1643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="1297" column="31" lean-forward="false" selection-start-line="1297" selection-start-column="31" selection-end-line="1297" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1892,7 +1650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="366" column="74" lean-forward="false" selection-start-line="366" selection-start-column="8" selection-end-line="366" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1900,7 +1657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="64" column="31" lean-forward="false" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1908,19 +1664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2452#2632#0" expanded="false" />
-            <element signature="e#2631#2632#0" expanded="false" />
-            <element signature="e#5300#5301#0" expanded="false" />
-            <element signature="e#5369#5370#0" expanded="false" />
-            <element signature="e#5992#5993#0" expanded="false" />
-            <element signature="e#6060#6061#0" expanded="false" />
-            <element signature="e#6442#6443#0" expanded="false" />
-            <element signature="e#6484#6485#0" expanded="false" />
-            <element signature="e#6663#6664#0" expanded="false" />
-            <element signature="e#6707#6708#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1928,11 +1671,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#672#673#0" expanded="false" />
-            <element signature="e#713#714#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1940,10 +1678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="2239" column="15" lean-forward="false" selection-start-line="2239" selection-start-column="15" selection-end-line="2239" selection-end-column="15" />
-          <folding>
-            <element signature="e#86361#86362#0" expanded="false" />
-            <element signature="e#86421#86422#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1951,12 +1685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="153" column="19" lean-forward="false" selection-start-line="153" selection-start-column="19" selection-end-line="153" selection-end-column="19" />
-          <folding>
-            <element signature="e#2342#2343#0" expanded="false" />
-            <element signature="e#2359#2360#0" expanded="false" />
-            <element signature="e#4402#4403#0" expanded="false" />
-            <element signature="e#4425#4426#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1964,37 +1692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1193">
           <caret line="96" column="34" lean-forward="false" selection-start-line="96" selection-start-column="34" selection-end-line="96" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1117#1118#0" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1425#1426#0" expanded="true" />
-            <element signature="e#1476#1477#0" expanded="true" />
-            <element signature="e#1555#1556#0" expanded="true" />
-            <element signature="e#1606#1607#0" expanded="true" />
-            <element signature="e#1686#1687#0" expanded="true" />
-            <element signature="e#1737#1738#0" expanded="true" />
-            <element signature="e#1914#1915#0" expanded="true" />
-            <element signature="e#1961#1962#0" expanded="true" />
-            <element signature="e#2223#2224#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
-            <element signature="e#2533#2534#0" expanded="true" />
-            <element signature="e#2576#2577#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
-            <element signature="e#2894#2895#0" expanded="true" />
-            <element signature="e#3050#3478#0" expanded="true" />
-            <element signature="e#3477#3478#0" expanded="true" />
-            <element signature="e#3541#3697#0" expanded="true" />
-            <element signature="e#3696#3697#0" expanded="true" />
-            <element signature="e#4277#4451#0" expanded="true" />
-            <element signature="e#4450#4451#0" expanded="true" />
-            <element signature="e#4647#4648#0" expanded="true" />
-            <element signature="e#4681#4682#0" expanded="true" />
-            <element signature="e#5002#5003#0" expanded="true" />
-            <element signature="e#5051#5052#0" expanded="true" />
-            <element signature="e#5085#5086#0" expanded="true" />
-            <element signature="e#5128#5129#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2002,14 +1699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-116">
           <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
-          <folding>
-            <element signature="e#973#1351#0" expanded="true" />
-            <element signature="e#1350#1351#0" expanded="true" />
-            <element signature="e#1642#2159#0" expanded="true" />
-            <element signature="e#2158#2159#0" expanded="true" />
-            <element signature="e#8710#8711#0" expanded="true" />
-            <element signature="e#8760#8761#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2017,10 +1706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="5635" column="26" lean-forward="false" selection-start-line="5635" selection-start-column="26" selection-end-line="5635" selection-end-column="26" />
-          <folding>
-            <element signature="e#198636#198637#0" expanded="false" />
-            <element signature="e#198683#198684#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2028,10 +1713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
           <caret line="378" column="15" lean-forward="false" selection-start-line="378" selection-start-column="15" selection-end-line="378" selection-end-column="15" />
-          <folding>
-            <element signature="e#12815#12816#0" expanded="false" />
-            <element signature="e#12848#12849#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2039,33 +1720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6289">
           <caret line="1065" column="22" lean-forward="false" selection-start-line="1065" selection-start-column="22" selection-end-line="1065" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="90" column="13" lean-forward="false" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1325#2115#0" expanded="true" />
-            <element signature="e#2114#2115#0" expanded="true" />
-            <element signature="e#2229#2230#0" expanded="true" />
-            <element signature="e#2292#2293#0" expanded="true" />
-            <element signature="e#6702#6703#0" expanded="true" />
-            <element signature="e#6743#6744#0" expanded="true" />
-            <element signature="e#6777#6778#0" expanded="true" />
-            <element signature="e#6832#6833#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2108,7 +1762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="135" column="0" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2116,7 +1769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2128,55 +1780,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5396#5397#0" expanded="true" />
-            <element signature="e#5430#5431#0" expanded="true" />
-            <element signature="e#7489#7490#0" expanded="true" />
-            <element signature="e#7528#7529#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="73" column="13" lean-forward="false" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
-          <folding>
-            <element signature="e#2471#2472#0" expanded="true" />
-            <element signature="e#2553#2554#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/util/Scanner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="347" column="19" lean-forward="false" selection-start-line="347" selection-start-column="19" selection-end-line="347" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/GroovyRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+          <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
           <folding>
-            <element signature="e#2263#2264#0" expanded="true" />
-            <element signature="e#2299#2300#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2208#2209#0" expanded="true" />
+            <element signature="e#2244#2245#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Dropbox/springevil/temp/blog.html" />
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="289" column="20" lean-forward="false" selection-start-line="289" selection-start-column="20" selection-end-line="289" selection-end-column="20" />
+        <state relative-caret-position="235">
+          <caret line="221" column="49" lean-forward="true" selection-start-line="221" selection-start-column="49" selection-end-line="221" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/springevil/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#1820#1826#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="177" column="16" lean-forward="false" selection-start-line="177" selection-start-column="16" selection-end-line="177" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="61" column="22" lean-forward="false" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorPreferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="107" column="50" lean-forward="false" selection-start-line="107" selection-start-column="50" selection-end-line="107" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="664" column="0" lean-forward="false" selection-start-line="664" selection-start-column="0" selection-end-line="664" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

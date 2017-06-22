@@ -102,8 +102,11 @@ public final class ScriptEditorPreferences {
 
             recentFiles.clear();
             for (String propName : properties.stringPropertyNames())
-                if (propName.startsWith(PROPERTY_RECENT_FILE))
-                    recentFiles.add(new File(propName.substring(PROPERTY_RECENT_FILE.length())));
+                if (propName.startsWith(PROPERTY_RECENT_FILE)) {
+                    final File recentFile = new File(properties.getProperty(propName));
+                    if (recentFile.exists())
+                        recentFiles.add(recentFile);
+                }
 
         } catch (Exception e) {
             System.out.println("Preferences load error");
