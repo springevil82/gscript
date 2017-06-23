@@ -45,6 +45,7 @@ dependencies {
     compile 'org.apache.xmlbeans:xmlbeans:2.3.0'
     compile 'com.fifesoft:rsyntaxtextarea:2.5.8'
     compile 'com.fifesoft:autocomplete:1.5.0'
+    compile 'com.thoughtworks.paranamer:paranamer:2.5.2'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

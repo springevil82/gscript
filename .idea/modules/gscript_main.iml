@@ -67,6 +67,7 @@
     <orderEntry type="library" name="Gradle: org.apache.xmlbeans:xmlbeans:2.3.0" level="project" />
     <orderEntry type="library" name="Gradle: com.fifesoft:rsyntaxtextarea:2.5.8" level="project" />
     <orderEntry type="library" name="Gradle: com.fifesoft:autocomplete:1.5.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.thoughtworks.paranamer:paranamer:2.5.2" level="project" />
     <orderEntry type="library" name="Gradle: commons-beanutils:commons-beanutils:1.8.3" level="project" />
     <orderEntry type="library" name="Gradle: oro:oro:2.0.8" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.5" level="project" />

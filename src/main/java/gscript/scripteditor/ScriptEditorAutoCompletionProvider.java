@@ -1,6 +1,10 @@
 package gscript.scripteditor;
 
+import com.thoughtworks.paranamer.BytecodeReadingParanamer;
+import com.thoughtworks.paranamer.CachingParanamer;
+import com.thoughtworks.paranamer.Paranamer;
 import gscript.Factory;
+import gscript.factory.file.dbf.GroovyCSVFileReader;
 import gscript.factory.format.GroovyStringJoiner;
 
 import java.lang.reflect.Field;
@@ -316,6 +320,50 @@ public final class ScriptEditorAutoCompletionProvider {
         tokens.add(enteredText.substring(0, lastTokenEnd).trim());
 
         return tokens;
+    }
+
+    private class MethodParam {
+        private String name;
+        private Class type;
+
+        public MethodParam(String name, Class type) {
+            this.name = name;
+            this.type = type;
+        }
+    }
+
+    private String getParametersHint(List<MethodParam> methodParams, int highlightParamIndex) {
+        final GroovyStringJoiner stringJoiner = new GroovyStringJoiner(", ", "<html>", "</html>");
+        for (int i = 0; i < methodParams.size(); i++) {
+            if (i == highlightParamIndex)
+                stringJoiner.add("<b>" + methodParams.get(i).type.getSimpleName() + " " + methodParams.get(i).name + "</b>");
+            else
+                stringJoiner.add(methodParams.get(i).type.getSimpleName() + " " + methodParams.get(i).name);
+        }
+
+        return stringJoiner.toString();
+    }
+
+    public List<MethodParam> getMethodParams(Method method) {
+        final Class<?>[] parameterTypes = method.getParameterTypes();
+        final List<MethodParam> methodParams = new ArrayList<>(parameterTypes.length);
+
+        Paranamer paranamer = new CachingParanamer(new BytecodeReadingParanamer()); // cache it
+        final String[] parameterNames = paranamer.lookupParameterNames(method);
+
+        for (int i = 0; i < parameterTypes.length; i++)
+            methodParams.add(new MethodParam(parameterNames[i], parameterTypes[i]));
+
+        return methodParams;
+    }
+
+    public static void main(String[] args) {
+        ScriptEditorAutoCompletionProvider provider = new ScriptEditorAutoCompletionProvider(Factory.class);
+        Class<GroovyCSVFileReader> clazz = GroovyCSVFileReader.class;
+        for (final Method method : getAllPublicMethods(clazz)) {
+            List<MethodParam> methodParams = provider.getMethodParams(method);
+            System.out.println(method.getName() + ": (" + provider.getParametersHint(methodParams, -1) + ")");
+        }
     }
 
 }
