@@ -225,6 +225,10 @@ public final class ScriptEditorAutoCompletionProvider {
         return currentTokenClass;
     }
 
+    public String getParametersToolTip(String textBeforeCaret) {
+        return "";
+    }
+
     public List<ScriptEditorAutoCompletion> getCompletionsFor(String enteredText, String allText) {
         final Map<String, Class> variables = getVariables(allText);
 
@@ -313,6 +317,27 @@ public final class ScriptEditorAutoCompletionProvider {
         }
 
         return null;
+    }
+
+    private int getParamsStartIndex(String textBeforeCaret) {
+        int bracketOpened = 0;
+        int bracketClosed = 0;
+
+        char charAt;
+        for (int i = textBeforeCaret.length() - 1; i > 0; i--) {
+            charAt = textBeforeCaret.charAt(i);
+
+            if (charAt == ')')
+                bracketClosed++;
+
+            if (charAt == '(') {
+                bracketOpened++;
+                if (bracketClosed != bracketOpened)
+                    return i;
+            }
+        }
+
+        return -1;
     }
 
     public List<String> parseTokens(String enteredText) {
