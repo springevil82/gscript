@@ -12,6 +12,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
@@ -82,7 +84,13 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
                         parametersPopup.show();
                     }
                 }
+            }
+        });
 
+        textArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                hideParametersToolTip();
             }
         });
 
@@ -94,10 +102,9 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
             final Rectangle rectangle = textArea.modelToView(textArea.getCaretPosition());
             final Point textAreaLocationOnScreen = textArea.getLocationOnScreen();
             return new Point(rectangle.x + textAreaLocationOnScreen.x, rectangle.y + rectangle.height + textAreaLocationOnScreen.y);
-        } catch (BadLocationException ignored) {
+        } catch (BadLocationException e) {
+            throw new RuntimeException(e);
         }
-
-        return new Point(0, 0);
     }
 
     public boolean isParametersToolTipVisible() {
@@ -112,7 +119,7 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
     }
 
     protected JComponent createParametersToolTipComponent() {
-        return new JLabel("method parameters");
+        return null;
     }
 
     private void clearAllHighlights() {

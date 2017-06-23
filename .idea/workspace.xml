@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" line="23" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" line="20" mnemonic="2" />
     <bookmark url="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorAutoCompletionProvider.java" line="34" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0fd85c-e95b-46c3-a235-dbb6452c1c43" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../gscript/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java" afterPath="$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../gscript/out/" />
@@ -72,8 +71,10 @@
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="19" column="74" lean-forward="false" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
-              <folding />
+              <caret line="16" column="74" lean-forward="false" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -113,10 +114,12 @@
       <file leaf-file-name="ScriptEditor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="664" column="0" lean-forward="false" selection-start-line="664" selection-start-column="0" selection-end-line="664" selection-end-column="0" />
+            <state relative-caret-position="308">
+              <caret line="194" column="22" lean-forward="false" selection-start-line="194" selection-start-column="22" selection-end-line="194" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#6568#6569#0" expanded="true" />
+                <element signature="e#6618#6619#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,14 +138,16 @@
       <file leaf-file-name="ScriptEditorSyntaxAreaEditPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+            <state relative-caret-position="647">
+              <caret line="119" column="19" lean-forward="false" selection-start-line="119" selection-start-column="19" selection-end-line="119" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3761#3762#0" expanded="true" />
-                <element signature="e#3807#3808#0" expanded="true" />
-                <element signature="e#4040#4041#0" expanded="true" />
-                <element signature="e#4094#4095#0" expanded="true" />
+                <element signature="e#3195#3352#0" expanded="true" />
+                <element signature="e#3351#3352#0" expanded="true" />
+                <element signature="e#3947#3948#0" expanded="true" />
+                <element signature="e#3993#3994#0" expanded="true" />
+                <element signature="e#4226#4227#0" expanded="true" />
+                <element signature="e#4253#4254#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,7 +175,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scripts</find>
       <find>getTabComponentAt</find>
       <find>showOptionDialog</find>
       <find>updateToolbarButtons</find>
@@ -200,6 +204,7 @@
       <find>save</find>
       <find>getAllP</find>
       <find>methodParams</find>
+      <find>doClos</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1089,13 +1094,6 @@
       <option name="presentableId" value="Default" />
       <updated>1496323823406</updated>
     </task>
-    <task id="LOCAL-00005" summary="dev">
-      <created>1496748551723</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1496748551723</updated>
-    </task>
     <task id="LOCAL-00006" summary="dev">
       <created>1496753041674</created>
       <option name="number" value="00006" />
@@ -1432,7 +1430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498215173177</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="dev">
+      <created>1498219860036</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1498219860036</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1869,16 +1874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="664" column="0" lean-forward="false" selection-start-line="664" selection-start-column="0" selection-end-line="664" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/Run.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -1922,8 +1917,10 @@
     <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorScriptEditPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="19" column="74" lean-forward="false" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
-          <folding />
+          <caret line="16" column="74" lean-forward="false" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1935,16 +1932,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        <state relative-caret-position="308">
+          <caret line="194" column="22" lean-forward="false" selection-start-line="194" selection-start-column="22" selection-end-line="194" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3761#3762#0" expanded="true" />
-            <element signature="e#3807#3808#0" expanded="true" />
-            <element signature="e#4040#4041#0" expanded="true" />
-            <element signature="e#4094#4095#0" expanded="true" />
+            <element signature="e#6568#6569#0" expanded="true" />
+            <element signature="e#6618#6619#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gscript/src/main/java/gscript/scripteditor/ScriptEditorSyntaxAreaEditPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="647">
+          <caret line="119" column="19" lean-forward="false" selection-start-line="119" selection-start-column="19" selection-end-line="119" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3195#3352#0" expanded="true" />
+            <element signature="e#3351#3352#0" expanded="true" />
+            <element signature="e#3947#3948#0" expanded="true" />
+            <element signature="e#3993#3994#0" expanded="true" />
+            <element signature="e#4226#4227#0" expanded="true" />
+            <element signature="e#4253#4254#0" expanded="true" />
           </folding>
         </state>
       </provider>
