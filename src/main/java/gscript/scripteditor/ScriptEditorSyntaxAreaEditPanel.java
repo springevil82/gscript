@@ -7,6 +7,7 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 import org.fife.ui.rtextarea.SearchContext;
 import org.fife.ui.rtextarea.SearchEngine;
 
+import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
@@ -29,6 +30,8 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
     private int searchFromCaretPosition;
     private SearchContext searchContext;
 
+    private Popup parametersPopup;
+
     private final Color highlightColor = new Color(136, 208, 236);
 
     public ScriptEditorSyntaxAreaEditPanel() {
@@ -41,10 +44,17 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (isSearchPanelVisible())
+                    if (isParametersToolTipVisible()) {
+                        hideParametersToolTip();
+                        return;
+                    }
+
+                    if (isSearchPanelVisible()) {
                         cancelSearch();
-                    else
-                        clearAllHighlights();
+                        return;
+                    }
+
+                    clearAllHighlights();
                 }
 
                 if (isSearchPanelVisible()) {
@@ -58,10 +68,51 @@ public class ScriptEditorSyntaxAreaEditPanel extends ScriptEditorAbstractEditPan
                 if (e.getKeyCode() == KeyEvent.VK_F7 && e.isShiftDown() && e.isShiftDown())
                     highlightCurrentWord();
 
+                if (e.getKeyCode() == KeyEvent.VK_P && e.isControlDown()) {
+                    hideParametersToolTip();
+
+                    final JComponent parametersToolTipPanel = createParametersToolTipComponent();
+                    if (parametersToolTipPanel != null) {
+                        final Point caretPositionOnScreen = getCaretPositionOnScreen();
+                        parametersPopup = PopupFactory.getSharedInstance().getPopup(
+                                textArea,
+                                parametersToolTipPanel,
+                                caretPositionOnScreen.x - (parametersToolTipPanel.getPreferredSize().width / 2),
+                                caretPositionOnScreen.y);
+                        parametersPopup.show();
+                    }
+                }
+
             }
         });
 
         add(new RTextScrollPane(textArea), BorderLayout.CENTER);
+    }
+
+    private Point getCaretPositionOnScreen() {
+        try {
+            final Rectangle rectangle = textArea.modelToView(textArea.getCaretPosition());
+            final Point textAreaLocationOnScreen = textArea.getLocationOnScreen();
+            return new Point(rectangle.x + textAreaLocationOnScreen.x, rectangle.y + rectangle.height + textAreaLocationOnScreen.y);
+        } catch (BadLocationException ignored) {
+        }
+
+        return new Point(0, 0);
+    }
+
+    public boolean isParametersToolTipVisible() {
+        return parametersPopup != null;
+    }
+
+    public void hideParametersToolTip() {
+        if (parametersPopup != null) {
+            parametersPopup.hide();
+            parametersPopup = null;
+        }
+    }
+
+    protected JComponent createParametersToolTipComponent() {
+        return new JLabel("method parameters");
     }
 
     private void clearAllHighlights() {
