@@ -4,7 +4,6 @@ import com.thoughtworks.paranamer.BytecodeReadingParanamer;
 import com.thoughtworks.paranamer.CachingParanamer;
 import com.thoughtworks.paranamer.Paranamer;
 import gscript.Factory;
-import gscript.factory.file.dbf.GroovyCSVFileReader;
 import gscript.factory.format.GroovyStringJoiner;
 
 import java.lang.reflect.Field;
@@ -22,33 +21,66 @@ public final class ScriptEditorAutoCompletionProvider {
     private static final String FACTORY = "factory";
     private static final String OBJECT = "Object";
 
-    private final Map<Class, ClassMeta> cache = new HashMap<>();
-
-    public ScriptEditorAutoCompletionProvider(Class<? extends Factory> factoryClass) {
-        this.factoryClass = factoryClass;
-    }
+    private final Map<Class, ClassMeta> classesMetaData = new HashMap<>();
 
     private class ClassMeta {
-        Class c;
-        List<Field> fields;
-        List<Method> methods;
+        final Class c;
+        final List<Field> fields;
+        final List<Method> methods;
+        final Map<String, List<MethodParams>> methodParamsMap = new HashMap<>();
 
         ClassMeta(Class c, List<Field> fields, List<Method> methods) {
             this.c = c;
             this.fields = fields;
             this.methods = methods;
+
+            for (Method method : methods) {
+                List<MethodParams> methodParamsList = methodParamsMap.get(method.getName());
+                if (methodParamsList == null) {
+                    methodParamsList = new ArrayList<>();
+                    methodParamsMap.put(method.getName(), methodParamsList);
+                }
+
+                final MethodParams methodParams = new MethodParams();
+                final Class<?>[] parameterTypes = method.getParameterTypes();
+                final Paranamer paranamer = new CachingParanamer(new BytecodeReadingParanamer());
+                final String[] parameterNames = paranamer.lookupParameterNames(method);
+
+                for (int i = 0; i < parameterTypes.length; i++)
+                    methodParams.add(new MethodParam(parameterNames[i], parameterTypes[i]));
+
+                methodParamsList.add(methodParams);
+            }
+        }
+
+    }
+
+    private class MethodParam {
+        String name;
+        Class type;
+
+        MethodParam(String name, Class type) {
+            this.name = name;
+            this.type = type;
         }
     }
 
+    private class MethodParams extends ArrayList<MethodParam> {
+    }
+
+    public ScriptEditorAutoCompletionProvider(Class<? extends Factory> factoryClass) {
+        this.factoryClass = factoryClass;
+    }
+
     private ClassMeta getMeta(Class c) {
-        if (cache.containsKey(c))
-            return cache.get(c);
+        if (classesMetaData.containsKey(c))
+            return classesMetaData.get(c);
 
         final List<Field> publicFields = getAllPublicFields(c);
         final List<Method> publicMethods = getAllPublicMethods(c);
 
         final ClassMeta classMeta = new ClassMeta(c, publicFields, publicMethods);
-        cache.put(c, classMeta);
+        classesMetaData.put(c, classMeta);
         return classMeta;
     }
 
@@ -322,41 +354,32 @@ public final class ScriptEditorAutoCompletionProvider {
         return tokens;
     }
 
-    private class MethodParam {
-        private String name;
-        private Class type;
+    private String getParametersToolTip(List<MethodParams> methodParams, int highlightParamIndex) {
+        final GroovyStringJoiner paramsJoiner = new GroovyStringJoiner("<br>", "<html>", "</html>");
 
-        public MethodParam(String name, Class type) {
-            this.name = name;
-            this.type = type;
-        }
-    }
+        for (MethodParams params : methodParams) {
+            final GroovyStringJoiner paramJoiner = new GroovyStringJoiner(", ");
 
-    private String getParametersHint(List<MethodParam> methodParams, int highlightParamIndex) {
-        final GroovyStringJoiner stringJoiner = new GroovyStringJoiner(", ", "<html>", "</html>");
-        for (int i = 0; i < methodParams.size(); i++) {
-            if (i == highlightParamIndex)
-                stringJoiner.add("<b>" + methodParams.get(i).type.getSimpleName() + " " + methodParams.get(i).name + "</b>");
-            else
-                stringJoiner.add(methodParams.get(i).type.getSimpleName() + " " + methodParams.get(i).name);
+            for (int i = 0; i < params.size(); i++) {
+                if (i == highlightParamIndex)
+                    paramJoiner.add("<b>" + params.get(i).type.getSimpleName() + " " + params.get(i).name + "</b>");
+                else
+                    paramJoiner.add(params.get(i).type.getSimpleName() + " " + params.get(i).name);
+            }
+
+            paramsJoiner.add(paramJoiner.toString());
         }
 
-        return stringJoiner.toString();
+        return paramsJoiner.toString();
     }
 
-    public List<MethodParam> getMethodParams(Method method) {
-        final Class<?>[] parameterTypes = method.getParameterTypes();
-        final List<MethodParam> methodParams = new ArrayList<>(parameterTypes.length);
+/*
+    public String getMethodParamsToolTip(Class methodClass, String methodName, int highlightParamIndex) {
 
-        Paranamer paranamer = new CachingParanamer(new BytecodeReadingParanamer()); // cache it
-        final String[] parameterNames = paranamer.lookupParameterNames(method);
-
-        for (int i = 0; i < parameterTypes.length; i++)
-            methodParams.add(new MethodParam(parameterNames[i], parameterTypes[i]));
-
-        return methodParams;
     }
+*/
 
+/*
     public static void main(String[] args) {
         ScriptEditorAutoCompletionProvider provider = new ScriptEditorAutoCompletionProvider(Factory.class);
         Class<GroovyCSVFileReader> clazz = GroovyCSVFileReader.class;
@@ -365,5 +388,6 @@ public final class ScriptEditorAutoCompletionProvider {
             System.out.println(method.getName() + ": (" + provider.getParametersHint(methodParams, -1) + ")");
         }
     }
+*/
 
 }
