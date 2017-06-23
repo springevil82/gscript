@@ -7,14 +7,21 @@ import org.fife.ui.autocomplete.CompletionProvider;
 import org.fife.ui.autocomplete.DefaultCompletionProvider;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
+import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.JTextComponent;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class ScriptEditorScriptEditPanel extends ScriptEditorSyntaxAreaEditPanel {
+
+    private static final Color PARAMETER_HINT_COLOR = new Color(255, 254, 242);
 
     private final ScriptEditorAutoCompletionProvider autoCompletionProvider;
 
@@ -36,6 +43,21 @@ public final class ScriptEditorScriptEditPanel extends ScriptEditorSyntaxAreaEdi
 
     private String buildFactoryDefinition(Class<? extends Factory> factoryClass) {
         return "@groovy.transform.Field " + factoryClass.getCanonicalName() + " factory = new " + factoryClass.getCanonicalName() + "(this)";
+    }
+
+    @Override
+    protected JComponent createParametersToolTipComponent() {
+        return createParametersToolTipLabel("<html><b>dsadas</b>fdsfdsfdsf dsadasd s</html>");
+    }
+
+    private JLabel createParametersToolTipLabel(String text) {
+        final JLabel toolTipLabel = new JLabel(text);
+        toolTipLabel.setBorder(new CompoundBorder(
+                new LineBorder(Color.GRAY, 1, false),
+                new EmptyBorder(5, 5, 5, 5)));
+        toolTipLabel.setBackground(PARAMETER_HINT_COLOR);
+        toolTipLabel.setOpaque(true);
+        return toolTipLabel;
     }
 
     public String getCurrentText(JTextComponent comp) {

@@ -27,7 +27,7 @@ public final class ScriptEditorAutoCompletionProvider {
         final Class c;
         final List<Field> fields;
         final List<Method> methods;
-        final Map<String, List<MethodParams>> methodParamsMap = new HashMap<>();
+        final Map<Method, MethodParams> methodParams = new HashMap<>();
 
         ClassMeta(Class c, List<Field> fields, List<Method> methods) {
             this.c = c;
@@ -35,12 +35,6 @@ public final class ScriptEditorAutoCompletionProvider {
             this.methods = methods;
 
             for (Method method : methods) {
-                List<MethodParams> methodParamsList = methodParamsMap.get(method.getName());
-                if (methodParamsList == null) {
-                    methodParamsList = new ArrayList<>();
-                    methodParamsMap.put(method.getName(), methodParamsList);
-                }
-
                 final MethodParams methodParams = new MethodParams();
                 final Class<?>[] parameterTypes = method.getParameterTypes();
                 final Paranamer paranamer = new CachingParanamer(new BytecodeReadingParanamer());
@@ -49,7 +43,7 @@ public final class ScriptEditorAutoCompletionProvider {
                 for (int i = 0; i < parameterTypes.length; i++)
                     methodParams.add(new MethodParam(parameterNames[i], parameterTypes[i]));
 
-                methodParamsList.add(methodParams);
+                this.methodParams.put(method, methodParams);
             }
         }
 
@@ -66,6 +60,14 @@ public final class ScriptEditorAutoCompletionProvider {
     }
 
     private class MethodParams extends ArrayList<MethodParam> {
+        @Override
+        public String toString() {
+            final GroovyStringJoiner stringJoiner = new GroovyStringJoiner(", ");
+            for (MethodParam param : this)
+                stringJoiner.add(param.type.getSimpleName() + " " + param.name);
+
+            return stringJoiner.toString();
+        }
     }
 
     public ScriptEditorAutoCompletionProvider(Class<? extends Factory> factoryClass) {
@@ -92,16 +94,13 @@ public final class ScriptEditorAutoCompletionProvider {
         return completions;
     }
 
-    public List<ScriptEditorAutoCompletion> getCompletionsForMethods(List<Method> methods) {
+    public List<ScriptEditorAutoCompletion> getCompletionsForMethods(ClassMeta meta, List<Method> methods) {
         final List<ScriptEditorAutoCompletion> completions = new ArrayList<>();
 
         for (Method method : methods) {
-            final Class<?>[] parameterTypes = method.getParameterTypes();
-            final GroovyStringJoiner stringJoiner = new GroovyStringJoiner(", ", "(", ")");
-            for (Class aClass : parameterTypes)
-                stringJoiner.add(aClass.getSimpleName());
-
-            completions.add(new ScriptEditorAutoCompletion(method.getName() + stringJoiner, method.getReturnType()));
+            completions.add(new ScriptEditorAutoCompletion(method.getName() +
+                    "(" + meta.methodParams.get(method) + ")",
+                    method.getReturnType()));
         }
 
         return completions;
@@ -110,7 +109,7 @@ public final class ScriptEditorAutoCompletionProvider {
     public List<ScriptEditorAutoCompletion> getCompletionsFor(ClassMeta classMeta) {
         final List<ScriptEditorAutoCompletion> completions = new ArrayList<>();
         completions.addAll(getCompletionsForFields(classMeta.fields));
-        completions.addAll(getCompletionsForMethods(classMeta.methods));
+        completions.addAll(getCompletionsForMethods(classMeta, classMeta.methods));
         return completions;
     }
 
@@ -278,7 +277,7 @@ public final class ScriptEditorAutoCompletionProvider {
                             applicableMethods.add(method);
 
                     completions.addAll(getCompletionsForFields(applicableFields));
-                    completions.addAll(getCompletionsForMethods(applicableMethods));
+                    completions.addAll(getCompletionsForMethods(meta, applicableMethods));
 
                     return completions;
 
