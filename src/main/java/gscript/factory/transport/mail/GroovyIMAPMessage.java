@@ -5,6 +5,7 @@ import gscript.factory.format.GroovyStringJoiner;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.mail.*;
+import javax.mail.internet.MimeUtility;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -73,7 +74,7 @@ public final class GroovyIMAPMessage {
         final BodyPart bodyPart = findAttachBodyPart(message, filename);
         if (bodyPart != null) {
             int length;
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[8192];
             try (InputStream inputStream = bodyPart.getInputStream()) {
                 try (FileOutputStream outputStream = new FileOutputStream(f)) {
                     while ((length = inputStream.read(buffer)) > 0)
@@ -103,11 +104,14 @@ public final class GroovyIMAPMessage {
     }
 
     private List<String> getAttachments(BodyPart part) throws Exception {
+        if (part.getDisposition() == null && part.getFileName() == null)
+            return new ArrayList<>();
+
         final List<String> result = new ArrayList<>();
         Object content = part.getContent();
         if (content instanceof InputStream || content instanceof String) {
             if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition()) || StringUtils.isNotBlank(part.getFileName())) {
-                result.add(part.getFileName());
+                result.add(MimeUtility.decodeText(part.getFileName()));
                 return result;
             } else {
                 return new ArrayList<>();
@@ -141,9 +145,12 @@ public final class GroovyIMAPMessage {
     }
 
     private BodyPart findAttachBodyPart(BodyPart part, String partName) throws Exception {
+        if (part.getDisposition() == null && part.getFileName() == null)
+            return null;
+
         Object content = part.getContent();
         if (content instanceof InputStream || content instanceof String) {
-            if (partName.equals(part.getFileName()))
+            if (partName.equals(MimeUtility.decodeText(part.getFileName())))
                 return part;
         }
 
