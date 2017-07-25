@@ -4,6 +4,7 @@ import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 
 import java.io.File;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,13 @@ public class GroovyRunner {
         try {
             final Binding binding = new Binding();
             binding.setVariable("factory", factory);
+            binding.setProperty("out", new PrintStream(new RedirectStream(new RedirectPublisher() {
+                @Override
+                public void println(String text) {
+                    System.out.println(text);
+                }
+            })));
+
             initialize(factory, binding);
 
             try {
