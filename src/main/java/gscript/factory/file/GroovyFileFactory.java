@@ -17,6 +17,7 @@ import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class GroovyFileFactory {
@@ -273,6 +274,39 @@ public final class GroovyFileFactory {
     }
 
     /**
+     * Get list of files in dir and sub dirs
+     *
+     * @param dirName dir name
+     * @param mask    files mask (WildcardFileFilter)
+     * @return list of found files
+     */
+    public File[] getFilesInDirRecursive(String dirName, String mask) {
+        final File dir = new File(dirName);
+        final List<File> files = new ArrayList<>();
+        collectFiles(dir, mask, files);
+        return files.toArray(new File[files.size()]);
+    }
+
+    private void collectFiles(File dir, String mask, List<File> files) {
+        if (dir == null || !dir.exists())
+            return;
+
+        final File[] filesAndDirsInDir = dir.listFiles();
+        if (filesAndDirsInDir == null)
+            return;
+
+        for (File file : filesAndDirsInDir) {
+            if (file.isDirectory()) {
+                collectFiles(file, mask, files);
+            } else {
+                final FileFilter fileFilter = new WildcardFileFilter(mask);
+                if (fileFilter.accept(file))
+                    files.add(file);
+            }
+        }
+    }
+
+    /**
      * Create text file reader (line-by-line)
      *
      * @param file     file or path to file
@@ -491,4 +525,17 @@ public final class GroovyFileFactory {
         final FileFilter fileFilter = new WildcardFileFilter(mask);
         return fileFilter.accept(f);
     }
+
+    /**
+     * Create dir if not exist
+     *
+     * @param dir dir or path to dir
+     */
+    public void ensureDir(Object dir) throws Exception {
+        final File d = dir instanceof File ? (File) dir : new File(dir.toString());
+        if (!d.exists())
+            if (!d.mkdirs())
+                throw new GroovyException("Can't create dir " + d);
+    }
+
 }

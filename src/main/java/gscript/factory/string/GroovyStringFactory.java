@@ -161,4 +161,8 @@ public final class GroovyStringFactory {
         return str.toString().replaceAll(from, to);
     }
 
+    public String replaceFileNameSymbols(String str, String replaceTo) {
+        return str == null ? null : str.replaceAll("[\\/:*?\"<>|]", replaceTo);
+    }
+
 }
